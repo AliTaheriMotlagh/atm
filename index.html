@@ -64,7 +64,45 @@ code { font-family: var(--f-mono); font-size: .88em; background: rgba(255,255,25
 }
 .brand b { display: block; font-family: var(--f-display); font-weight: 400; font-size: 14px; letter-spacing: .02em; color: var(--accent); }
 .brand span { display: block; font-family: var(--f-mono); font-size: 11px; color: var(--muted); }
+.hud-left { display: flex; flex-direction: column; gap: 8px; min-width: 0; flex: 0 1 210px; }
 .hud-right { display: flex; flex-direction: column; align-items: flex-end; gap: 8px; }
+.goal {
+  background: var(--panel); border: 1px solid var(--line); border-radius: 12px;
+  padding: 9px 12px; backdrop-filter: blur(6px); display: grid; gap: 7px; font-size: 12px;
+}
+.goal-h { display: flex; justify-content: space-between; align-items: center; gap: 8px; }
+.goal-h b { font-family: var(--f-display); font-weight: 400; font-size: 13px; color: var(--accent); }
+.goal-h .x { width: 26px; height: 26px; font-size: 14px; border-radius: 7px; }
+.goal-time { font-family: var(--f-mono); font-size: 18px; font-weight: 600; font-variant-numeric: tabular-nums; }
+.goal-time.done { color: var(--accent); }
+.stamps { display: flex; gap: 5px; }
+.stamps i { flex: 1; height: 10px; border-radius: 4px; border: 1.5px solid var(--c); opacity: .55; }
+.stamps i.on { background: var(--c); opacity: 1; }
+.goal-f { display: flex; justify-content: space-between; gap: 8px; color: var(--muted); font-family: var(--f-mono); font-size: 11px; }
+.goal-f b { color: var(--paper); font-weight: 600; }
+.missions { display:grid; gap:5px; margin-top:2px; }
+.mission { display:flex; align-items:center; gap:7px; color:var(--muted); font-size:11px; }
+.mission i { width:14px; height:14px; border-radius:50%; border:1px solid var(--line); display:grid; place-items:center; font-style:normal; font-size:9px; flex:none; }
+.mission.done { color:var(--paper); }
+.mission.done i { background:var(--accent); color:var(--accent-ink); border-color:transparent; }
+.commit-list { display:grid; gap:8px; }
+.commit-card { border:1px solid var(--line); border-radius:12px; padding:10px 12px; display:grid; gap:5px; background:rgba(255,255,255,.035); }
+.commit-card a { color:var(--paper); text-decoration:none; font-weight:700; line-height:1.35; }
+.commit-card a:hover { color:var(--pc); }
+.commit-meta { display:flex; flex-wrap:wrap; gap:7px 12px; color:var(--muted); font-family:var(--f-mono); font-size:10px; }
+.commit-repo { color:var(--pc); }
+.commit-loading { color:var(--muted); font-family:var(--f-mono); font-size:12px; }
+.toast {
+  position: fixed; left: 50%; top: 26%; transform: translateX(-50%); z-index: 6;
+  background: var(--panel); border: 1px solid var(--line); border-left: 5px solid var(--pc);
+  border-radius: 12px; padding: 10px 16px; font-weight: 700; text-align: center;
+  max-width: calc(100% - 32px); pointer-events: none; backdrop-filter: blur(6px);
+  box-shadow: 0 10px 30px rgba(0,0,0,.3);
+}
+.toast small { display: block; font-weight: 400; color: var(--muted); font-size: 12px; }
+.toast.show { animation: pop .35s ease-out; }
+@keyframes pop { from { transform: translateX(-50%) scale(.8); opacity: 0; } }
+.goal-note { margin: 0; font-size: 14px; border-left: 3px solid var(--accent); padding-left: 10px; }
 .hud-btns { display: flex; gap: 6px; flex-wrap: wrap; justify-content: flex-end; }
 .hbtn {
   background: var(--panel); border: 1px solid var(--line); border-radius: 999px;
@@ -195,9 +233,32 @@ body.touch.driving .boost { display: block; }
 .d-chips span.live { color: var(--pc-ink); background: var(--pc); border-color: transparent; font-weight: 600; }
 .d-sec { padding: 0 24px; display: grid; gap: 14px; }
 .shot { margin: 0; display: grid; gap: 6px; }
-.shot .frame { border-radius: 14px; overflow: hidden; border: 1px solid var(--line); background: #0a1222; aspect-ratio: 16 / 9; max-width: 100%; }
+.shot .frame { position: relative; border-radius: 14px; overflow: hidden; border: 1px solid var(--line); background: #0a1222; aspect-ratio: 16 / 9; max-width: 100%; }
 .shot img { display: block; width: 100%; height: 100%; object-fit: cover; }
 .shot figcaption { font-family: var(--f-mono); font-size: 11px; color: var(--muted); }
+.shot-bar { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+.shot-bar .sp { flex: 1; }
+.shot-name { display: none; font-family: var(--f-display); color: var(--pc); font-size: 16px; }
+.seg { display: inline-flex; border: 1px solid var(--line); border-radius: 10px; overflow: hidden; }
+.seg button { background: none; border: 0; padding: 6px 12px; font-size: 13px; font-weight: 700; color: var(--muted); }
+.seg button[aria-pressed="true"] { background: var(--pc); color: var(--pc-ink); }
+.tool { background: rgba(255,255,255,.06); border: 1px solid var(--line); border-radius: 8px; padding: 5px 10px; font-size: 12px; font-weight: 700; text-decoration: none; }
+.tool:hover { border-color: var(--pc); }
+/* The site renders at desktop width and is scaled down to fit; "full" lifts it to cover the viewport. */
+.site { position: absolute; left: 0; top: 0; width: 1280px; height: 720px; border: 0; transform-origin: 0 0; background: #fff; }
+.site-wait {
+  position: absolute; inset: 0; display: grid; place-items: center; padding: 16px; text-align: center;
+  background: #0a1222; font-family: var(--f-mono); font-size: 12px; color: var(--muted);
+}
+.shot.full {
+  position: fixed; inset: 0; z-index: 30; background: var(--panel-solid);
+  display: flex; flex-direction: column; gap: 10px;
+  padding: calc(env(safe-area-inset-top, 0px) + 10px) 12px calc(env(safe-area-inset-bottom, 0px) + 12px);
+}
+.shot.full .shot-name { display: block; }
+.shot.full .frame { flex: 1; aspect-ratio: auto; }
+.shot.full .site { width: 100% !important; height: 100% !important; transform: none !important; }
+.shot.full figcaption { display: none; }
 .ghcards { display: grid; grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); gap: 8px; }
 .ghcards a { display: block; border-radius: 10px; overflow: hidden; border: 1px solid var(--line); aspect-ratio: 2 / 1; max-width: 100%; }
 .ghcards img { width: 100%; height: 100%; object-fit: cover; display: block; }
@@ -250,9 +311,122 @@ th { font-family: var(--f-mono); font-size: 11px; font-weight: 600; letter-spaci
 .d-foot button { background: rgba(255,255,255,.05); border: 1px solid var(--line); border-radius: 10px; padding: 10px 14px; font-weight: 700; font-size: 13px; }
 .d-foot button:hover { border-color: var(--pc); }
 
+
+/* Project challenge mini-games */
+.challenge-card {
+  margin: 14px 0 0; padding: 14px; border-radius: 14px;
+  border: 1px solid color-mix(in srgb, var(--pc) 55%, var(--line));
+  background: color-mix(in srgb, var(--pc) 8%, rgba(255,255,255,.025));
+  display: grid; gap: 10px;
+}
+.challenge-card .challenge-top { display:flex; gap:10px; align-items:center; justify-content:space-between; }
+.challenge-card .challenge-copy { min-width:0; }
+.challenge-card b { display:block; font-size:15px; }
+.challenge-card small { color:var(--muted); }
+.challenge-card .btn { padding:9px 13px; font-size:13px; white-space:nowrap; }
+.challenge-card.done { border-color: var(--pc); }
+.challenge-card.done .challenge-status { color:var(--pc); font-weight:700; }
+
+.game-modal {
+  position: fixed; inset: 0; z-index: 50; display:grid; place-items:center;
+  padding: max(16px, env(safe-area-inset-top)) 16px max(16px, env(safe-area-inset-bottom));
+  background: rgba(5,10,20,.72); backdrop-filter: blur(10px);
+}
+.game-box {
+  width:min(640px,100%); max-height:min(820px, calc(100dvh - 32px)); overflow:auto;
+  border:1px solid var(--line); border-radius:22px; background:var(--panel-solid);
+  box-shadow:0 30px 90px rgba(0,0,0,.5); padding:22px; display:grid; gap:16px;
+}
+.game-head { display:flex; gap:14px; align-items:flex-start; }
+.game-head > div { flex:1; min-width:0; }
+.game-head h2 { margin:0; font-family:var(--f-display); font-weight:400; color:var(--pc); font-size:clamp(24px,6vw,38px); }
+.game-head p { margin:5px 0 0; color:var(--muted); }
+.game-body { min-height:220px; display:grid; place-items:center; }
+.game-foot { display:flex; justify-content:space-between; align-items:center; gap:10px; flex-wrap:wrap; }
+.game-msg { color:var(--muted); font-family:var(--f-mono); font-size:12px; }
+.game-msg.good { color:#8ee5a8; }
+.game-msg.bad { color:#ff9892; }
+
+.rhythm-grid { display:grid; grid-template-columns:repeat(4, minmax(58px,1fr)); gap:10px; width:min(480px,100%); }
+.rhythm-pad {
+  aspect-ratio:1; border:1px solid var(--line); border-radius:18px; background:rgba(255,255,255,.06);
+  font-size:24px; display:grid; place-items:center; transition:.12s transform,.12s background;
+}
+.rhythm-pad.flash, .rhythm-pad:active { background:var(--pc); color:var(--pc-ink); transform:scale(.95); }
+
+.landing-wrap { width:min(520px,100%); display:grid; gap:16px; }
+.runway {
+  height:96px; border:1px solid var(--line); border-radius:18px; position:relative; overflow:hidden;
+  background:linear-gradient(180deg,#16334a 0 42%,#313640 42% 100%);
+}
+.runway::after { content:""; position:absolute; left:42%; right:42%; top:42%; bottom:0; background:#e7e7e7; opacity:.24; }
+.runway .target { position:absolute; left:44%; width:12%; bottom:8px; top:48px; border:2px solid #74ff9b; border-radius:8px; }
+.plane { position:absolute; top:13px; left:0; font-size:34px; transform:translateX(-50%); }
+
+.road-grid { display:grid; grid-template-columns:repeat(3,76px); grid-template-rows:repeat(3,76px); gap:7px; }
+.road-cell { border:1px solid var(--line); border-radius:13px; background:rgba(255,255,255,.05); font-size:24px; }
+.road-cell.path { background:color-mix(in srgb,var(--pc) 35%,transparent); }
+.road-cell.block { background:#16445d; cursor:not-allowed; }
+.road-cell.start, .road-cell.goal { border-color:var(--pc); }
+
+.midpoint-game { width:min(520px,100%); display:grid; gap:18px; }
+.mid-line { height:12px; border-radius:999px; background:linear-gradient(90deg,#ff6b6b 0 20%,rgba(255,255,255,.14) 20% 80%,#5eb9ff 80%); position:relative; }
+.mid-line::before, .mid-line::after { position:absolute; top:18px; font-family:var(--f-mono); font-size:11px; color:var(--muted); }
+.mid-line::before { content:"A · 20"; left:16%; } .mid-line::after { content:"B · 80"; right:16%; }
+.midpoint-game input[type=range] { width:100%; accent-color:var(--pc); }
+.mid-value { text-align:center; font-family:var(--f-display); color:var(--pc); font-size:30px; }
+
+.target-arena { width:min(520px,100%); height:300px; border:1px solid var(--line); border-radius:18px; position:relative; overflow:hidden; background:rgba(255,255,255,.03); }
+.siktir-target { position:absolute; width:96px; height:52px; border:0; border-radius:999px; background:#ff3b30; color:white; font-weight:900; box-shadow:0 10px 30px rgba(255,59,48,.3); }
+
+.sort-game { display:grid; gap:16px; justify-items:center; }
+.sort-row { display:flex; gap:10px; flex-wrap:wrap; justify-content:center; }
+.sort-num { width:68px; height:68px; border:1px solid var(--line); border-radius:15px; background:rgba(255,255,255,.06); font-family:var(--f-display); font-size:24px; }
+.sort-num.used { opacity:.25; transform:scale(.88); pointer-events:none; }
+.sort-out { min-height:54px; display:flex; gap:8px; align-items:center; font-family:var(--f-mono); color:var(--pc); }
+
+@media (min-width: 641px) and (max-width: 1100px) {
+  .dossier { width:min(720px, 86vw); }
+  #minimap { width:112px; height:112px; }
+  .hud-left { flex-basis:240px; }
+}
+@media (min-width: 1500px) {
+  body { font-size:17px; }
+  .dossier { width:min(760px, 42vw); }
+  .brand b { font-size:17px; }
+  .brand span, .goal-f { font-size:12px; }
+  .hbtn { font-size:15px; padding:9px 16px; }
+  #minimap { width:160px; height:160px; }
+}
+@media (min-width: 2200px) {
+  .dossier { width:860px; }
+  .card { max-width:820px; }
+  .d-body, .d-sec { font-size:18px; }
+  .d-head h2 { font-size:54px; }
+}
+@media (max-height: 620px) and (orientation: landscape) {
+  .hud-top { padding-top:6px; }
+  .goal { max-height:190px; overflow:auto; }
+  #minimap { width:82px; height:82px; }
+  .game-box { max-height:calc(100dvh - 16px); padding:15px; }
+  .target-arena { height:190px; }
+}
+@media (max-width: 430px) {
+  .hud-top { padding-left:8px; padding-right:8px; gap:8px; }
+  .hud-right { gap:5px; }
+  .hbtn { padding:7px 10px; }
+  .goal { max-width:190px; }
+  .game-box { padding:16px; border-radius:16px; }
+  .road-grid { grid-template-columns:repeat(3,64px); grid-template-rows:repeat(3,64px); }
+  .challenge-card .challenge-top { align-items:flex-start; flex-direction:column; }
+}
+
 @media (max-width: 640px) {
   #minimap { width: 92px; height: 92px; }
   .brand span { display: none; }
+  .hud-left { flex-basis: 170px; }
+  .goal { padding: 8px 10px; gap: 5px; }
+  .goal-time { font-size: 15px; }
   .card { padding: 20px; gap: 14px; }
   .card p.lead { font-size: 15px; }
   .d-head, .d-sec, .d-body, .d-foot { padding-left: 16px; padding-right: 16px; }
@@ -262,7 +436,7 @@ th { font-family: var(--f-mono); font-size: 11px; font-weight: 600; letter-spaci
   .lrow .lk { grid-column: 1 / -1; }
 }
 @media (prefers-reduced-motion: reduce) {
-  .prompt { animation: none; }
+  .prompt, .toast.show { animation: none; }
 }
 </style>
 </head>
@@ -271,11 +445,28 @@ th { font-family: var(--f-mono); font-size: 11px; font-weight: 600; letter-spaci
 <div id="stage" aria-hidden="true"></div>
 
 <div class="hud-top">
-  <div class="brand"><b>Ali Taheri Motlagh</b><span>project island · 6 landmarks</span></div>
+  <div class="hud-left">
+    <div class="brand"><b>Ali Taheri Motlagh</b><span>project island · 6 landmarks</span></div>
+    <div class="goal" id="goal" aria-label="Island tour progress">
+      <div class="goal-h"><b>Island tour</b><button class="x" id="goal-reset" type="button" aria-label="Restart the tour" title="Restart the tour">↻</button></div>
+      <div class="goal-time" id="goal-time">0:00.0</div>
+      <div class="stamps" id="goal-stamps"></div>
+      <div class="goal-f"><span>Stamps <b id="goal-n">0/6</b></span><span>Coins <b id="goal-c">0</b></span></div>
+      <div class="goal-f"><span>Project games <b id="goal-g">0/6</b></span><span>Dossiers <b id="goal-d">0</b></span></div>
+      <div class="goal-f"><span id="goal-best">No best time yet</span></div>
+      <div class="missions" id="missions">
+        <div class="mission" data-mission="stamps"><i>✓</i><span>Visit all project landmarks</span></div>
+        <div class="mission" data-mission="coins"><i>✓</i><span>Collect 8 coins</span></div>
+        <div class="mission" data-mission="dossiers"><i>✓</i><span>Open 3 project dossiers</span></div>
+        <div class="mission" data-mission="games"><i>✓</i><span>Beat all 6 project mini-games</span></div>
+      </div>
+    </div>
+  </div>
   <div class="hud-right">
     <div class="hud-btns">
       <button class="hbtn" id="btn-list" type="button">☰ Projects</button>
       <button class="hbtn" id="btn-about" type="button">About</button>
+      <button class="hbtn" id="btn-sound" type="button" aria-label="Sound" aria-pressed="true">🔊</button>
     </div>
     <canvas id="minimap" width="264" height="264" title="Open the project list"></canvas>
   </div>
@@ -284,6 +475,7 @@ th { font-family: var(--f-mono); font-size: 11px; font-weight: 600; letter-spaci
 <button class="prompt" id="prompt" type="button" hidden><kbd>E</kbd><span>Open <b id="prompt-name">Remixt</b></span></button>
 <div class="stick" id="stick" aria-hidden="true"><i></i></div>
 <button class="boost" id="boost" type="button" aria-label="Boost">Boost</button>
+<div class="toast" id="toast" role="status" aria-live="polite" hidden></div>
 
 <div class="intro" id="intro">
   <div class="card" role="dialog" aria-labelledby="intro-title">
@@ -301,9 +493,38 @@ th { font-family: var(--f-mono); font-size: 11px; font-weight: 600; letter-spaci
       <span><kbd>M</kbd> project list</span>
       <span>Click any landmark to jump there</span>
     </div>
+    <p class="goal-note" id="goal-note">🏁 <b>Goal:</b> complete the portfolio tour: visit all 6 project landmarks, collect at least 8 gold coins, open 3 project dossiers, and beat the mini-game at every project. Your best completion time is saved locally.</p>
     <p class="note3d" id="note3d" hidden>Your browser couldn't start the 3D view, so the island is off. Every project is still one click away below.</p>
     <div class="chips" id="intro-chips"></div>
   </div>
+</div>
+
+<div class="intro" id="win" hidden>
+  <div class="card" role="dialog" aria-labelledby="win-title">
+    <div class="eyebrow">Island tour complete</div>
+    <h1 id="win-title">All 6 stamps!</h1>
+    <div class="stats" id="win-stats"></div>
+    <p class="lead" id="win-msg"></p>
+    <div class="row">
+      <button class="btn" id="btn-again" type="button">Play again</button>
+      <button class="btn ghost" id="btn-keep" type="button">Keep exploring</button>
+    </div>
+  </div>
+</div>
+
+
+<div class="game-modal" id="project-game" hidden>
+  <section class="game-box" role="dialog" aria-modal="true" aria-labelledby="pg-title">
+    <div class="game-head">
+      <div><div class="eyebrow">Project mini-game</div><h2 id="pg-title"></h2><p id="pg-desc"></p></div>
+      <button class="x" id="pg-x" type="button" aria-label="Close mini-game">×</button>
+    </div>
+    <div class="game-body" id="pg-body"></div>
+    <div class="game-foot">
+      <span class="game-msg" id="pg-msg"></span>
+      <button class="btn ghost" id="pg-retry" type="button">Restart challenge</button>
+    </div>
+  </section>
 </div>
 
 <nav class="drawer" id="drawer" hidden aria-label="Projects">
@@ -320,12 +541,44 @@ th { font-family: var(--f-mono); font-size: 11px; font-weight: 600; letter-spaci
     <div class="d-chips" id="d-chips"></div>
   </div>
   <div class="d-sec">
-    <figure class="shot">
-      <div class="frame"><img id="d-img" alt=""></div>
+    <figure class="shot" id="d-shot">
+      <div class="shot-bar">
+        <span class="shot-name" id="d-shot-name"></span>
+        <div class="seg" id="d-view" role="group" aria-label="Preview">
+          <button type="button" data-view="live" aria-pressed="true">Live site</button>
+          <button type="button" data-view="image" aria-pressed="false">Image</button>
+        </div>
+        <span class="sp"></span>
+        <a class="tool" id="d-newtab" target="_blank" rel="noopener">New tab ↗</a>
+        <button class="tool" id="d-full" type="button">Expand ⤢</button>
+      </div>
+      <div class="frame">
+        <img id="d-img" alt="">
+        <iframe id="d-site" class="site" hidden allowfullscreen referrerpolicy="strict-origin-when-cross-origin"
+          sandbox="allow-scripts allow-same-origin allow-forms allow-popups allow-popups-to-escape-sandbox allow-modals allow-downloads allow-pointer-lock"
+          allow="fullscreen; autoplay; clipboard-write; gamepad; accelerometer; gyroscope"></iframe>
+        <div class="site-wait" id="d-wait" hidden></div>
+      </div>
       <figcaption id="d-cap"></figcaption>
     </figure>
     <div class="links" id="d-links"></div>
+    <section id="d-commits-sec" hidden>
+      <h3 style="margin:0 0 8px;font-family:var(--f-mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--pc)">Latest commits</h3>
+      <div class="commit-list" id="d-commits"></div>
+    </section>
     <div class="callout" id="d-callout" hidden></div>
+
+    <div class="challenge-card" id="d-challenge" hidden>
+      <div class="challenge-top">
+        <div class="challenge-copy">
+          <b id="d-challenge-title">Project challenge</b>
+          <small id="d-challenge-desc"></small>
+        </div>
+        <button class="btn" id="d-play-game" type="button">Play challenge</button>
+      </div>
+      <div class="challenge-status" id="d-challenge-status">Not completed yet · reward: 1 coin</div>
+    </div>
+
   </div>
   <div class="tabs" role="tablist" id="d-tabs"></div>
   <div class="d-body" id="d-body" role="tabpanel"></div>
@@ -350,45 +603,79 @@ const GH = 'https://github.com/AliTaheriMotlagh/';
 
 const ALL = [
 {
-  id: 'about', home: true, name: 'About Ali', short: 'Home base', color: '#ffc53d', lang: 'Profile',
+  id: 'about', home: true, name: 'Ali Taheri Motlagh', short: 'Software Engineer', color: '#ffc53d', lang: 'Profile',
   landmark: 'home',
-  tagline: 'Hi, I\'m Ali. I build web apps, browser games and simulators, and I ship them.',
-  chips: ['Updated 29 Oct 2024', 'Open to collaboration'],
-  repos: [{ label: 'Profile', url: GH + 'alitaherimotlagh' }, { label: 'All repos', url: 'https://github.com/AliTaheriMotlagh?tab=repositories' }],
+  tagline: 'Software Engineer · Senior Frontend Developer · 13+ years building web products, platforms and infrastructure.',
+  chips: ['13+ years experience', 'TypeScript', 'Angular', 'NgRx', 'Tehran, Iran'],
+  repos: [{ label: 'GitHub', url: 'https://github.com/AliTaheriMotlagh' }, { label: 'Repositories', url: 'https://github.com/AliTaheriMotlagh?tab=repositories' }],
   site: null,
-  extraLinks: [{ k: 'Links', url: 'https://linktr.ee/alanfilm' }],
-  tabs: { pitch: 'About', design: 'Projects', tech: 'Skills', docs: 'This site' },
+  extraLinks: [
+    { k: 'LinkedIn', url: 'https://www.linkedin.com/in/alitaherimotlagh/' },
+    { k: 'Links', url: 'https://linktr.ee/alanfilm' }
+  ],
+  tabs: { pitch: 'About', design: 'Experience', tech: 'Skills', docs: 'Education' },
   pitch: {
-    line: 'Full-stack TypeScript developer who likes projects that run entirely in the browser: audio AI, flight physics, traffic puzzles.',
+    line: 'Frontend engineer with more than 13 years of experience across startups, enterprises and large-scale products, with additional backend and DevOps experience.',
     rows: [
-      ['Who', 'Ali Taheri Motlagh, developer from Iran. GitHub: `AliTaheriMotlagh`.'],
-      ['Working on', 'A new company venture, plus Remixt, Khalabani and Gridways, all shipped on Vercel.'],
-      ['Looking for', 'Collaborators on VasatYab and Siktir. Ask me about anything.'],
-      ['Contact', 'linktr.ee/alanfilm has every channel.']
+      ['Role', 'Software Engineer / Senior Frontend Developer.'],
+      ['Location', 'Tehran, Tehran Province, Iran.'],
+      ['Focus', 'Creating intuitive, user-friendly products while continuously improving engineering quality, architecture and technical depth.'],
+      ['Top skills', 'TypeScript · Angular · NgRx'],
+      ['Breadth', 'Frontend, full-stack development, browser graphics, data structures, infrastructure and DevOps.']
     ]
   },
-  design: 'PROJECT_MAP',
+  design: [
+    { h: 'Senior Frontend Developer — Farineh Fanavar', items: [
+      'Full-time · Jun 2024 – Present · Tehran · On-site.',
+      'Angular, Canvas, NgRx, RxJS and tree data structures.',
+      'Senior frontend ownership across complex application features and architecture.'
+    ] },
+    { h: 'Full-stack Developer — Freelance', items: [
+      'Freelance · May 2021 – Sep 2024 · Tehran · Remote.',
+      'Angular, React.js, Tailwind CSS, NestJS, Next.js, Prisma ORM, MySQL and PostgreSQL.'
+    ] },
+    { h: 'DevOps Engineer — Bookbal', items: [
+      'Full-time · Apr 2020 – Mar 2021 · Tehran Province · On-site.',
+      'Implemented infrastructure for a self-hosted web application using Linux, CentOS, Docker, ELK and Git.'
+    ] },
+    { h: 'Frontend Developer — Shatel', items: [
+      'Full-time · May 2016 – Jun 2019 · Tehran · On-site.',
+      'AngularJS, Angular, PWA, JavaScript, TypeScript, Node, HTML and CSS.',
+      'Built and maintained web frontend experiences and collaborated across product, design and backend teams.'
+    ] },
+    { h: 'Information Technology Supervisor — Soorati', items: [
+      'Full-time · Sep 2015 – Apr 2016 · Iran · On-site.',
+      'Built networking infrastructure for 50+ employees with VoIP, Hyper-V, SQL and Windows Server.',
+      'Assembled a physical server and deployed the agency web application on it.'
+    ] },
+    { h: 'Junior Software Engineer — Asan', items: [
+      'Full-time · Apr 2012 – Sep 2015 · Tehran · On-site.',
+      'WPF, ASP.NET MVC, C#, Entity Framework, SQL and networking.',
+      'Worked directly with clients and focused on reliable delivery.'
+    ] }
+  ],
   tech: {
     stack: [
-      ['Languages', 'TypeScript, JavaScript, Python'],
-      ['Frontend', 'Next.js, Angular, Tailwind CSS, Canvas 2D, WebGL, Web Audio API'],
-      ['Backend', 'NestJS, Next.js API routes, Prisma, PostgreSQL'],
-      ['In-browser AI', 'ONNX Runtime Web, WebGPU / WebAssembly, Demucs'],
-      ['Tooling', 'Vite, Docker, Playwright, Karma, ESLint, Prettier'],
-      ['Hosting', 'Vercel, Netlify, Neon, Cloudflare R2, Vercel Blob']
+      ['Frontend', 'Angular, AngularJS, React.js, Next.js, TypeScript, JavaScript, PWA, HTML, SASS, CSS'],
+      ['State & architecture', 'NgRx, RxJS, data structures, design patterns, OOP, SDLC, Agile'],
+      ['Graphics', 'Canvas, SVG, browser graphics and interactive UI systems'],
+      ['Backend & data', 'NestJS, Node.js, Prisma ORM, REST APIs, MySQL, PostgreSQL, SQL, ASP.NET MVC, C#'],
+      ['Infrastructure', 'Docker, Linux, CentOS, Nginx, ELK, Git, Windows Server, Hyper-V, VoIP'],
+      ['Other', 'WPF, Webpack, Angular CLI, WordPress, Final Cut Pro']
     ],
-    numbers: [['8', 'public repositories'], ['5', 'live websites'], ['2', 'aircraft simulated'], ['80 kB', 'Gridways, whole game']]
+    numbers: [['13+', 'years engineering'], ['6', 'professional roles'], ['3', 'top skills: TS · Angular · NgRx'], ['2012', 'career start']]
   },
   docs: {
+    note: 'Profile information supplied from LinkedIn, captured 30 Sep 2026.',
     steps: [
-      { t: 'Run this site locally', code: 'python3 -m http.server 8000\n# open http://localhost:8000' },
-      { t: 'Deploy to Vercel (static, no build step)', code: 'npx vercel --prod' },
-      { t: 'Add real screenshots', code: 'images/remixt.png\nimages/khalabani.png\nimages/gridways.png\nimages/vasatyab.png\nimages/siktir.png\nimages/algorithms.png' }
+      { t: 'Education', code: 'Islamic Azad University\nBachelor’s degree — Computer Science\nOct 2012 – Jun 2016' },
+      { t: 'Certification', code: 'Developing Microsoft SQL Server 2012/2014 Databases — CanDo\nIssued Nov 2014' },
+      { t: 'Certification', code: 'Microsoft Certified Systems Engineer: Security (MCSE) — CanDo\nIssued Nov 2012' }
     ],
-    extra: [{ h: 'How it works', items: [
-      'One HTML file. Three.js r128 draws the island; every landmark and texture is built in code, so there are no model files to load.',
-      'Each project\'s image is rendered from its landmark when the page loads. Drop a real screenshot into `images/` with the project id as the file name and it replaces the render.',
-      'Link straight to a dossier with a hash, for example `#remixt` or `#gridways`.'
+    extra: [{ h: 'Professional profile', items: [
+      'Experience spans frontend engineering, full-stack product development, DevOps and IT infrastructure.',
+      'Primary current strengths are TypeScript, Angular and NgRx.',
+      'Portfolio projects emphasize browser-native tools, games, simulations, audio processing and interactive systems.'
     ] }]
   }
 },
@@ -606,7 +893,7 @@ const ALL = [
   tagline: 'Make a "Dokme Siktir" button for any URL and share it.',
   chips: ['Angular', 'NestJS', 'Updated 16 Jul 2024'], live: true,
   repos: [{ label: 'Frontend', url: GH + 'siktir-frontend' }, { label: 'Backend', url: GH + 'siktir-backend' }],
-  site: 'https://siktir.fun',
+  site: 'https://siktir-backend.onrender.com',
   inferred: 'Both READMEs are short, so this summary comes from the repository description and the files in each repo.',
   pitch: {
     line: 'دکمه سیکتیر: a big red button, for any link you like.',
@@ -614,7 +901,7 @@ const ALL = [
       ['Idea', 'Paste any URL and get a shareable DokmeSiktir page for it. It\'s a playful micro-tool made for sharing in Persian-speaking group chats.'],
       ['Who it\'s for', 'Anyone who wants to send a link with some attitude.'],
       ['Why it stands out', 'A full product stack behind a joke: Angular frontend, NestJS API, a database, and Puppeteer to render pages on the server.'],
-      ['Status', 'siktir.fun. Open to collaborators.']
+      ['Status', 'Live at siktir-backend.onrender.com. Open to collaborators.']
     ]
   },
   design: [
@@ -677,6 +964,14 @@ const ALL = [
 ];
 const TOUR = ALL.filter(p => !p.home);
 const byId = Object.fromEntries(ALL.map(p => [p.id, p]));
+const PROJECT_GAMES = {
+  remixt: { title:'Stem Sync', desc:'Repeat the four-pad rhythm to sync a vocal with its beat.', type:'rhythm' },
+  khalabani: { title:'Perfect Touchdown', desc:'Tap LAND when the aircraft is centered over the green runway zone.', type:'landing' },
+  gridways: { title:'Route Builder', desc:'Connect the house to the shop while avoiding water.', type:'road' },
+  vasatyab: { title:'Find the Midpoint', desc:'Place the marker exactly halfway between point A (20) and point B (80).', type:'midpoint' },
+  siktir: { title:'Dokme Reflex', desc:'Hit the moving red button five times before the timer expires.', type:'target' },
+  algorithms: { title:'Sort It', desc:'Click the values from smallest to largest.', type:'sort' }
+};
 
 /* ------------------------------------------------------------------ */
 /*  Helpers                                                            */
@@ -705,6 +1000,93 @@ function copyText(btn, text) {
     if (el) { const r = document.createRange(); r.selectNodeContents(el); const s = getSelection(); s.removeAllRanges(); s.addRange(r); btn.textContent = 'Selected'; setTimeout(() => (btn.textContent = 'Copy'), 1400); }
   };
   try { navigator.clipboard.writeText(text).then(done, fallback); } catch (e) { fallback(); }
+}
+
+const store = {
+  get(k) { try { return localStorage.getItem(k); } catch (e) { return null; } },
+  set(k, v) { try { localStorage.setItem(k, v); } catch (e) {} }
+};
+
+// Tiny synth for game feedback; the context is created on first use, which is always after a key press or tap.
+const sfx = {
+  ac: null, muted: store.get('island-muted') === '1',
+  SONGS: {
+    coin: { type: 'square', vol: 0.04, notes: [[988, 0, 0.08], [1319, 0.06, 0.16]] },
+    stamp: { type: 'triangle', vol: 0.1, notes: [[523, 0, 0.12], [659, 0.08, 0.12], [784, 0.16, 0.12], [1047, 0.24, 0.3]] },
+    win: { type: 'triangle', vol: 0.1, notes: [[523, 0, 0.15], [659, 0.15, 0.15], [784, 0.3, 0.15], [1047, 0.45, 0.22], [784, 0.68, 0.12], [1047, 0.82, 0.6]] }
+  },
+  play(name) {
+    if (this.muted) return;
+    try {
+      const ac = this.ac || (this.ac = new (window.AudioContext || window.webkitAudioContext)());
+      if (ac.state === 'suspended') ac.resume();
+      const s = this.SONGS[name];
+      s.notes.forEach(([f, at, dur]) => {
+        const o = ac.createOscillator(), g = ac.createGain(), t0 = ac.currentTime + at;
+        o.type = s.type; o.frequency.setValueAtTime(f, t0);
+        g.gain.setValueAtTime(0.0001, t0); g.gain.exponentialRampToValueAtTime(s.vol, t0 + 0.01); g.gain.exponentialRampToValueAtTime(0.0001, t0 + dur);
+        o.connect(g).connect(ac.destination); o.start(t0); o.stop(t0 + dur + 0.02);
+      });
+    } catch (e) {}
+  }
+};
+
+// Portfolio game state. Progress is session-based; best tour time is persisted locally.
+const game = {
+  stamps: new Set(), dossiers: new Set(), projectGames: new Set(), coins: 0, elapsed: 0, running: false, won: false,
+  coinGoal: 8, dossierGoal: 3,
+  best: Number(store.get('island-best') || 0) || 0
+};
+function fmtTime(sec) {
+  sec = Math.max(0, sec); const m = Math.floor(sec / 60), s = sec - m * 60;
+  return `${m}:${s.toFixed(1).padStart(4, '0')}`;
+}
+function renderGameHud() {
+  $('#goal-time').textContent = fmtTime(game.elapsed);
+  $('#goal-time').classList.toggle('done', game.won);
+  $('#goal-n').textContent = `${game.stamps.size}/${TOUR.length}`;
+  $('#goal-c').textContent = game.coins;
+  $('#goal-g').textContent = `${game.projectGames.size}/${TOUR.length}`;
+  $('#goal-d').textContent = game.dossiers.size;
+  $('#goal-best').textContent = game.best ? `Best ${fmtTime(game.best)}` : 'No best time yet';
+  $('#goal-stamps').innerHTML = TOUR.map(p => `<i class="${game.stamps.has(p.id) ? 'on' : ''}" style="--c:${p.color}" title="${esc(p.name)}"></i>`).join('');
+  const done = { stamps: game.stamps.size === TOUR.length, coins: game.coins >= game.coinGoal, dossiers: game.dossiers.size >= game.dossierGoal, games: game.projectGames.size === TOUR.length };
+  Object.entries(done).forEach(([k,v]) => document.querySelector(`[data-mission="${k}"]`)?.classList.toggle('done', v));
+}
+function checkWin() {
+  if (game.won || game.stamps.size < TOUR.length || game.coins < game.coinGoal || game.dossiers.size < game.dossierGoal || game.projectGames.size < TOUR.length) return;
+  game.won = true; game.running = false; sfx.play('win');
+  if (!game.best || game.elapsed < game.best) { game.best = game.elapsed; store.set('island-best', String(game.best)); }
+  renderGameHud();
+  $('#win-stats').innerHTML = `<div class="stat"><b>${fmtTime(game.elapsed)}</b><span>tour time</span></div><div class="stat"><b>${game.coins}</b><span>coins</span></div><div class="stat"><b>${game.projectGames.size}/6</b><span>project games</span></div><div class="stat"><b>${game.dossiers.size}</b><span>dossiers opened</span></div>`;
+  $('#win-msg').textContent = 'You explored every landmark, completed every project challenge, collected enough coins and opened the project dossiers.';
+  $('#win').hidden = false;
+}
+function gameStamp(id) {
+  if (!id || id === 'about' || game.stamps.has(id)) return;
+  game.stamps.add(id); sfx.play('stamp'); toast(`🏁 ${esc(byId[id].name)} stamp collected`, byId[id].color); renderGameHud(); checkWin();
+}
+function gameCoin() { game.coins++; sfx.play('coin'); renderGameHud(); checkWin(); }
+function gameDossier(id) { if (id !== 'about') { game.dossiers.add(id); renderGameHud(); checkWin(); } }
+function completeProjectGame(id) {
+  if (!id || game.projectGames.has(id)) return;
+  game.projectGames.add(id); game.coins++; sfx.play('stamp');
+  toast(`🎮 ${esc(byId[id].name)} challenge complete · +1 coin`, byId[id].color);
+  renderGameHud(); refreshChallengeCard(byId[id]); checkWin();
+}
+function resetGame() {
+  game.stamps.clear(); game.dossiers.clear(); game.projectGames.clear(); game.coins = 0; game.elapsed = 0; game.running = mode === 'drive'; game.won = false; world.resetCoins();
+  $('#win').hidden = true; renderGameHud(); toast('Tour restarted');
+}
+function updateGame(dt, driving) { if (driving && !game.won) { game.running = true; game.elapsed += dt; if ((Math.floor(game.elapsed * 10) % 2) === 0) renderGameHud(); } }
+renderGameHud();
+
+let toastTimer = 0;
+function toast(html, color) {
+  const el = $('#toast');
+  el.innerHTML = html; el.style.setProperty('--pc', color || 'var(--accent)');
+  el.hidden = false; el.classList.remove('show'); void el.offsetWidth; el.classList.add('show');
+  clearTimeout(toastTimer); toastTimer = setTimeout(() => (el.hidden = true), 2800);
 }
 
 /* ------------------------------------------------------------------ */
@@ -744,6 +1126,10 @@ async function resolveImage(p) {
   for (const ext of ['png', 'jpg', 'webp']) {
     const src = `images/${p.id}.${ext}`;
     if (await tryLoad(src)) return (imageCache[p.id] = { src, cap: 'Screenshot' });
+  }
+  if (p.site) {
+    const remoteShot = `https://image.thum.io/get/width/1200/crop/675/noanimate/${p.site}`;
+    if (await tryLoad(remoteShot)) return (imageCache[p.id] = { src: remoteShot, cap: `Live website screenshot · ${prettyUrl(p.site)}` });
   }
   if (snapshots[p.id]) return (imageCache[p.id] = { src: snapshots[p.id], cap: `Rendered from the ${p.name} landmark on this island` });
   return { src: poster(p), cap: `${p.name} poster` };
@@ -797,9 +1183,207 @@ function renderTab(p, tab) {
   currentTab = tab;
 }
 
+/* Live website preview: an iframe of the real site, scaled down from desktop width, with an Expand mode that covers the screen. */
+const site = $('#d-site'), siteWait = $('#d-wait'), shot = $('#d-shot');
+let siteView = 'live', imgCap = '', waitTimer = 0;
+
+function fitSite() {
+  const w = shot.querySelector('.frame').clientWidth; if (!w) return;
+  const vw = w < 480 ? 768 : 1280;
+  site.style.width = vw + 'px'; site.style.height = vw * 9 / 16 + 'px';
+  site.style.transform = `scale(${w / vw})`;
+}
+if (window.ResizeObserver) new ResizeObserver(fitSite).observe(shot.querySelector('.frame'));
+else addEventListener('resize', fitSite);
+
+function setCaption() {
+  const live = current && current.site && !site.hidden;
+  $('#d-cap').textContent = live ? `Live: ${prettyUrl(current.site)}, running inside this page. Expand it to use it full screen, or open a new tab if sign-in doesn't work here.` : imgCap;
+}
+function showImage(p) {
+  resolveImage(p).then(r => { if (current === p) { $('#d-img').src = r.src; imgCap = r.cap; setCaption(); } });
+}
+function setView(v) {
+  const p = current; if (!p) return;
+  const live = v === 'live' && !!p.site;
+  if (p.site) siteView = v;
+  document.querySelectorAll('#d-view button').forEach(b => b.setAttribute('aria-pressed', String(b.dataset.view === (live ? 'live' : 'image'))));
+  $('#d-img').hidden = live; site.hidden = !live; $('#d-full').hidden = !live;
+  if (live && site.dataset.src !== p.site) {
+    clearTimeout(waitTimer);
+    site.dataset.src = p.site; site.title = `${p.name} live website`;
+    siteWait.hidden = false; siteWait.textContent = `Loading ${prettyUrl(p.site)}…`;
+    site.src = p.site;
+    waitTimer = setTimeout(() => { siteWait.textContent = `${prettyUrl(p.site)} is taking a while. If it stays blank, open it in a new tab.`; }, 10000);
+  } else if (!live) unloadSite();
+  fitSite(); setCaption();
+}
+function unloadSite() {
+  setFull(false);
+  clearTimeout(waitTimer); siteWait.hidden = true;
+  if (site.dataset.src) { site.dataset.src = ''; site.src = 'about:blank'; }
+}
+function setFull(on) {
+  shot.classList.toggle('full', on);
+  document.body.classList.toggle('site-full', on);
+  $('#d-full').textContent = on ? 'Close ✕' : 'Expand ⤢';
+  if (on) $('#d-full').focus({ preventScroll: true });
+}
+site.addEventListener('load', () => { if (site.dataset.src) { clearTimeout(waitTimer); siteWait.hidden = true; } });
+$('#d-full').onclick = () => setFull(!shot.classList.contains('full'));
+
+
+/* ------------------------------------------------------------------ */
+/*  Project-specific mini-games                                        */
+/* ------------------------------------------------------------------ */
+let activeMiniGame = null, miniCleanup = null;
+function refreshChallengeCard(p) {
+  const card = $('#d-challenge');
+  if (!p || p.home || !PROJECT_GAMES[p.id]) { card.hidden = true; return; }
+  const g = PROJECT_GAMES[p.id], done = game.projectGames.has(p.id);
+  card.hidden = false; card.classList.toggle('done', done);
+  $('#d-challenge-title').textContent = g.title;
+  $('#d-challenge-desc').textContent = g.desc;
+  $('#d-challenge-status').textContent = done ? '✓ Completed · reward collected' : 'Not completed yet · reward: 1 coin';
+  $('#d-play-game').textContent = done ? 'Play again' : 'Play challenge';
+}
+function miniMessage(text, kind='') {
+  const el = $('#pg-msg'); el.textContent = text; el.className = 'game-msg' + (kind ? ' ' + kind : '');
+}
+function closeProjectGame() {
+  if (miniCleanup) { try { miniCleanup(); } catch(e){} miniCleanup = null; }
+  $('#project-game').hidden = true; activeMiniGame = null;
+}
+function winMini(id, text='Challenge complete!') {
+  miniMessage(text, 'good'); completeProjectGame(id);
+}
+function openProjectGame(id) {
+  const p = byId[id], cfg = PROJECT_GAMES[id]; if (!p || !cfg) return;
+  activeMiniGame = id;
+  $('#project-game').style.setProperty('--pc', p.color);
+  $('#project-game').style.setProperty('--pc-ink', inkFor(p.color));
+  $('#pg-title').textContent = cfg.title; $('#pg-desc').textContent = cfg.desc;
+  $('#project-game').hidden = false; $('#pg-x').focus({preventScroll:true});
+  startMiniGame(id);
+}
+function startMiniGame(id) {
+  if (miniCleanup) { try { miniCleanup(); } catch(e){} miniCleanup = null; }
+  const body = $('#pg-body'); body.innerHTML = ''; miniMessage(''); const cfg = PROJECT_GAMES[id]; if (!cfg) return;
+  if (cfg.type === 'rhythm') miniRhythm(id, body);
+  if (cfg.type === 'landing') miniLanding(id, body);
+  if (cfg.type === 'road') miniRoad(id, body);
+  if (cfg.type === 'midpoint') miniMidpoint(id, body);
+  if (cfg.type === 'target') miniTarget(id, body);
+  if (cfg.type === 'sort') miniSort(id, body);
+}
+function miniRhythm(id, body) {
+  const seq = [0,2,1,3,2], icons = ['🎤','🥁','🎹','🎚️']; let pos = 0, accepting = false, timers=[];
+  const grid = document.createElement('div'); grid.className='rhythm-grid';
+  const pads = icons.map((ic,i)=>{ const b=document.createElement('button'); b.className='rhythm-pad'; b.textContent=ic; b.type='button'; b.onclick=()=>tap(i); grid.appendChild(b); return b; });
+  body.appendChild(grid);
+  const flash = (i,at) => timers.push(setTimeout(()=>{ pads[i].classList.add('flash'); sfx.play('coin'); timers.push(setTimeout(()=>pads[i].classList.remove('flash'),180)); },at));
+  miniMessage('Listen and watch…');
+  seq.forEach((n,i)=>flash(n,450+i*430));
+  timers.push(setTimeout(()=>{ accepting=true; miniMessage('Your turn — repeat the pattern.'); },450+seq.length*430));
+  function tap(i){ if(!accepting) return; pads[i].classList.add('flash'); setTimeout(()=>pads[i].classList.remove('flash'),120);
+    if(i!==seq[pos]){ pos=0; miniMessage('Missed the pattern — start again from the first pad.','bad'); return; }
+    pos++; if(pos===seq.length){ accepting=false; winMini(id,'Perfect sync — vocal and beat locked!'); }
+  }
+  miniCleanup=()=>timers.forEach(clearTimeout);
+}
+function miniLanding(id, body) {
+  body.innerHTML='<div class="landing-wrap"><div class="runway"><div class="target"></div><div class="plane">✈️</div></div><button class="btn" id="land-now" type="button">LAND</button></div>';
+  const plane=body.querySelector('.plane'), btn=body.querySelector('#land-now'); let x=0, dir=1, last=performance.now(), raf=0, stopped=false;
+  function tick(now){ const dt=Math.min(.05,(now-last)/1000); last=now; x+=dir*dt*.65; if(x>=1){x=1;dir=-1} if(x<=0){x=0;dir=1} plane.style.left=(x*100)+'%'; if(!stopped) raf=requestAnimationFrame(tick); }
+  raf=requestAnimationFrame(tick); miniMessage('Center the aircraft over the green touchdown zone.');
+  btn.onclick=()=>{ const ok=x>=.44&&x<=.56; if(ok){ stopped=true; cancelAnimationFrame(raf); winMini(id,'Smooth touchdown at the centerline!'); } else { miniMessage('Too early or too late — try again.','bad'); sfx.play('coin'); } };
+  miniCleanup=()=>{stopped=true;cancelAnimationFrame(raf)};
+}
+function miniRoad(id, body) {
+  const blocked=new Set([3,5]), start=6, goal=2; let path=[start];
+  const grid=document.createElement('div'); grid.className='road-grid';
+  for(let i=0;i<9;i++){ const b=document.createElement('button'); b.type='button'; b.className='road-cell'; b.dataset.i=i;
+    if(blocked.has(i)){b.classList.add('block');b.textContent='🌊';}
+    else if(i===start){b.classList.add('start','path');b.textContent='🏠';}
+    else if(i===goal){b.classList.add('goal');b.textContent='🏪';}
+    else b.textContent='·';
+    b.onclick=()=>pick(i,b); grid.appendChild(b);
+  }
+  body.appendChild(grid); miniMessage('Build a continuous road. Water cells are blocked.');
+  function adjacent(a,b){ return (Math.abs(a-b)===1 && Math.floor(a/3)===Math.floor(b/3)) || Math.abs(a-b)===3; }
+  function pick(i,b){ if(blocked.has(i)||path.includes(i))return; const last=path[path.length-1]; if(!adjacent(last,i)){miniMessage('Road tiles must touch the current route.','bad');return;}
+    path.push(i); b.classList.add('path'); if(i!==goal)b.textContent='🛣️'; sfx.play('coin');
+    if(i===goal)winMini(id,'Route complete — traffic can reach the shop!');
+  }
+}
+function miniMidpoint(id, body) {
+  body.innerHTML='<div class="midpoint-game"><div class="mid-line"></div><input id="mid-range" type="range" min="20" max="80" value="36" step="1"><div class="mid-value" id="mid-val">36</div><button class="btn" id="mid-check" type="button">Check midpoint</button></div>';
+  const r=body.querySelector('#mid-range'), v=body.querySelector('#mid-val'); r.oninput=()=>v.textContent=r.value;
+  body.querySelector('#mid-check').onclick=()=>{ const n=Number(r.value); if(n===50)winMini(id,'Exactly 50 — the fair midpoint!'); else miniMessage(`You chose ${n}. Halfway between 20 and 80 is closer to 50.`,'bad'); };
+  miniMessage('Find the exact midpoint.');
+}
+function miniTarget(id, body) {
+  body.innerHTML='<div class="target-arena"><button class="siktir-target" type="button">SIKTIR</button></div>';
+  const arena=body.firstElementChild, target=arena.firstElementChild; let hits=0, start=0, timer=0;
+  function move(){ const maxX=Math.max(0,arena.clientWidth-100),maxY=Math.max(0,arena.clientHeight-56); target.style.left=Math.random()*maxX+'px'; target.style.top=Math.random()*maxY+'px'; }
+  target.onclick=()=>{ if(!start)start=performance.now(); hits++; sfx.play('coin'); if(hits>=5){ const sec=(performance.now()-start)/1000; clearTimeout(timer); winMini(id,`5 hits in ${sec.toFixed(2)}s — reflex test cleared!`); target.disabled=true; } else { miniMessage(`${hits}/5 hits`); move(); clearTimeout(timer); timer=setTimeout(()=>{hits=0;start=0;miniMessage('Time out — counter reset.','bad');move();},1800); } };
+  move(); miniMessage('Hit the button 5 times. You have 1.8s between hits.');
+  miniCleanup=()=>clearTimeout(timer);
+}
+function miniSort(id, body) {
+  const nums=[8,3,5,1,7], sorted=[1,3,5,7,8]; let step=0;
+  const wrap=document.createElement('div'); wrap.className='sort-game';
+  const row=document.createElement('div'); row.className='sort-row'; const output=document.createElement('div'); output.className='sort-out'; output.textContent='Sorted:';
+  nums.forEach(n=>{ const b=document.createElement('button'); b.type='button'; b.className='sort-num'; b.textContent=n; b.onclick=()=>{ if(n!==sorted[step]){miniMessage(`Not yet — choose the smallest remaining value.`, 'bad');return;} b.classList.add('used'); output.textContent+=' '+n; step++; sfx.play('coin'); if(step===sorted.length)winMini(id,'Sorted correctly: 1, 3, 5, 7, 8'); }; row.appendChild(b); });
+  wrap.append(row,output); body.appendChild(wrap); miniMessage('Selection-sort mindset: smallest remaining value first.');
+}
+$('#pg-x').onclick=closeProjectGame;
+$('#pg-retry').onclick=()=>{ if(activeMiniGame) startMiniGame(activeMiniGame); };
+$('#project-game').addEventListener('click', e=>{ if(e.target.id==='project-game') closeProjectGame(); });
+$('#d-play-game').onclick=()=>{ if(current) openProjectGame(current.id); };
+
+const commitCache = new Map();
+function repoSlug(url) {
+  try {
+    const u = new URL(url); const bits = u.pathname.replace(/^\/+|\/+$/g, '').split('/');
+    return u.hostname === 'github.com' && bits.length === 2 ? bits.join('/') : null;
+  } catch (e) { return null; }
+}
+function shortDate(iso) {
+  try { return new Intl.DateTimeFormat(undefined, { year:'numeric', month:'short', day:'numeric' }).format(new Date(iso)); }
+  catch (e) { return iso || ''; }
+}
+async function loadCommits(p) {
+  const box = $('#d-commits'), sec = $('#d-commits-sec');
+  const repos = p.repos.map(r => ({...r, slug:repoSlug(r.url)})).filter(r => r.slug);
+  sec.hidden = repos.length === 0;
+  if (!repos.length) return;
+  box.innerHTML = '<div class="commit-loading">Loading latest GitHub commits…</div>';
+  const all = [];
+  await Promise.all(repos.map(async r => {
+    try {
+      let data = commitCache.get(r.slug);
+      if (!data) {
+        const res = await fetch(`https://api.github.com/repos/${r.slug}/commits?per_page=5`, { headers: { Accept:'application/vnd.github+json' } });
+        if (!res.ok) throw new Error(`GitHub ${res.status}`);
+        data = await res.json(); commitCache.set(r.slug, data);
+      }
+      data.slice(0,5).forEach(c => all.push({ repo:r.label || r.slug.split('/')[1], slug:r.slug, sha:c.sha, html:c.html_url, message:(c.commit?.message || '').split('\n')[0], author:c.commit?.author?.name || c.author?.login || 'Unknown', date:c.commit?.author?.date }));
+    } catch (e) { all.push({ repo:r.label || r.slug.split('/')[1], error:true, message:'Commit history unavailable (GitHub rate limit or network/CORS issue).' }); }
+  }));
+  if (current !== p) return;
+  all.sort((a,b) => String(b.date || '').localeCompare(String(a.date || '')));
+  box.innerHTML = all.map(c => c.error
+    ? `<div class="commit-card"><span class="commit-repo">${esc(c.repo)}</span><span class="commit-loading">${esc(c.message)}</span></div>`
+    : `<div class="commit-card"><a href="${esc(c.html)}" target="_blank" rel="noopener">${esc(c.message || '(no commit message)')}</a><div class="commit-meta"><span class="commit-repo">${esc(c.repo)}</span><span>${esc(c.author)}</span><span>${esc(shortDate(c.date))}</span><span>${esc(c.sha.slice(0,7))}</span></div></div>`).join('');
+}
+
 function openDossier(id, opts = {}) {
   const p = byId[id]; if (!p) return;
   current = p;
+  gameDossier(id);
+  loadCommits(p);
+  refreshChallengeCard(p);
   const d = $('#dossier');
   d.style.setProperty('--pc', p.color);
   d.style.setProperty('--pc-ink', inkFor(p.color));
@@ -821,8 +1405,12 @@ function openDossier(id, opts = {}) {
   const img = $('#d-img');
   img.alt = `${p.name} preview`;
   img.src = snapshots[p.id] || poster(p);
-  $('#d-cap').textContent = '';
-  resolveImage(p).then(r => { if (current === p) { img.src = r.src; $('#d-cap').textContent = r.cap; } });
+  imgCap = '';
+  $('#d-shot-name').textContent = p.name;
+  $('#d-view').hidden = $('#d-newtab').hidden = !p.site;
+  if (p.site) $('#d-newtab').href = p.site;
+  setView(p.site ? siteView : 'image');
+  showImage(p);
 
   // GitHub social cards (load only where the host allows remote images)
   const gh = $('#d-gh'); gh.innerHTML = '';
@@ -843,6 +1431,8 @@ function openDossier(id, opts = {}) {
   $('#d-x').focus({ preventScroll: true });
 }
 function closeDossier() {
+  closeProjectGame();
+  unloadSite();
   $('#dossier').hidden = true; current = null;
   try { history.replaceState(null, '', location.pathname + location.search); } catch (e) {}
   setMode(world.ok ? 'drive' : 'intro');
@@ -855,9 +1445,10 @@ function step(dir) {
 }
 
 document.addEventListener('click', e => {
-  const t = e.target.closest('[data-open],[data-drive],[data-copy],[data-tab]');
+  const t = e.target.closest('[data-open],[data-drive],[data-copy],[data-tab],[data-view]');
   if (!t) return;
-  if (t.dataset.open) openDossier(t.dataset.open);
+  if (t.dataset.view) setView(t.dataset.view);
+  else if (t.dataset.open) openDossier(t.dataset.open);
   else if (t.dataset.drive) { $('#drawer').hidden = true; $('#intro').hidden = true; world.teleport(t.dataset.drive); setMode('drive'); }
   else if (t.dataset.copy) copyText(t, t.dataset.copy);
   else if (t.dataset.tab && current) renderTab(current, t.dataset.tab);
@@ -871,6 +1462,12 @@ $('#minimap').onclick = () => toggleDrawer();
 $('#btn-about').onclick = () => openDossier('about');
 $('#drawer-x').onclick = () => toggleDrawer(false);
 $('#btn-start').onclick = () => { $('#intro').hidden = true; setMode('drive'); $('#stage canvas')?.focus(); };
+$('#btn-sound').onclick = () => { sfx.muted = !sfx.muted; store.set('island-muted', sfx.muted ? '1' : '0'); $('#btn-sound').textContent = sfx.muted ? '🔇' : '🔊'; $('#btn-sound').setAttribute('aria-pressed', String(!sfx.muted)); if (!sfx.muted) sfx.play('coin'); };
+$('#btn-sound').textContent = sfx.muted ? '🔇' : '🔊';
+$('#btn-sound').setAttribute('aria-pressed', String(!sfx.muted));
+$('#goal-reset').onclick = resetGame;
+$('#btn-again').onclick = () => { resetGame(); $('#win').hidden = true; setMode('drive'); };
+$('#btn-keep').onclick = () => { $('#win').hidden = true; setMode('drive'); };
 $('#prompt').onclick = () => { if (world.near) openDossier(world.near, { teleport: false }); };
 function toggleDrawer(force) {
   const d = $('#drawer'); d.hidden = force === undefined ? !d.hidden : !force;
@@ -928,7 +1525,7 @@ addEventListener('blur', () => { for (const k in keys) keys[k] = false; });
 /* ------------------------------------------------------------------ */
 /*  World                                                              */
 /* ------------------------------------------------------------------ */
-const world = { ok: false, near: null, focus() {}, teleport() {} };
+const world = { ok: false, near: null, focus() {}, teleport() {}, resetCoins() {} };
 
 function startWorld() {
   if (!window.THREE) return false;
@@ -1021,6 +1618,14 @@ function startWorld() {
 
   const LANDMARKS = [];
   const colliders = [];
+  const COINS = [];
+  for (let i = 0; i < 18; i++) {
+    const a = i / 18 * Math.PI * 2 + 0.12;
+    const r = ROAD_R + (i % 2 ? 0.8 : -0.8);
+    const coin = M(new THREE.CylinderGeometry(0.65, 0.65, 0.16, 18), mat(0xffc53d, { emissive:0x8c5c00, emissiveIntensity:.45, metalness:.35, roughness:.35 }), Math.cos(a)*r, 1.15, Math.sin(a)*r, scene, true);
+    coin.rotation.z = Math.PI / 2; coin.userData.collected = false; COINS.push(coin);
+    tickers.push((t) => { if (!coin.userData.collected) { coin.rotation.y = t * 3 + i; coin.position.y = 1.15 + Math.sin(t*3 + i)*0.18; } });
+  }
   const angleOf = i => Math.PI / 2 - i * (Math.PI * 2 / TOUR.length);
 
   function strip(a, r0, r1, w, color, y) {
@@ -1359,6 +1964,7 @@ function startWorld() {
   }
   world.teleport = teleport;
   world.focus = (id, tp) => { focusId = id; if (tp) teleport(id); };
+  world.resetCoins = () => COINS.forEach(c => { c.userData.collected = false; c.visible = true; });
 
   /* --- snapshots of each landmark, used as project images --- */
   function captureSnapshots() {
@@ -1471,6 +2077,15 @@ function startWorld() {
       if (near) { const p = byId[near]; pr.style.setProperty('--pc', p.color); pr.style.setProperty('--pc-ink', inkFor(p.color)); $('#prompt-name').textContent = p.home ? 'About Ali' : p.name; }
     }
     $('#prompt').hidden = !(driving && world.near);
+    if (driving && near && near !== 'about') gameStamp(near);
+    if (driving) {
+      COINS.forEach(c => {
+        if (!c.userData.collected && Math.hypot(c.position.x - S.x, c.position.z - S.z) < 2.2) {
+          c.userData.collected = true; c.visible = false; gameCoin();
+        }
+      });
+    }
+    updateGame(dt, driving);
 
     // camera
     const k = 1 - Math.exp(-(mode === 'drive' ? 4 : 2.2) * dt);
