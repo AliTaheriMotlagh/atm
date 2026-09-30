@@ -52,6 +52,15 @@ To complete the island tour, the visitor must:
 
 A local best time is stored in the browser.
 
+### Drive together (multiplayer, no server)
+
+Every visitor gets their own car, and everyone online sees each other drive around the island. Press `R` (or use **Online**) to start a race: anyone online can join during a 9-second window, then everyone lines up on the grid for 2 laps of the ring road through 8 checkpoint gates. Alone? It becomes a solo time trial with a saved best time.
+
+- Browsers connect directly over WebRTC via [Trystero](https://github.com/dmotz/trystero), loaded from a CDN. Public Nostr relays are used only to find each other.
+- Each browser simulates only its own car and broadcasts position 10×/second; everything is client-side, so the site stays a static Vercel deploy.
+- **Private room:** use *Make a private room* and share the invite link (`?room=code`) to drive only with friends.
+- Pick your driver name and car colour in the **Online** panel (`N`).
+
 ### Live project previews
 
 Projects with deployed websites can be opened directly inside the portfolio with a sandboxed iframe. Visitors can switch between:
@@ -92,6 +101,7 @@ The UI includes touch driving controls, adaptive project panels, safe-area suppo
 - GitHub REST API
 - responsive/touch input
 - sandboxed iframe previews
+- WebRTC peer-to-peer multiplayer (Trystero, Nostr signalling)
 - localStorage for game preferences and best time
 
 The portfolio intentionally stays deployable as a static site.
@@ -120,6 +130,8 @@ You can also use any static server such as `npx serve` or deploy the file to Ver
 - `M` — project list
 - `G` — arcade
 - `H` — horn
+- `N` — drivers online
+- `R` — start or join a race
 - `Esc` — close active panel
 
 ### Mobile / tablet
