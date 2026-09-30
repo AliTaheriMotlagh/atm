@@ -27,27 +27,28 @@ Instead of scrolling through a conventional portfolio, visitors drive around a 3
 
 The interface is a small Three.js game world rather than a normal list of cards. Visitors can drive between landmarks using keyboard controls on desktop and touch controls on mobile/tablet.
 
-### A mini-game for every project
+### Three mini-games for every landmark (21 in total)
 
-Each project has a challenge inspired by what the project actually does:
+| Landmark | Challenges |
+| --- | --- |
+| About Ali (bonus) | Career Timeline · Skill Memory · Stack Sorter |
+| Remixt | Stem Sync · Keep the Tempo · Mixdown |
+| Khalabani | Perfect Touchdown · Glide Slope · Pre-flight Flow |
+| Gridways | Route Builder · Rush Hour · Road Spin |
+| VasatYab | Find the Midpoint · Meet in the Middle · Fair Café |
+| Siktir | Dokme Reflex · Whack-a-Link · Quick Draw |
+| TS Algorithms | Sort It · Binary Search · Tower of Hanoi |
 
-- **Remixt — Stem Sync:** repeat a rhythm pattern to sync vocal and beat.
-- **Khalabani — Perfect Touchdown:** time an aircraft landing over the runway touchdown zone.
-- **Gridways — Route Builder:** connect a house to a shop while avoiding water.
-- **VasatYab — Find the Midpoint:** find the exact midpoint between two positions.
-- **Siktir — Dokme Reflex:** hit a moving Siktir button five times quickly.
-- **TypeScript Algorithms — Sort It:** sort a group of values from smallest to largest.
-
-Project-game completion is part of the full island objective.
+Every challenge is playable from its dossier or from the **Arcade** (`G`). Each new clear is worth a coin, a "Next challenge" button chains them, and personal bests are saved in the browser. Wins trigger confetti and, on phones, haptic feedback.
 
 ### Portfolio goals
 
 To complete the island tour, the visitor must:
 
 1. Visit every project landmark.
-2. Open project dossiers.
-3. Collect coins.
-4. Complete all six project mini-games.
+2. Open 3 project dossiers.
+3. Collect 8 coins.
+4. Beat at least one challenge at every project.
 
 A local best time is stored in the browser.
 
@@ -104,7 +105,7 @@ python3 -m http.server 8000
 Then open:
 
 ```text
-http://localhost:8000/ali-project-island-complete.html
+http://localhost:8000/
 ```
 
 You can also use any static server such as `npx serve` or deploy the file to Vercel, Netlify, GitHub Pages, Cloudflare Pages, or another static host.
@@ -117,11 +118,13 @@ You can also use any static server such as `npx serve` or deploy the file to Ver
 - `Shift` — boost
 - `E` — open nearby project
 - `M` — project list
+- `G` — arcade
+- `H` — horn
 - `Esc` — close active panel
 
 ### Mobile / tablet
 
-Touch joystick and boost controls appear automatically.
+Touch joystick, boost and horn controls appear automatically. Challenges and the arcade open as bottom sheets that you can swipe down to close, and the tour panel collapses to keep the island visible.
 
 ## About Ali
 
