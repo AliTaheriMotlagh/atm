@@ -21,6 +21,28 @@ Instead of scrolling through a conventional portfolio, visitors drive around a 3
 | Siktir | https://siktir-backend.onrender.com | Frontend: https://github.com/AliTaheriMotlagh/siktir-frontend · Backend: https://github.com/AliTaheriMotlagh/siktir-backend |
 | TypeScript Algorithms | — | https://github.com/AliTaheriMotlagh/typescript-algorithms-and-data-structures |
 
+## Short films
+
+Ali's short films from the [AlanFilm YouTube channel](https://www.youtube.com/@Alitaherimotlagh):
+
+- Hamshahri: https://www.youtube.com/watch?v=Kb0F_Y6gJpk
+- A Little Thing: https://www.youtube.com/watch?v=EAyJJ59wsDE
+
+They play in two places: the **🎬 Films** panel (button or <kbd>V</kbd>), and the **drive-in cinema** on the island, between VasatYab and Siktir. Its big screen cycles through the film posters, and driving up to it opens the player. To add a film, append `{ id, title, fa }` to the `FILMS` array in `index.html`.
+
+## Billboards
+
+Five billboards stand just outside the ring road. They cycle through Ali's logo (GitHub avatar), the app logo cards for every project, and the film posters.
+
+## Social
+
+The **📣 Social** panel (button or <kbd>P</kbd>) has an X tab ([@Atmbanksepah](https://x.com/Atmbanksepah)) and a LinkedIn tab. Neither network gives signed-out visitors a public feed of recent posts, so posts are pinned in the `SOCIAL` object in `index.html`:
+
+- `SOCIAL.x.posts`: X post links or IDs, embedded with X's widget.
+- `SOCIAL.linkedin.posts`: LinkedIn post links, or the `urn:li:…` from a post's "Embed this post" menu.
+
+With no posts pinned, each tab shows the profile card with follow and recent-posts links.
+
 ## What makes the portfolio different
 
 ### Drivable 3D project island

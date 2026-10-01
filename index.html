@@ -410,6 +410,62 @@ th { font-family: var(--f-mono); font-size: 11px; font-weight: 600; letter-spaci
 
 .arcade-box { width: min(820px, 100%); }
 
+/* Cinema: Ali's short films, played from YouTube. */
+.game-modal.cinema { z-index: 48; }
+.cinema-box { width: min(900px, 100%); }
+.screen {
+  position: relative; aspect-ratio: 16 / 9; border-radius: 14px; overflow: hidden;
+  background: #000; border: 1px solid var(--line);
+}
+.screen iframe, .screen .poster { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
+.screen .poster { padding: 0; background: #000 center / cover no-repeat; display: grid; place-items: center; }
+.screen .poster::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, transparent 55%, rgba(0,0,0,.65)); }
+.screen .play {
+  position: relative; z-index: 1; width: 76px; height: 76px; border-radius: 50%;
+  display: grid; place-items: center; font-size: 28px; padding-left: 5px;
+  background: var(--accent); color: var(--accent-ink); box-shadow: 0 10px 40px rgba(0,0,0,.5);
+  transition: transform .2s;
+}
+.screen .poster:hover .play, .screen .poster:focus-visible .play { transform: scale(1.08); }
+.now-playing { display: flex; justify-content: space-between; align-items: baseline; gap: 6px 12px; flex-wrap: wrap; }
+.now-playing b { font-size: 17px; }
+.now-playing bdi { display: block; color: var(--muted); font-size: 14px; }
+.now-playing a { font-family: var(--f-mono); font-size: 12px; color: var(--accent); }
+.reel { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 10px; }
+.reel-item {
+  display: grid; gap: 8px; text-align: left; padding: 8px; border-radius: 14px;
+  border: 1px solid var(--line); background: rgba(255,255,255,.04);
+}
+.reel-item:hover { border-color: var(--accent); background: rgba(255,255,255,.08); }
+.reel-item[aria-current="true"] { border-color: var(--accent); box-shadow: inset 0 0 0 1px var(--accent); }
+.reel-item img { width: 100%; aspect-ratio: 16 / 9; object-fit: cover; border-radius: 9px; display: block; background: #000; }
+.reel-item b { display: block; font-size: 14px; }
+.reel-item small { display: block; color: var(--muted); font-size: 13px; }
+.now-playing .cin-links { display: flex; gap: 14px; align-items: baseline; flex-wrap: wrap; }
+.now-playing button { background: none; border: 0; padding: 0; font-family: var(--f-mono); font-size: 12px; color: var(--paper); text-decoration: underline; text-underline-offset: 3px; }
+
+/* Social: X and LinkedIn */
+.game-modal.social { z-index: 48; }
+.social-box { width: min(620px, 100%); }
+.soc-tabs { display: flex; gap: 6px; padding: 4px; border: 1px solid var(--line); border-radius: 12px; background: rgba(255,255,255,.04); }
+.soc-tabs button { flex: 1; padding: 9px 12px; border: 0; border-radius: 9px; background: transparent; font-weight: 700; color: var(--muted); }
+.soc-tabs button[aria-selected="true"] { background: var(--pc); color: #fff; }
+.soc-panel { display: grid; gap: 14px; }
+.soc-card {
+  display: grid; grid-template-columns: 52px minmax(0, 1fr); gap: 4px 14px; align-items: center;
+  padding: 14px; border: 1px solid var(--line); border-radius: 14px; background: rgba(255,255,255,.03);
+}
+.soc-ico { grid-row: span 2; width: 52px; height: 52px; border-radius: 14px; display: grid; place-items: center; font-weight: 700; font-size: 24px; color: #fff; background: var(--pc); }
+.soc-card b { font-size: 17px; overflow-wrap: anywhere; }
+.soc-card small { color: var(--muted); font-size: 13px; }
+.soc-card .row { grid-column: 1 / -1; margin-top: 8px; }
+.soc-card .btn { padding: 9px 14px; font-size: 14px; text-decoration: none; }
+.soc-card .btn:not(.ghost) { background: var(--pc); color: #fff; }
+.soc-posts { display: grid; gap: 12px; justify-items: center; }
+.soc-posts iframe { width: 100%; max-width: 550px; border: 0; border-radius: 12px; background: #fff; }
+.soc-note { margin: 0; color: var(--muted); font-size: 14px; }
+.soc-note a { color: var(--pc); }
+
 /* Multiplayer: online button, "drive together" panel and the race HUD. */
 .hbtn.online b { font-family: var(--f-mono); font-size: 13px; }
 .live-dot { width: 9px; height: 9px; border-radius: 50%; background: #7d8aa0; flex: none; }
@@ -789,6 +845,8 @@ th { font-family: var(--f-mono); font-size: 11px; font-weight: 600; letter-spaci
       <button class="hbtn online" id="btn-online" type="button" aria-label="Drivers online"><span class="live-dot" aria-hidden="true"></span><b id="online-n">1</b><span class="lbl">Online</span></button>
       <button class="hbtn" id="btn-list" type="button" aria-label="Projects"><span aria-hidden="true">☰</span><span class="lbl">Projects</span></button>
       <button class="hbtn hot" id="btn-arcade" type="button" aria-label="Arcade"><span aria-hidden="true">🎮</span><span class="lbl">Arcade</span></button>
+      <button class="hbtn" id="btn-films" type="button" aria-label="Films"><span aria-hidden="true">🎬</span><span class="lbl">Films</span></button>
+      <button class="hbtn" id="btn-social" type="button" aria-label="Social posts"><span aria-hidden="true">📣</span><span class="lbl">Social</span></button>
       <button class="hbtn" id="btn-about" type="button" aria-label="About Ali"><span aria-hidden="true">👤</span><span class="lbl">About</span></button>
       <button class="hbtn" id="btn-sound" type="button" aria-label="Sound" aria-pressed="true"><span id="sound-ico" aria-hidden="true">🔊</span></button>
     </div>
@@ -814,6 +872,7 @@ th { font-family: var(--f-mono); font-size: 11px; font-weight: 600; letter-spaci
     <div class="row">
       <button class="btn" id="btn-start" type="button">Start driving</button>
       <button class="btn ghost" id="btn-intro-arcade" type="button">🎮 Play the arcade</button>
+      <button class="btn ghost" id="btn-intro-films" type="button">🎬 Watch my films</button>
       <button class="btn ghost" id="btn-intro-list" type="button">Browse the list</button>
     </div>
     <div class="controls" id="controls-hint">
@@ -822,6 +881,8 @@ th { font-family: var(--f-mono); font-size: 11px; font-weight: 600; letter-spaci
       <span><kbd>E</kbd> open landmark</span>
       <span><kbd>M</kbd> project list</span>
       <span><kbd>G</kbd> arcade</span>
+      <span><kbd>V</kbd> films</span>
+      <span><kbd>P</kbd> social posts</span>
       <span><kbd>H</kbd> horn</span>
       <span><kbd>N</kbd> drivers online</span>
       <span><kbd>R</kbd> start or join a race</span>
@@ -857,6 +918,34 @@ th { font-family: var(--f-mono); font-size: 11px; font-weight: 600; letter-spaci
     </div>
     <div class="arc-progress"><div class="bar" aria-hidden="true"><i id="arc-bar"></i></div><span id="arc-count"></span></div>
     <div class="arc-groups" id="arc-groups"></div>
+  </section>
+</div>
+
+<div class="game-modal cinema" id="cinema" hidden>
+  <section class="game-box cinema-box" role="dialog" aria-modal="true" aria-labelledby="cin-title" style="--pc:var(--accent)">
+    <div class="sheet-grip" aria-hidden="true"></div>
+    <div class="game-head">
+      <div><div class="eyebrow">Island cinema</div><h2 id="cin-title">Short films</h2><p>Films I've made, published on my YouTube channel <a href="https://www.youtube.com/@Alitaherimotlagh" target="_blank" rel="noopener">AlanFilm</a>. Pick one and press play.</p></div>
+      <button class="x" id="cin-x" type="button" aria-label="Close films">×</button>
+    </div>
+    <div class="screen" id="cin-screen"></div>
+    <div class="now-playing" id="cin-now"></div>
+    <div class="reel" id="cin-reel" role="list"></div>
+  </section>
+</div>
+
+<div class="game-modal social" id="social" hidden>
+  <section class="game-box social-box" role="dialog" aria-modal="true" aria-labelledby="soc-title" style="--pc:#1d9bf0">
+    <div class="sheet-grip" aria-hidden="true"></div>
+    <div class="game-head">
+      <div><div class="eyebrow">Island post office</div><h2 id="soc-title">Social</h2><p>What I've been posting lately on X and LinkedIn.</p></div>
+      <button class="x" id="soc-x" type="button" aria-label="Close social">×</button>
+    </div>
+    <div class="soc-tabs" role="tablist" aria-label="Network">
+      <button type="button" role="tab" id="soc-tab-x" aria-controls="soc-panel" data-net="x">𝕏 X</button>
+      <button type="button" role="tab" id="soc-tab-linkedin" aria-controls="soc-panel" data-net="linkedin">in LinkedIn</button>
+    </div>
+    <div class="soc-panel" id="soc-panel" role="tabpanel"></div>
   </section>
 </div>
 
@@ -1496,7 +1585,7 @@ function checkWin() {
   $('#btn-again').focus({ preventScroll: true });
 }
 function gameStamp(id) {
-  if (!id || id === 'about' || game.stamps.has(id)) return;
+  if (!byId[id] || id === 'about' || game.stamps.has(id)) return;
   game.stamps.add(id); sfx.play('stamp'); toast(`🏁 ${esc(byId[id].name)} stamp collected`, byId[id].color); renderGameHud(); checkWin();
 }
 function gameCoin() {
@@ -1849,6 +1938,136 @@ pgEl.addEventListener('click', e => { if (e.target === pgEl) closeGame(); });
 $('#arc-x').onclick = closeArcade;
 arcEl.addEventListener('click', e => { if (e.target === arcEl) closeArcade(); });
 
+/* ------------------------------------------------------------------ */
+/*  Cinema: short films from YouTube                                   */
+/* ------------------------------------------------------------------ */
+// The player iframe is only created on play, so the island doesn't load YouTube until asked.
+const CINEMA = { id: 'cinema', name: 'Cinema', color: '#e5484d', landmark: 'cinema' };
+const FILMS = [
+  { id: 'Kb0F_Y6gJpk', title: 'Hamshahri', fa: 'فیلم کوتاه همشهری' },
+  { id: 'EAyJJ59wsDE', title: 'A Little Thing', fa: 'فیلم کوتاه یک چیز کوچیک' },
+];
+const cinEl = $('#cinema');
+let film = FILMS[0], cinReturn = null;
+const ytThumb = f => `https://i.ytimg.com/vi/${f.id}/hqdefault.jpg`;
+const ytWatch = f => `https://www.youtube.com/watch?v=${f.id}`;
+
+function renderCinema(play = false) {
+  const scr = $('#cin-screen');
+  if (play) {
+    scr.innerHTML = `<iframe src="https://www.youtube-nocookie.com/embed/${film.id}?autoplay=1&rel=0&playsinline=1" title="${esc(film.title)} short film"
+      allow="autoplay; encrypted-media; picture-in-picture; fullscreen" allowfullscreen referrerpolicy="strict-origin-when-cross-origin"></iframe>`;
+  } else {
+    scr.innerHTML = `<button class="poster" type="button" data-play style="background-image:url('${ytThumb(film)}')" aria-label="Play ${esc(film.title)}"><span class="play" aria-hidden="true">▶</span></button>`;
+  }
+  $('#cin-now').innerHTML = `<div><b>${esc(film.title)}</b><bdi dir="rtl" lang="fa">${esc(film.fa)}</bdi></div>
+    <div class="cin-links">${world.ok && world.near !== CINEMA.id ? '<button type="button" data-drive-cinema>🚗 Drive to the island cinema</button>' : ''}<a href="${ytWatch(film)}" target="_blank" rel="noopener">Watch on YouTube ↗</a></div>`;
+  $('#cin-reel').innerHTML = FILMS.map(f => `<button class="reel-item" type="button" role="listitem" data-film="${f.id}" aria-current="${f === film}">
+    <img src="${ytThumb(f)}" alt="" loading="lazy"><span><b>${esc(f.title)}</b><small>Short film</small></span></button>`).join('');
+}
+function openCinema() {
+  sfx.unlock();
+  if (cinEl.hidden) cinReturn = document.activeElement;
+  renderCinema(); cinEl.hidden = false; $('#drawer').hidden = true;
+  cinEl.querySelector('.game-box').scrollTop = 0;
+  $('#cin-screen [data-play]').focus({ preventScroll: true });
+}
+function closeCinema() {
+  if (cinEl.hidden) return;
+  cinEl.hidden = true;
+  $('#cin-screen').innerHTML = ''; // removing the iframe stops playback
+  if (cinReturn && cinReturn.isConnected) cinReturn.focus({ preventScroll: true });
+}
+cinEl.addEventListener('click', e => {
+  if (e.target === cinEl) { closeCinema(); return; }
+  if (e.target.closest('[data-play]')) { renderCinema(true); $('#cin-screen iframe').focus(); return; }
+  if (e.target.closest('[data-drive-cinema]')) {
+    closeCinema(); $('#intro').hidden = true; $('#dossier').hidden || closeDossier();
+    world.teleport(CINEMA.id); setMode('drive'); $('#stage canvas')?.focus(); return;
+  }
+  const pick = e.target.closest('[data-film]');
+  if (pick) {
+    film = FILMS.find(f => f.id === pick.dataset.film); renderCinema(true);
+    cinEl.querySelector('.game-box').scrollTo({ top: 0, behavior: 'smooth' });
+  }
+});
+$('#cin-x').onclick = closeCinema;
+// Landmarks open their dossier, except the drive-in, which opens the films.
+function openLandmark(id, opts = {}) {
+  if (id !== CINEMA.id) { openDossier(id, opts); return; }
+  if (opts.teleport !== false) world.teleport(id);
+  openCinema();
+}
+
+/* ------------------------------------------------------------------ */
+/*  Social: X and LinkedIn posts                                       */
+/* ------------------------------------------------------------------ */
+// Neither network offers a public "latest posts" feed for signed-out visitors, so posts are pinned here.
+// x.posts: status IDs or post URLs. linkedin.posts: post URLs or the urn:li:… from LinkedIn's "Embed this post".
+const SOCIAL = {
+  x: { handle: 'Atmbanksepah', posts: [] },
+  linkedin: { url: 'https://www.linkedin.com/in/alitaherimotlagh/', posts: [] },
+};
+const socEl = $('#social');
+let socNet = store.get('island-social') === 'linkedin' ? 'linkedin' : 'x', socReturn = null, socRun = 0, twttrP = null;
+const xId = v => String(v).match(/(\d{10,})/)?.[1];
+const liUrn = v => { const s = String(v), a = s.match(/activity-(\d+)/); return s.match(/urn:li:(?:share|ugcPost|activity):\d+/)?.[0] || (a ? `urn:li:activity:${a[1]}` : null); };
+function loadX() {
+  return twttrP || (twttrP = new Promise((res, rej) => {
+    if (window.twttr?.widgets) return res(window.twttr);
+    const sc = document.createElement('script'); sc.src = 'https://platform.twitter.com/widgets.js'; sc.async = true;
+    sc.onload = () => (window.twttr ? twttr.ready(res) : rej());
+    sc.onerror = () => { twttrP = null; rej(); };
+    document.head.append(sc);
+  }));
+}
+function renderSocial() {
+  const run = ++socRun, panel = $('#soc-panel');
+  socEl.querySelector('.game-box').style.setProperty('--pc', socNet === 'x' ? '#1d9bf0' : '#0a66c2');
+  socEl.querySelectorAll('[data-net]').forEach(b => { const on = b.dataset.net === socNet; b.setAttribute('aria-selected', String(on)); b.tabIndex = on ? 0 : -1; });
+  panel.setAttribute('aria-labelledby', `soc-tab-${socNet}`);
+  if (socNet === 'x') {
+    const { handle, posts } = SOCIAL.x, url = `https://x.com/${handle}`, ids = posts.map(xId).filter(Boolean);
+    panel.innerHTML = `<div class="soc-card"><span class="soc-ico" aria-hidden="true">𝕏</span><b>@${esc(handle)}</b><small>Ali Taheri Motlagh on X</small>
+      <div class="row"><a class="btn" href="${url}" target="_blank" rel="noopener">Follow on X ↗</a><a class="btn ghost" href="${url}" target="_blank" rel="noopener">See latest posts ↗</a></div></div>
+      ${ids.length ? `<div class="soc-posts" id="soc-posts"><p class="soc-note">Loading posts…</p></div>` : ''}`;
+    if (!ids.length) return;
+    loadX().then(tw => {
+      if (run !== socRun) return;
+      const box = $('#soc-posts'); box.innerHTML = '';
+      return Promise.all(ids.map(id => { const d = document.createElement('div'); box.append(d); return tw.widgets.createTweet(id, d, { theme: 'dark', dnt: true, align: 'center' }); }));
+    }).catch(() => { if (run === socRun) $('#soc-posts').innerHTML = `<p class="soc-note">X didn't load here. <a href="${url}" target="_blank" rel="noopener">Read the posts on X ↗</a></p>`; });
+  } else {
+    const { url, posts } = SOCIAL.linkedin, me = byId.about, urns = posts.map(liUrn).filter(Boolean);
+    panel.innerHTML = `<div class="soc-card"><span class="soc-ico" aria-hidden="true">in</span><b>${esc(me.name)}</b><small>${esc(me.tagline)}</small>
+      <div class="row"><a class="btn" href="${url}" target="_blank" rel="noopener">Connect on LinkedIn ↗</a><a class="btn ghost" href="${url}recent-activity/all/" target="_blank" rel="noopener">Recent posts ↗</a></div></div>
+      ${urns.length ? `<div class="soc-posts">${urns.map(u => `<iframe src="https://www.linkedin.com/embed/feed/update/${u}" height="560" loading="lazy" allowfullscreen title="LinkedIn post"></iframe>`).join('')}</div>` : ''}`;
+  }
+}
+function openSocial(net) {
+  if (net) socNet = net;
+  if (socEl.hidden) socReturn = document.activeElement;
+  renderSocial(); socEl.hidden = false; $('#drawer').hidden = true;
+  socEl.querySelector('.game-box').scrollTop = 0;
+  socEl.querySelector('[aria-selected="true"]').focus({ preventScroll: true });
+}
+function closeSocial() {
+  if (socEl.hidden) return;
+  socEl.hidden = true; socRun++;
+  if (socReturn && socReturn.isConnected) socReturn.focus({ preventScroll: true });
+}
+socEl.addEventListener('click', e => {
+  if (e.target === socEl) { closeSocial(); return; }
+  const t = e.target.closest('[data-net]');
+  if (t && t.dataset.net !== socNet) { socNet = t.dataset.net; store.set('island-social', socNet); renderSocial(); }
+});
+socEl.querySelector('.soc-tabs').addEventListener('keydown', e => {
+  if (!['ArrowLeft', 'ArrowRight', 'Home', 'End'].includes(e.key)) return;
+  e.preventDefault(); socNet = socNet === 'x' ? 'linkedin' : 'x'; store.set('island-social', socNet);
+  renderSocial(); socEl.querySelector('[aria-selected="true"]').focus();
+});
+$('#soc-x').onclick = closeSocial;
+
 // On phones the modals are bottom sheets: drag the header down to dismiss.
 function sheetSwipe(modal, close) {
   const box = modal.querySelector('.game-box'); let y0 = null, dy = 0;
@@ -1862,6 +2081,8 @@ function sheetSwipe(modal, close) {
 }
 sheetSwipe(pgEl, closeGame);
 sheetSwipe(arcEl, closeArcade);
+sheetSwipe(cinEl, closeCinema);
+sheetSwipe(socEl, closeSocial);
 
 // Keeps keyboard focus on a still-enabled control after the focused one gets disabled.
 function keepFocus(btn, scope) {
@@ -2634,6 +2855,9 @@ $('#drawer-x').onclick = () => toggleDrawer(false);
 $('#btn-start').onclick = () => { $('#intro').hidden = true; setMode('drive'); $('#stage canvas')?.focus(); };
 $('#btn-arcade').onclick = openArcade;
 $('#btn-intro-arcade').onclick = openArcade;
+$('#btn-films').onclick = openCinema;
+$('#btn-intro-films').onclick = openCinema;
+$('#btn-social').onclick = () => openSocial();
 function renderSound() {
   $('#sound-ico').textContent = sfx.muted ? '🔇' : '🔊';
   $('#btn-sound').setAttribute('aria-pressed', String(!sfx.muted));
@@ -2650,12 +2874,12 @@ $('#goal-toggle').onclick = () => { const open = $('#goal').classList.contains('
 { const saved = store.get('island-goal-open'); setGoalOpen(saved ? saved === '1' : innerWidth > 700 && innerHeight > 620); }
 function afterWin() {
   $('#win').hidden = true;
-  closeGame(); closeArcade();
+  closeGame(); closeArcade(); closeCinema(); closeSocial();
   if (!$('#dossier').hidden) closeDossier(); else setMode(world.ok ? 'drive' : 'intro');
 }
 $('#btn-again').onclick = () => { afterWin(); resetGame(); };
 $('#btn-keep').onclick = afterWin;
-$('#prompt').onclick = () => { if (world.near) openDossier(world.near, { teleport: false }); };
+$('#prompt').onclick = () => { if (world.near) openLandmark(world.near, { teleport: false }); };
 function toggleDrawer(force) {
   const d = $('#drawer'); d.hidden = force === undefined ? !d.hidden : !force;
   if (!d.hidden) d.querySelector('button').focus();
@@ -2683,10 +2907,10 @@ function setMode(m) {
 const keys = {};
 const input = { jx: 0, jy: 0, boost: false };
 // The top-most modal layer, which keeps Tab focus inside it.
-const modalLayer = () => [$('#win'), pgEl, arcEl, netEl].find(el => !el.hidden) || null;
+const modalLayer = () => [$('#win'), pgEl, arcEl, cinEl, socEl, netEl].find(el => !el.hidden) || null;
 function trapFocus(e) {
   const layer = modalLayer(); if (!layer) return;
-  const f = [...layer.querySelectorAll('a[href], button:not(:disabled), input:not(:disabled), [tabindex="0"]')].filter(el => el.getClientRects().length);
+  const f = [...layer.querySelectorAll('a[href], button:not(:disabled), input:not(:disabled), iframe, [tabindex="0"]')].filter(el => el.getClientRects().length);
   if (!f.length) return;
   const first = f[0], last = f[f.length - 1], a = document.activeElement;
   if (!layer.contains(a)) { e.preventDefault(); first.focus(); }
@@ -2694,7 +2918,7 @@ function trapFocus(e) {
   else if (!e.shiftKey && a === last) { e.preventDefault(); first.focus(); }
 }
 // Some overlay covers the island, so driving input is ignored.
-const overlayOpen = () => !pgEl.hidden || !arcEl.hidden || !netEl.hidden || !$('#win').hidden;
+const overlayOpen = () => !pgEl.hidden || !arcEl.hidden || !cinEl.hidden || !socEl.hidden || !netEl.hidden || !$('#win').hidden;
 
 addEventListener('keydown', e => {
   const k = e.key.toLowerCase();
@@ -2703,6 +2927,8 @@ addEventListener('keydown', e => {
     if (!$('#win').hidden) afterWin();
     else if (!pgEl.hidden) closeGame();
     else if (!arcEl.hidden) closeArcade();
+    else if (!cinEl.hidden) closeCinema();
+    else if (!socEl.hidden) closeSocial();
     else if (!netEl.hidden) closeNet();
     else if (shot.classList.contains('full')) setFull(false);
     else if (!$('#dossier').hidden) closeDossier();
@@ -2714,10 +2940,12 @@ addEventListener('keydown', e => {
   if (overlayOpen() || !$('#dossier').hidden) return;
   if (k === 'm') { toggleDrawer(); return; }
   if (k === 'g') { openArcade(); return; }
+  if (k === 'v') { openCinema(); return; }
+  if (k === 'p') { openSocial(); return; }
   if (k === 'h') { if (!e.repeat && mode === 'drive') honk(); return; }
   if (k === 'n') { openNet(); return; }
   if (k === 'r') { if (!e.repeat && world.ok) raceKey(); return; }
-  if ((k === 'e' || k === 'enter') && mode === 'drive' && world.near && document.activeElement.tagName !== 'BUTTON') { openDossier(world.near, { teleport: false }); e.preventDefault(); return; }
+  if ((k === 'e' || k === 'enter') && mode === 'drive' && world.near && document.activeElement.tagName !== 'BUTTON') { openLandmark(world.near, { teleport: false }); e.preventDefault(); return; }
   if (mode === 'intro' && ['w', 'a', 's', 'd', 'arrowup', 'arrowdown', 'arrowleft', 'arrowright'].includes(k) && $('#drawer').hidden) { $('#intro').hidden = true; setMode('drive'); }
   if (['arrowup', 'arrowdown', 'arrowleft', 'arrowright', ' '].includes(k) && mode === 'drive') e.preventDefault();
   keys[k] = true;
@@ -3269,6 +3497,101 @@ function startWorld() {
     x.arcTo(l, t + h, l, t, r); x.arcTo(l, t, l + w, t, r); x.closePath();
   }
 
+  /* --- screens: billboards and the drive-in show logos, film posters and apps --- */
+  // Remote images must come with CORS headers, or a canvas that draws them can't become a texture.
+  const webImgs = {};
+  function webImg(url, onload) {
+    let e = webImgs[url];
+    if (!e) {
+      e = webImgs[url] = { img: new Image(), ok: false, waiting: [] };
+      e.img.crossOrigin = 'anonymous';
+      e.img.onload = () => { e.ok = true; e.waiting.forEach(f => f()); e.waiting = []; };
+      e.img.src = url;
+    }
+    if (!e.ok && onload) e.waiting.push(onload);
+    return e.ok ? e.img : null;
+  }
+  const AVATAR = 'https://avatars.githubusercontent.com/u/19836582?s=256&v=4';
+  const APP_GLYPH = { remixt: '🎧', khalabani: '✈️', gridways: '🚦', vasatyab: '📍', siktir: '🔘', algorithms: '🌳' };
+  const DISPLAY = 'Bungee, "Arial Black", sans-serif', BODY = '"Atkinson Hyperlegible", system-ui, sans-serif';
+  function wrapText(x, text, left, top, maxW, lineH, maxLines) {
+    const words = text.split(' '); let line = '', n = 0;
+    for (let i = 0; i < words.length && n < maxLines; i++) {
+      const next = line ? line + ' ' + words[i] : words[i];
+      if (x.measureText(next).width > maxW && line) { x.fillText(n === maxLines - 1 ? line + '…' : line, left, top + n * lineH); n++; line = words[i]; }
+      else line = next;
+    }
+    if (n < maxLines && line) x.fillText(line, left, top + n * lineH);
+  }
+  // YouTube's hqdefault is 4:3 with letterbox bars; crop to the 16:9 picture.
+  const drawThumb = (x, img, l, t, w, h) => x.drawImage(img, 0, 45, 480, 270, l, t, w, h);
+  function fitText(x, text, font, size, maxW) { do { x.font = `${size}px ${font}`; } while (x.measureText(text).width > maxW && (size -= 4) > 20); }
+  function drawSlide(x, W, H, sl, redraw) {
+    x.save(); x.textBaseline = 'alphabetic'; x.textAlign = 'left';
+    if (sl.kind === 'me') {
+      const gr = x.createLinearGradient(0, 0, W, H); gr.addColorStop(0, '#0d1628'); gr.addColorStop(1, '#1d2f55');
+      x.fillStyle = gr; x.fillRect(0, 0, W, H);
+      const R = 150, cx = 230, cy = H / 2, img = webImg(AVATAR, redraw);
+      x.fillStyle = '#ffc53d'; x.beginPath(); x.arc(cx, cy, R + 12, 0, TAU); x.fill();
+      x.save(); x.beginPath(); x.arc(cx, cy, R, 0, TAU); x.clip();
+      if (img) x.drawImage(img, cx - R, cy - R, R * 2, R * 2);
+      else { x.fillStyle = '#16213a'; x.fillRect(cx - R, cy - R, R * 2, R * 2); x.fillStyle = '#ffc53d'; x.font = `120px ${DISPLAY}`; x.textAlign = 'center'; x.fillText('AT', cx, cy + 44); x.textAlign = 'left'; }
+      x.restore();
+      x.fillStyle = '#ffc53d'; x.font = `64px ${DISPLAY}`; x.fillText('ALI TAHERI', 430, 230); x.fillText('MOTLAGH', 430, 305);
+      x.fillStyle = '#f2f5fa'; x.font = `34px ${BODY}`; x.fillText('Software Engineer', 432, 370); x.fillText('Senior Frontend Developer', 432, 414);
+      x.fillStyle = '#9fb0cc'; x.font = `26px ${BODY}`; x.fillText('github.com/AliTaheriMotlagh', 432, 470);
+    } else if (sl.kind === 'films') {
+      x.fillStyle = '#0b0b0f'; x.fillRect(0, 0, W, H);
+      x.fillStyle = '#e5484d'; x.fillRect(0, 0, W, 14); x.fillRect(0, H - 14, W, 14);
+      x.fillStyle = '#fff'; x.font = `86px ${DISPLAY}`; x.textAlign = 'center'; x.fillText('ALANFILM', W / 2, 140);
+      x.fillStyle = '#e5484d'; x.font = `32px ${BODY}`; x.fillText('Short films by Ali · on YouTube', W / 2, 192);
+      const n = FILMS.length, gap = 30, tw = Math.min(420, (W - 80 - gap * (n - 1)) / n), th = tw * 9 / 16;
+      FILMS.forEach((f, i) => {
+        const l = (W - (tw * n + gap * (n - 1))) / 2 + i * (tw + gap), t = 240, img = webImg(ytThumb(f), redraw);
+        x.fillStyle = '#222'; x.fillRect(l, t, tw, th);
+        if (img) drawThumb(x, img, l, t, tw, th);
+        x.fillStyle = '#fff'; x.font = `30px ${BODY}`; x.fillText(f.title, l + tw / 2, t + th + 46);
+      });
+    } else if (sl.kind === 'film') {
+      const img = webImg(ytThumb(sl.f), redraw);
+      x.fillStyle = '#000'; x.fillRect(0, 0, W, H);
+      if (img) drawThumb(x, img, 0, 0, W, H);
+      const gr = x.createLinearGradient(0, H * 0.45, 0, H); gr.addColorStop(0, 'rgba(0,0,0,0)'); gr.addColorStop(1, 'rgba(0,0,0,.85)');
+      x.fillStyle = gr; x.fillRect(0, 0, W, H);
+      x.fillStyle = '#e5484d'; x.font = `28px ${DISPLAY}`; x.fillText(sl.label || 'NOW SHOWING', 48, H - 120);
+      x.fillStyle = '#fff'; fitText(x, sl.f.title.toUpperCase(), DISPLAY, 70, W - 96); x.fillText(sl.f.title.toUpperCase(), 48, H - 46);
+    } else {
+      const p = sl.p, gr = x.createLinearGradient(0, 0, W, H);
+      gr.addColorStop(0, '#101726'); gr.addColorStop(1, '#1b2436');
+      x.fillStyle = gr; x.fillRect(0, 0, W, H);
+      x.fillStyle = p.color; x.fillRect(0, 0, 18, H);
+      const S = 250, l = 80, t = (H - S) / 2;
+      x.fillStyle = p.color; x.beginPath(); x.moveTo(l + 50, t); x.arcTo(l + S, t, l + S, t + S, 50); x.arcTo(l + S, t + S, l, t + S, 50); x.arcTo(l, t + S, l, t, 50); x.arcTo(l, t, l + S, t, 50); x.fill();
+      x.fillStyle = '#fff'; x.font = `150px ${BODY}`; x.textAlign = 'center'; x.fillText(APP_GLYPH[p.id] || p.name[0], l + S / 2, t + S / 2 + 52); x.textAlign = 'left';
+      const tl = l + S + 50, tw = W - tl - 50;
+      x.fillStyle = '#fff'; fitText(x, p.name.toUpperCase(), DISPLAY, 70, tw); x.fillText(p.name.toUpperCase(), tl, 210);
+      x.fillStyle = '#c9d3e6'; x.font = `30px ${BODY}`; wrapText(x, p.tagline, tl, 268, tw, 40, 3);
+      x.fillStyle = p.color; x.font = `26px ${BODY}`;
+      x.fillText(p.site ? p.site.replace(/^https?:\/\//, '') : 'github.com/AliTaheriMotlagh', tl, 430);
+    }
+    x.restore();
+  }
+  // A screen is a canvas texture that cycles through slides.
+  const SCREENS = [];
+  function makeScreen(slides, start, every) {
+    const cv = document.createElement('canvas'); cv.width = 1024; cv.height = 576;
+    const tex = new THREE.CanvasTexture(cv); tex.anisotropy = 4;
+    const sc = { cv, x: cv.getContext('2d'), tex, slides, start, every, k: -1 };
+    sc.draw = () => { drawSlide(sc.x, cv.width, cv.height, slides[(start + Math.max(0, sc.k)) % slides.length], sc.draw); tex.needsUpdate = true; };
+    sc.draw(); SCREENS.push(sc);
+    return new THREE.MeshBasicMaterial({ map: tex });
+  }
+  tickers.push(t => SCREENS.forEach(sc => {
+    const k = Math.floor(t / sc.every + sc.start * 0.37);
+    if (k !== sc.k) { sc.k = k; sc.draw(); }
+  }));
+  document.fonts?.ready.then(() => SCREENS.forEach(sc => sc.draw()));
+
   /* --- landmark builders (local +Z faces the island centre) --- */
   const B = {};
   B.home = (g, c) => {
@@ -3472,6 +3795,40 @@ function startWorld() {
     return { solidR: 8.6, sign: 10 };
   };
 
+  // A drive-in: the screen faces the road and cycles through the films.
+  B.cinema = (g, c) => {
+    const C = hexNum(c), SW = 13, SH = SW * 9 / 16, SY = 3.4 + SH / 2;
+    M(new THREE.CylinderGeometry(8.6, 9, 0.24, 40), mat(0x3b404c), 0, 0.12, 0, g).castShadow = false;
+    for (let i = -2; i <= 2; i++) M(new THREE.BoxGeometry(0.22, 0.05, 3.2), mat(0xfff4d6), i * 2.6, 0.26, 1.2, g, true);
+    [-5.2, 5.2].forEach(x => M(new THREE.BoxGeometry(0.6, SY + SH / 2, 0.6), mat(0x2b2f3a), x, (SY + SH / 2) / 2, -4.8, g));
+    M(new THREE.BoxGeometry(SW + 0.9, SH + 0.9, 0.5), mat(0x15171c), 0, SY, -4.5, g);
+    const film = FILMS.map(f => ({ kind: 'film', f })).concat({ kind: 'films' });
+    M(new THREE.PlaneGeometry(SW, SH), makeScreen(film, 0, 6), 0, SY, -4.22, g, true);
+    // Marquee bulbs that chase along the top of the frame.
+    const on = new THREE.MeshBasicMaterial({ color: 0xffe9a8 }), off = new THREE.MeshBasicMaterial({ color: 0x6b5a3a });
+    const bulbs = [];
+    for (let i = 0; i < 16; i++) bulbs.push(M(new THREE.SphereGeometry(0.2, 8, 6), on, -SW / 2 + 0.1 + i * (SW - 0.2) / 15, SY + SH / 2 + 0.75, -4.2, g, true));
+    // Projector booth and a flickering beam.
+    M(new THREE.BoxGeometry(2.4, 2.2, 2), mat(0xf2f5fa), 0, 1.1, 5.2, g);
+    M(new THREE.BoxGeometry(2.7, 0.3, 2.3), mat(C), 0, 2.35, 5.2, g);
+    const lens = M(new THREE.CylinderGeometry(0.35, 0.35, 0.5, 14), mat(0x22252c), 0, 1.5, 4.0, g); lens.rotation.x = Math.PI / 2;
+    const from = new THREE.Vector3(0, 1.5, 3.8), to = new THREE.Vector3(0, SY, -4.2), dir = to.clone().sub(from), L = dir.length();
+    const bg = new THREE.CylinderGeometry(SH / 2, 0.25, L, 24, 1, true); bg.translate(0, L / 2, 0);
+    const beam = M(bg, new THREE.MeshBasicMaterial({ color: 0xfff3c4, transparent: true, opacity: 0.1, depthWrite: false, side: THREE.DoubleSide }), from.x, from.y, from.z, g, true);
+    beam.quaternion.setFromUnitVectors(new THREE.Vector3(0, 1, 0), dir.normalize());
+    // Popcorn bucket.
+    const cv = document.createElement('canvas'); cv.width = 64; cv.height = 8;
+    const sx = cv.getContext('2d'); for (let i = 0; i < 8; i++) { sx.fillStyle = i % 2 ? '#ffffff' : '#e5484d'; sx.fillRect(i * 8, 0, 8, 8); }
+    const stripes = new THREE.CanvasTexture(cv); stripes.magFilter = THREE.NearestFilter;
+    M(new THREE.CylinderGeometry(1.35, 1, 2.8, 16), new THREE.MeshStandardMaterial({ map: stripes, roughness: 0.7 }), -6.6, 1.4, 2.2, g);
+    for (let i = 0; i < 9; i++) M(new THREE.IcosahedronGeometry(0.42, 0), mat(0xfff1c1), -6.6 + Math.cos(i * 2.4) * 0.8 * (i % 3) / 2, 2.95 + (i % 3) * 0.22, 2.2 + Math.sin(i * 2.4) * 0.8 * (i % 3) / 2, g);
+    tickers.push(t => {
+      bulbs.forEach((b, i) => { b.material = (i + Math.floor(t * 6)) % 3 ? on : off; });
+      beam.material.opacity = 0.09 + 0.03 * Math.sin(t * 23) * Math.sin(t * 7);
+    });
+    return { solidR: 8.6, sign: 12.5 };
+  };
+
   function addLandmark(p, x, z, a) {
     const g = new THREE.Group(); g.position.set(x, 0, z);
     g.rotation.y = p.home ? 0 : Math.atan2(-Math.cos(a), -Math.sin(a));
@@ -3502,7 +3859,35 @@ function startWorld() {
     strip(a, ROAD_R + ROAD_W / 2, LM_R - lm.solidR + 0.5, 5, 0x3b404c, 0.03);
     strip(a, 11, ROAD_R - ROAD_W / 2, 4.2, 0x3b404c, 0.03);
   });
+  // The drive-in sits further out, between VasatYab and Siktir, with its own driveway.
+  const CIN_A = angleOf(3.5), CIN_R = 62;
+  {
+    const lm = addLandmark(CINEMA, Math.cos(CIN_A) * CIN_R, Math.sin(CIN_A) * CIN_R, CIN_A);
+    strip(CIN_A, ROAD_R + ROAD_W / 2, CIN_R - lm.solidR + 0.5, 5, 0x3b404c, 0.03);
+  }
   const lmById = Object.fromEntries(LANDMARKS.map(l => [l.p.id, l]));
+
+  // Billboards just outside the ring road, facing it, in the gaps between spokes.
+  // Your logo, then the apps with a film poster after every second one.
+  const media = [...FILMS.map(f => ({ kind: 'film', f, label: 'NOW ON YOUTUBE' })), { kind: 'films' }];
+  const BOARD_SLIDES = [{ kind: 'me' }];
+  TOUR.forEach((p, i) => { BOARD_SLIDES.push({ kind: 'app', p }); if (i % 2 && media.length) BOARD_SLIDES.push(media.shift()); });
+  BOARD_SLIDES.push(...media);
+  const BOARDS = [];
+  [0.5, 1.5, 2.5, 4.5, 5.5].forEach((gap, n) => {
+    const a = angleOf(gap), r = ROAD_R + ROAD_W / 2 + 8, W = 11, H = W * 9 / 16, base = 2.8;
+    const g = new THREE.Group(); g.position.set(Math.cos(a) * r, 0, Math.sin(a) * r);
+    g.rotation.y = Math.atan2(-Math.cos(a), -Math.sin(a)); scene.add(g);
+    [-W / 2 + 1.2, W / 2 - 1.2].forEach(lx => {
+      M(new THREE.BoxGeometry(0.45, base + H, 0.45), mat(0x5b6270), lx, (base + H) / 2, -0.45, g);
+      const v = new THREE.Vector3(lx, 0, -0.45).applyAxisAngle(new THREE.Vector3(0, 1, 0), g.rotation.y);
+      colliders.push({ x: g.position.x + v.x, z: g.position.z + v.z, r: 0.5 });
+    });
+    M(new THREE.BoxGeometry(W + 0.6, H + 0.6, 0.35), mat(0x23272f), 0, base + H / 2, -0.25, g);
+    M(new THREE.PlaneGeometry(W, H), makeScreen(BOARD_SLIDES, n * 2, 7), 0, base + H / 2, -0.06, g, true);
+    M(new THREE.BoxGeometry(W, 0.12, 0.9), mat(0x5b6270), 0, base - 0.15, 0.3, g);
+    BOARDS.push({ x: g.position.x, z: g.position.z });
+  });
 
   /* --- trees, rocks, clouds --- */
   const trees = [];
@@ -3510,6 +3895,8 @@ function startWorld() {
     const r = 13 + rand() * 70, a = rand() * Math.PI * 2, x = Math.cos(a) * r, z = Math.sin(a) * r;
     if (Math.abs(r - ROAD_R) < ROAD_W / 2 + 2.5) continue;
     if (LANDMARKS.some(l => Math.hypot(l.pos.x - x, l.pos.z - z) < l.triggerR + 3)) continue;
+    if (BOARDS.some(b => Math.hypot(b.x - x, b.z - z) < 9)) continue;
+    { const along = x * Math.cos(CIN_A) + z * Math.sin(CIN_A), perp = Math.abs(-x * Math.sin(CIN_A) + z * Math.cos(CIN_A)); if (along > ROAD_R && along < CIN_R && perp < 4.5) continue; }
     if (TOUR.some((_, i) => { const b = angleOf(i); const along = x * Math.cos(b) + z * Math.sin(b); const perp = Math.abs(-x * Math.sin(b) + z * Math.cos(b)); return along > 0 && along < LM_R && perp < 4.5; })) continue;
     if (trees.some(t => Math.hypot(t.x - x, t.z - z) < 3.2)) continue;
     trees.push({ x, z, s: 0.75 + rand() * 0.7 });
@@ -3758,7 +4145,7 @@ function startWorld() {
     ndc.set(e.clientX / innerWidth * 2 - 1, -(e.clientY / innerHeight) * 2 + 1);
     ray.setFromCamera(ndc, camera);
     const hit = ray.intersectObjects(LANDMARKS.map(l => l.hit))[0];
-    if (hit) openDossier(hit.object.userData.id);
+    if (hit) openLandmark(hit.object.userData.id);
   });
 
   /* --- minimap --- */
@@ -3856,7 +4243,7 @@ function startWorld() {
     if (near !== world.near) {
       world.near = near;
       const pr = $('#prompt');
-      if (near) { const p = byId[near]; pr.style.setProperty('--pc', p.color); pr.style.setProperty('--pc-ink', inkFor(p.color)); $('#prompt-name').textContent = p.home ? 'About Ali' : p.name; }
+      if (near) { const p = lmById[near].p; pr.style.setProperty('--pc', p.color); pr.style.setProperty('--pc-ink', inkFor(p.color)); $('#prompt-name').textContent = p.home ? 'About Ali' : p.name; }
     }
     $('#prompt').hidden = !(driving && world.near);
     if (driving && near && near !== 'about') gameStamp(near);
