@@ -1,0 +1,22 @@
+/* Social: X and LinkedIn */
+.game-modal.social { z-index: 48; }
+.social-box { width: min(620px, 100%); }
+.soc-tabs { display: flex; gap: 6px; padding: 4px; border: 1px solid var(--line); border-radius: 12px; background: rgba(255,255,255,.04); }
+.soc-tabs button { flex: 1; padding: 9px 12px; border: 0; border-radius: 9px; background: transparent; font-weight: 700; color: var(--muted); }
+.soc-tabs button[aria-selected="true"] { background: var(--pc); color: #fff; }
+.soc-panel { display: grid; gap: 14px; }
+.soc-card {
+  display: grid; grid-template-columns: 52px minmax(0, 1fr); gap: 4px 14px; align-items: center;
+  padding: 14px; border: 1px solid var(--line); border-radius: 14px; background: rgba(255,255,255,.03);
+}
+.soc-ico { grid-row: span 2; width: 52px; height: 52px; border-radius: 14px; display: grid; place-items: center; font-weight: 700; font-size: 24px; color: #fff; background: var(--pc); }
+.soc-card b { font-size: 17px; overflow-wrap: anywhere; }
+.soc-card small { color: var(--muted); font-size: 13px; }
+.soc-card .row { grid-column: 1 / -1; margin-top: 8px; }
+.soc-card .btn { padding: 9px 14px; font-size: 14px; text-decoration: none; }
+.soc-card .btn:not(.ghost) { background: var(--pc); color: #fff; }
+.soc-posts { display: grid; gap: 12px; justify-items: center; }
+.soc-posts iframe { width: 100%; max-width: 550px; border: 0; border-radius: 12px; background: #fff; }
+.soc-note { margin: 0; color: var(--muted); font-size: 14px; }
+.soc-note a { color: var(--pc); }
+

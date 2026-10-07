@@ -1,0 +1,27 @@
+/* Gridways */
+.road-grid { width: min(320px, 100%); display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 6px; }
+.road-cell { aspect-ratio: 1; padding: 0; border: 1px solid var(--line); border-radius: 12px; background: rgba(255,255,255,.05); font-size: clamp(18px, 5vw, 24px); }
+.road-cell.path { background: color-mix(in srgb, var(--pc) 45%, transparent); border-color: var(--pc); }
+.road-cell.tip { box-shadow: inset 0 0 0 3px var(--pc); }
+.road-cell.block { background: #16445d; }
+.road-cell.goal { border: 2px solid var(--pc); }
+.rush-road {
+  width: 100%; height: 96px; border-radius: 16px; display: grid; place-items: center; overflow: hidden;
+  background: repeating-linear-gradient(90deg, rgba(255,255,255,.3) 0 24px, transparent 24px 48px) center / 100% 4px no-repeat, #313640;
+}
+.rush-car { min-width: 112px; height: 62px; padding: 0 14px; border-radius: 16px; display: flex; align-items: center; justify-content: center; gap: 8px; font-size: 26px; box-shadow: 0 8px 20px rgba(0,0,0,.35); }
+.rush-car b { font-size: 30px; }
+.rush-car.in { animation: drive-in .22s ease-out; }
+@keyframes drive-in { from { transform: translateX(-140%); } }
+.rush-shops { width: 100%; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; }
+.shop { min-height: 84px; border: 0; border-radius: 16px; background: var(--s); display: grid; place-items: center; gap: 2px; padding: 8px; font-weight: 700; transition: transform .1s; }
+.shop span { font-size: 30px; line-height: 1; }
+.shop small { font-size: 12px; text-transform: capitalize; }
+.shop:active { transform: scale(.95); }
+.spin { width: min(360px, 100%); display: grid; grid-template-columns: 30px repeat(4, minmax(0, 1fr)) 30px; gap: 5px; align-items: center; }
+.spin .mark { text-align: center; font-size: 22px; }
+.tile { aspect-ratio: 1; padding: 0; border: 1px solid var(--line); border-radius: 10px; background: rgba(134,196,109,.14); overflow: hidden; }
+.tile svg { display: block; width: 100%; height: 100%; transition: transform .18s ease-out; }
+.tile path { fill: none; stroke: #6b7385; stroke-width: 12; stroke-linecap: round; }
+.tile.lit path { stroke: var(--pc); }
+

@@ -1,0 +1,17 @@
+/* Khalabani */
+.landing-wrap { width: min(520px, 100%); display: grid; gap: 14px; }
+.runway {
+  height: 96px; border: 1px solid var(--line); border-radius: 18px; position: relative; overflow: hidden;
+  background: linear-gradient(180deg, #16334a 0 42%, #313640 42% 100%);
+}
+.runway::after { content: ""; position: absolute; left: 42%; right: 42%; top: 42%; bottom: 0; background: #e7e7e7; opacity: .24; }
+.runway .target { position: absolute; left: 44%; width: 12%; bottom: 8px; top: 48px; border: 2px solid #74ff9b; border-radius: 8px; }
+.plane { position: absolute; top: 13px; left: 0; font-size: 34px; transform: translateX(-50%); }
+.cv-game { width: min(560px, 100%); display: grid; gap: 10px; }
+.cv-game canvas { display: block; width: 100%; height: clamp(170px, 34vh, 250px); border-radius: 16px; border: 1px solid var(--line); touch-action: none; cursor: pointer; }
+.seq-game { width: min(520px, 100%); display: grid; gap: 14px; }
+.seq-slots { margin: 0; padding: 0; list-style: none; display: grid; gap: 6px; }
+.seq-slots li { min-height: 36px; padding: 7px 12px; border: 1px dashed var(--line); border-radius: 10px; font-family: var(--f-mono); font-size: 13px; color: var(--muted); }
+.seq-slots li.on { border-style: solid; border-color: var(--pc); color: var(--paper); background: color-mix(in srgb, var(--pc) 14%, transparent); animation: pop2 .2s; }
+.seq-opts { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 8px; }
+

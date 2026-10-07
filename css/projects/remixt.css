@@ -1,0 +1,25 @@
+/* Remixt */
+.rhythm-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 10px; width: min(440px, 100%); }
+.rhythm-pad {
+  aspect-ratio: 1; border: 1px solid var(--line); border-radius: 18px; background: rgba(255,255,255,.06);
+  font-size: clamp(22px, 7vw, 30px); display: grid; place-items: center; transition: .12s transform, .12s background;
+}
+.rhythm-pad.flash { background: var(--pc); color: var(--pc-ink); transform: scale(.94); box-shadow: 0 0 30px color-mix(in srgb, var(--pc) 60%, transparent); }
+.big-tap {
+  width: min(180px, 48vw); aspect-ratio: 1; border-radius: 50%; border: 0;
+  background: var(--pc); color: var(--pc-ink); font-family: var(--f-display); font-size: 30px;
+  box-shadow: 0 10px 34px color-mix(in srgb, var(--pc) 45%, transparent);
+}
+.big-tap.pulse { animation: thump .18s; }
+@keyframes thump { 50% { transform: scale(.9); } }
+.mixer { width: min(460px, 100%); display: grid; gap: 16px; }
+.fader { display: grid; gap: 6px; }
+.fader label { display: flex; justify-content: space-between; font-weight: 700; }
+.fader output { font-family: var(--f-mono); color: var(--muted); }
+.fader .track { position: relative; height: 14px; border-radius: 999px; background: rgba(255,255,255,.08); overflow: hidden; }
+.fader .fill { position: absolute; left: 0; top: 0; bottom: 0; background: var(--pc); opacity: .75; }
+.fader .zone { position: absolute; top: 0; bottom: 0; background: rgba(116,255,155,.25); border: 2px solid #74ff9b; border-radius: 4px; }
+.fader.ok .zone { background: rgba(116,255,155,.6); }
+.fader.ok output { color: #8ee5a8; }
+.fader input { width: 100%; margin: 0; accent-color: var(--pc); height: 28px; }
+

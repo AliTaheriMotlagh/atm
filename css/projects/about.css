@@ -1,0 +1,16 @@
+/* About */
+.mem { width: min(400px, 100%); display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 8px; }
+.card-m {
+  aspect-ratio: 1; padding: 4px; border-radius: 14px; border: 1px solid var(--line); display: grid; place-items: center;
+  background: linear-gradient(135deg, color-mix(in srgb, var(--pc) 45%, #101b31), #101b31); transition: background .2s, transform .2s;
+}
+.card-m > span { display: grid; justify-items: center; gap: 2px; opacity: 0; transition: opacity .15s; }
+.card-m i { font-style: normal; font-size: clamp(20px, 6vw, 28px); line-height: 1; }
+.card-m small { font-size: 10px; font-weight: 700; }
+.card-m.open, .card-m.done { background: rgba(255,255,255,.1); transform: scale(1.03); }
+.card-m.open > span, .card-m.done > span { opacity: 1; }
+.card-m.done { border-color: var(--pc); background: color-mix(in srgb, var(--pc) 22%, transparent); transform: none; }
+.quiz { width: min(460px, 100%); display: grid; gap: 14px; text-align: center; }
+.quiz-term { font-family: var(--f-display); font-size: clamp(26px, 7vw, 38px); color: var(--pc); line-height: 1.1; }
+.quiz-term.in { animation: pop2 .25s ease-out; }
+

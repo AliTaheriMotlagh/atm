@@ -1,0 +1,34 @@
+/* Cinema: Ali's short films, played from YouTube. */
+.game-modal.cinema { z-index: 48; }
+.cinema-box { width: min(900px, 100%); }
+.screen {
+  position: relative; aspect-ratio: 16 / 9; border-radius: 14px; overflow: hidden;
+  background: #000; border: 1px solid var(--line);
+}
+.screen iframe, .screen .poster { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
+.screen .poster { padding: 0; background: #000 center / cover no-repeat; display: grid; place-items: center; }
+.screen .poster::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, transparent 55%, rgba(0,0,0,.65)); }
+.screen .play {
+  position: relative; z-index: 1; width: 76px; height: 76px; border-radius: 50%;
+  display: grid; place-items: center; font-size: 28px; padding-left: 5px;
+  background: var(--accent); color: var(--accent-ink); box-shadow: 0 10px 40px rgba(0,0,0,.5);
+  transition: transform .2s;
+}
+.screen .poster:hover .play, .screen .poster:focus-visible .play { transform: scale(1.08); }
+.now-playing { display: flex; justify-content: space-between; align-items: baseline; gap: 6px 12px; flex-wrap: wrap; }
+.now-playing b { font-size: 17px; }
+.now-playing bdi { display: block; color: var(--muted); font-size: 14px; }
+.now-playing a { font-family: var(--f-mono); font-size: 12px; color: var(--accent); }
+.reel { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 10px; }
+.reel-item {
+  display: grid; gap: 8px; text-align: left; padding: 8px; border-radius: 14px;
+  border: 1px solid var(--line); background: rgba(255,255,255,.04);
+}
+.reel-item:hover { border-color: var(--accent); background: rgba(255,255,255,.08); }
+.reel-item[aria-current="true"] { border-color: var(--accent); box-shadow: inset 0 0 0 1px var(--accent); }
+.reel-item img { width: 100%; aspect-ratio: 16 / 9; object-fit: cover; border-radius: 9px; display: block; background: #000; }
+.reel-item b { display: block; font-size: 14px; }
+.reel-item small { display: block; color: var(--muted); font-size: 13px; }
+.now-playing .cin-links { display: flex; gap: 14px; align-items: baseline; flex-wrap: wrap; }
+.now-playing button { background: none; border: 0; padding: 0; font-family: var(--f-mono); font-size: 12px; color: var(--paper); text-decoration: underline; text-underline-offset: 3px; }
+

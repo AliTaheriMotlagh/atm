@@ -1,0 +1,17 @@
+/* Shared game bits */
+.bar { height: 10px; border-radius: 999px; background: rgba(255,255,255,.08); overflow: hidden; }
+.bar i { display: block; height: 100%; width: 0; background: var(--pc); border-radius: inherit; transition: width .1s linear; }
+.arc-progress .bar i { background: linear-gradient(90deg, #ff4f8b, #ff9f1c, #ffc53d, #19b39a, #7c5cff); transition: width .5s; }
+.dots { display: flex; gap: 6px; justify-content: center; }
+.dots i { width: 12px; height: 12px; border-radius: 50%; border: 2px solid var(--pc); opacity: .55; }
+.dots i.on { background: var(--pc); opacity: 1; }
+.count { font-family: var(--f-mono); font-size: 13px; color: var(--muted); }
+.shake { animation: shake .3s; }
+@keyframes shake { 20%, 60% { transform: translateX(-5px); } 40%, 80% { transform: translateX(5px); } }
+@keyframes pop2 { from { transform: scale(.85); opacity: 0; } }
+.opt { min-height: 48px; padding: 8px 12px; border: 1px solid var(--line); border-radius: 12px; background: rgba(255,255,255,.06); font-weight: 700; font-size: 14px; }
+.opt:hover { border-color: var(--pc); }
+.opt.used { opacity: .25; }
+.w-game { width: min(480px, 100%); display: grid; gap: 14px; justify-items: center; }
+.w-game > .bar { width: 100%; }
+

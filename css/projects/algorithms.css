@@ -1,0 +1,21 @@
+/* TS Algorithms */
+.sort-game { display: grid; gap: 16px; justify-items: center; }
+.sort-row { display: flex; gap: 10px; flex-wrap: wrap; justify-content: center; }
+.sort-num { width: 64px; height: 64px; border: 1px solid var(--line); border-radius: 15px; background: rgba(255,255,255,.06); font-family: var(--f-display); font-size: 22px; transition: .15s; }
+.sort-num.used { opacity: .25; transform: scale(.88); }
+.sort-out { min-height: 30px; font-family: var(--f-mono); color: var(--pc); text-align: center; }
+.bin { width: 100%; display: grid; grid-template-columns: repeat(8, minmax(0, 1fr)); gap: 5px; }
+.bin button { aspect-ratio: 1; padding: 0; border: 1px solid var(--line); border-radius: 9px; background: rgba(255,255,255,.06); font-family: var(--f-mono); font-size: clamp(11px, 3vw, 14px); font-weight: 600; transition: opacity .25s; }
+.bin button:hover:not(:disabled) { border-color: var(--pc); }
+.bin button.out { opacity: .14; }
+.bin button.hit { background: var(--pc); color: var(--pc-ink); opacity: 1; }
+.hanoi { width: 100%; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; }
+.peg {
+  position: relative; height: clamp(140px, 30vh, 190px); padding: 10px 6px; display: flex; flex-direction: column-reverse; align-items: center; gap: 4px;
+  border: 1px solid var(--line); border-radius: 14px; background: rgba(255,255,255,.03);
+}
+.peg::before { content: ""; position: absolute; left: 50%; bottom: 10px; top: 34px; width: 6px; margin-left: -3px; border-radius: 3px; background: rgba(255,255,255,.25); }
+.peg.sel { border-color: var(--pc); background: color-mix(in srgb, var(--pc) 10%, transparent); }
+.disk { position: relative; height: 24px; border-radius: 8px; transition: transform .15s; box-shadow: inset 0 -3px 0 rgba(0,0,0,.2); }
+.peg.sel .disk:last-child { transform: translateY(-22px); }
+
