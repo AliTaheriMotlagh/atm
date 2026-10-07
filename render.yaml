@@ -1,0 +1,15 @@
+# Render Blueprint for the multiplayer relay (server/). New → Blueprint → pick this repo.
+# After it deploys, put its URL into js/net/config.js as NET_SERVER = 'wss://<service>.onrender.com/ws'.
+# Free plan: the service sleeps after 15 minutes without visitors and takes about a minute to wake.
+services:
+  - type: web
+    name: island-server
+    runtime: node
+    plan: free
+    rootDir: server
+    buildCommand: npm install --omit=dev
+    startCommand: node index.js
+    healthCheckPath: /health
+    envVars:
+      - key: NODE_VERSION
+        value: "22"

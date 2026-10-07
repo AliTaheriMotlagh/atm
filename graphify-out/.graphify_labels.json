@@ -1,11 +1,18 @@
 {
-  "0": "buzz",
-  "1": "race.js",
+  "0": "shake",
+  "1": "net.js",
   "2": "world.js",
-  "3": "index.js",
+  "3": "progress.js",
   "4": "$",
   "5": "Ali's Project Island",
-  "6": "preview.js",
+  "6": "projects/index.js",
   "7": "CLAUDE.md",
-  "8": "images/README.md"
+  "8": "images/README.md",
+  "9": "package.json",
+  "10": "buzz",
+  "11": "gridways.js",
+  "12": "rnd",
+  "13": "gRhythm",
+  "14": "gMesh",
+  "15": "turn.js"
 }

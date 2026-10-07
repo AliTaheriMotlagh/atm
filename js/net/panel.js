@@ -34,8 +34,8 @@ export function renderNet() {
   $('#intro-net-text').textContent = `${others} other driver${others === 1 ? ' is' : 's are'} on the island right now. Press Start to drive with them.`;
   if (netEl.hidden) return;
   $('#net-status').textContent = ({
-    off: 'Multiplayer off', connecting: 'Connecting…', offline: 'Offline · solo only',
-    online: others ? `● Live · ${n} drivers` : '● Live · waiting for other drivers'
+    off: 'Multiplayer off', connecting: net.transport === 'server' ? 'Connecting to the game server… (a sleeping free server can take a minute to wake)' : 'Connecting…', offline: 'Offline · solo only',
+    online: (others ? `● Live · ${n} drivers` : '● Live · waiting for other drivers') + (net.transport === 'server' ? ' · 🛰 game server' : net.relay ? ' · 📶 relay on' : ' · direct only')
   })[net.status];
   const inp = $('#net-name'); if (document.activeElement !== inp) inp.value = me.name;
   $('#net-colors').querySelectorAll('[data-color]').forEach(el => el.setAttribute('aria-checked', String(Number(el.dataset.color) === me.color)));

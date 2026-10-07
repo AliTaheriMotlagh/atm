@@ -9,6 +9,7 @@ const project = {
   repos: [{ label: 'GitHub', url: 'https://github.com/AliTaheriMotlagh' }, { label: 'Repositories', url: 'https://github.com/AliTaheriMotlagh?tab=repositories' }],
   site: null,
   extraLinks: [
+    { k: 'CV', url: 'https://atm-cv.vercel.app' },
     { k: 'LinkedIn', url: 'https://www.linkedin.com/in/alitaherimotlagh/' },
     { k: 'Links', url: 'https://linktr.ee/alanfilm' }
   ],

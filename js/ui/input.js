@@ -17,7 +17,7 @@ export function initInput(honk) {
     const dead = v => (Math.abs(v) < 0.12 ? 0 : v);
     input.jx = dead(dx / R); input.jy = dead(dy / R);
   };
-  el.addEventListener('pointerdown', e => { id = e.pointerId; el.setPointerCapture(id); move(e); buzz(8); });
+  el.addEventListener('pointerdown', e => { id = e.pointerId; try { el.setPointerCapture(id); } catch (err) {} move(e); buzz(8); });
   el.addEventListener('pointermove', e => { if (e.pointerId === id) move(e); });
   const end = e => { if (e.pointerId !== id) return; id = null; input.jx = input.jy = 0; knob.style.transform = ''; };
   el.addEventListener('pointerup', end); el.addEventListener('pointercancel', end);

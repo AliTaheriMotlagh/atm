@@ -7,6 +7,7 @@ Instead of scrolling through a conventional portfolio, visitors drive around a 3
 ## Portfolio
 
 - GitHub: https://github.com/AliTaheriMotlagh
+- CV: https://atm-cv.vercel.app
 - LinkedIn: https://www.linkedin.com/in/alitaherimotlagh/
 - Projects: https://github.com/AliTaheriMotlagh?tab=repositories
 
@@ -95,6 +96,17 @@ How it works:
 - **Private room:** *Make a private room* and share the invite link (`?room=code`). You still drive among everyone, but your races and gem battles only invite the friends who opened the link.
 - When the island is embedded in another page (for example as a preview), it stays offline so it never shows up as a ghost driver.
 - Pick your driver name and car colour in the **Online** panel (`N`).
+
+### Game server (recommended for phone + desktop)
+
+Browser-to-browser WebRTC often can't connect a phone on mobile data to a desktop on home Wi-Fi. The fix is the tiny WebSocket relay in `server/`:
+
+1. On render.com: **New → Blueprint**, pick this repo. `render.yaml` deploys `server/` for free.
+2. Put its address in `js/net/config.js`: `NET_SERVER = 'wss://<your-service>.onrender.com/ws'`, then redeploy the site.
+
+Everyone then connects through the server, on any network, and phones that come back from the lock screen rejoin automatically. The free plan sleeps after 15 idle minutes and takes about a minute to wake. Test locally with `cd server && npm install && npm start`, then open `http://localhost:8000/?server=ws://localhost:8787/ws`.
+
+Without a server the site falls back to WebRTC. `api/turn.js` (a Vercel function) can then hand out TURN relay credentials (Cloudflare or any TURN server, set by environment variables) to help phones connect.
 
 ### Live project previews
 

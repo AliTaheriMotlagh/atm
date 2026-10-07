@@ -6,6 +6,8 @@ import { world } from '../world/world.js';
 import { RACE_ACTIONS, raceOnPeerJoin, raceOnPeerLeave, endRace, raceProgress } from './race.js';
 import { BATTLE_ACTIONS, battleOnPeerJoin, battleOnPeerLeave, endBattle } from './battle.js';
 import { renderNet } from './panel.js';
+import { netServer } from './config.js';
+import { socketLib } from './socket.js';
 
 /* Visitors find each other through public Nostr relays (Trystero), then talk directly over WebRTC.
    Each browser simulates only its own car and broadcasts it; other cars are drawn from their messages.
@@ -39,6 +41,7 @@ const LOBBY = 'lobby';
 export const net = {
   room: null,     // public presence room
   priv: null,     // private game room, when ?room= is set
+  relay: null,    // TURN provider name from /api/turn, or null when only direct connections are possible
   self: null, lib: null, status: 'off', roomId: roomFromUrl() || LOBBY,
   peers: new Map(),     // everyone on the island: peerId → { id, name, color, hi, st: { x, z, h, v, s, prog, at }, hop }
   mates: new Set(),     // peers in your private room
@@ -49,6 +52,22 @@ export const peerColor = id => NET_COLORS[id === selfKey() ? me.color : (net.pee
 export const peerName = id => id === selfKey() ? me.name : (net.peers.get(id)?.name || 'Driver');
 // How many other drivers your games can include.
 export const gamePeers = () => net.priv ? net.mates.size : net.peers.size;
+
+// TURN relays from /api/turn (see api/turn.js), so phones on mobile data can reach desktops behind home routers.
+// Without them only direct WebRTC paths work, which carrier networks often block.
+let turnConfig = [];
+async function loadRelays() {
+  try {
+    const ctl = new AbortController(), timer = setTimeout(() => ctl.abort(), 3500);
+    const r = await fetch('/api/turn', { signal: ctl.signal, cache: 'no-store' });
+    clearTimeout(timer);
+    if (!r.ok) return;
+    const d = await r.json();
+    turnConfig = (Array.isArray(d.iceServers) ? d.iceServers : []).filter(s => s && s.urls && s.username && s.credential);
+    net.relay = turnConfig.length ? (d.provider || 'custom') : null;
+  } catch (e) {}
+}
+const roomConfig = () => ({ appId: NET_APP, ...(turnConfig.length ? { turnConfig } : {}) });
 
 function ensurePeer(id) {
   let p = net.peers.get(id);
@@ -72,7 +91,7 @@ const onGamePeerJoin = id => { raceOnPeerJoin(id); battleOnPeerJoin(id); };
 const onGamePeerLeave = id => { raceOnPeerLeave(id); battleOnPeerLeave(id); };
 
 function joinPrivate(id) {
-  const room = net.lib.joinRoom({ appId: NET_APP }, id);
+  const room = net.lib.joinRoom(roomConfig(), id);
   room.game = gameActions(room);
   room.onPeerJoin = pid => { if (!ensurePeer(pid)) return; net.mates.add(pid); onGamePeerJoin(pid); renderNet(); };
   room.onPeerLeave = pid => { if (net.mates.delete(pid)) { onGamePeerLeave(pid); renderNet(); } };
@@ -90,11 +109,15 @@ export async function netStart() {
   // Stay offline when the island is embedded in another page, so a preview never shows up as a ghost driver.
   if (!world.ok || net.room || window.top !== window) return;
   net.status = 'connecting'; renderNet();
-  try { net.lib = net.lib || await import(NET_LIB); } catch (e) { net.status = 'offline'; renderNet(); return; }
+  // A relay server (js/net/config.js) when there is one, otherwise browser-to-browser WebRTC.
+  const server = netServer();
+  net.transport = server ? 'server' : 'p2p';
+  if (server) net.lib = net.lib || socketLib(server, s => { if (net.room) { net.status = s; renderNet(); } });
+  else try { [net.lib] = await Promise.all([net.lib || import(NET_LIB), loadRelays()]); } catch (e) { net.status = 'offline'; renderNet(); return; }
   if (net.room) return;
   let room;
-  try { room = net.lib.joinRoom({ appId: NET_APP }, LOBBY); } catch (e) { net.status = 'offline'; renderNet(); return; }
-  net.room = room; net.self = net.lib.selfId; net.status = 'online';
+  try { room = net.lib.joinRoom(roomConfig(), LOBBY); } catch (e) { net.status = 'offline'; renderNet(); return; }
+  net.room = room; net.self = net.lib.selfId; net.status = server && !room.open ? 'connecting' : 'online';
 
   room.presence = {
     hi: netAction(room, 'hi', (d, p) => {
@@ -161,5 +184,20 @@ export function initNet() {
     const s = world.me();
     net.send.st([r2(s.x), r2(s.z), r2(((s.h % TAU) + TAU) % TAU), r2(s.v), r2(s.steer), r2(raceProgress())]);
   }, 100);
+  // Names and colours go out again every 10 s, so anyone who missed them (a dropped connection) catches up.
+  setInterval(sayHi, 10000);
   addEventListener('pagehide', netLeave);
+  // Phones suspend background pages (screen lock, app switch) and their connections die quietly.
+  // Coming back, the socket transport reconnects at once; the same driver id lets the server swap sockets,
+  // so other players just see the car carry on. A race or battle missed while away is dropped.
+  let hiddenAt = 0;
+  document.addEventListener('visibilitychange', () => {
+    if (document.hidden) { hiddenAt = performance.now(); return; }
+    const away = hiddenAt ? performance.now() - hiddenAt : 0;
+    hiddenAt = 0;
+    if (!net.room || away < 5000) return;
+    if (away > 20000) { endRace(true); endBattle(true); }
+    net.lib?.wake?.();
+    setTimeout(sayHi, 1500);
+  });
 }
