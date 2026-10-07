@@ -6,7 +6,7 @@
    data and a desktop (see api/turn.js for the relay that helps there).
 
    For local testing, ?server=ws://localhost:8787/ws overrides it when the page itself runs on localhost. */
-export const NET_SERVER = '';
+export const NET_SERVER = 'wss://island-server-qg2n.onrender.com';
 
 export function netServer() {
   const local = ['localhost', '127.0.0.1'].includes(location.hostname);
