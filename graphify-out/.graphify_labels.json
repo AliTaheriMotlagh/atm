@@ -1,18 +1,14 @@
 {
-  "0": "shake",
+  "0": "rnd",
   "1": "net.js",
   "2": "world.js",
-  "3": "progress.js",
+  "3": "buzz",
   "4": "$",
   "5": "Ali's Project Island",
-  "6": "projects/index.js",
+  "6": "social.js",
   "7": "CLAUDE.md",
   "8": "images/README.md",
   "9": "package.json",
-  "10": "buzz",
-  "11": "gridways.js",
-  "12": "rnd",
-  "13": "gRhythm",
-  "14": "gMesh",
+  "10": "joinRoom",
   "15": "turn.js"
 }

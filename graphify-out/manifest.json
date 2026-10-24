@@ -84,9 +84,9 @@
     "semantic_hash": ""
   },
   "js/net/panel.js": {
-    "mtime": 1791397805.9254985,
-    "seen": 1791401171.106318,
-    "ast_hash": "977379603117082b6a847a8ed3af4a6a",
+    "mtime": 1792843055.9025824,
+    "seen": 1792843273.940654,
+    "ast_hash": "e8cdcccc448f8a8473f74522ce2e2b9d",
     "semantic_hash": ""
   },
   "js/net/race.js": {
@@ -222,9 +222,9 @@
     "semantic_hash": ""
   },
   "js/world/cars.js": {
-    "mtime": 1791395802.7863195,
-    "seen": 1791397088.91569,
-    "ast_hash": "d5749506fe68cd761b76a0e45e9555ae",
+    "mtime": 1792844203.0485976,
+    "seen": 1792844261.32967,
+    "ast_hash": "5f5beab4cc0b79d335a14fda3a0c14d4",
     "semantic_hash": ""
   },
   "js/world/gems.js": {
@@ -282,9 +282,9 @@
     "semantic_hash": ""
   },
   "js/world/world.js": {
-    "mtime": 1791396366.7669797,
-    "seen": 1791397088.9156978,
-    "ast_hash": "d592f73cabbf9635b3e3e1556fbd72d9",
+    "mtime": 1792843848.1693606,
+    "seen": 1792844261.32968,
+    "ast_hash": "be176d9956db9c6a4c3ed2ac463d7960",
     "semantic_hash": ""
   },
   "CLAUDE.md": {
@@ -336,15 +336,15 @@
     "semantic_hash": ""
   },
   "js/net/config.js": {
-    "mtime": 1791397779.9585376,
-    "seen": 1791401171.106316,
-    "ast_hash": "70d17734954084dcc1580c00e6114e6f",
+    "mtime": 1791403143.8300142,
+    "seen": 1792843273.940653,
+    "ast_hash": "264b21c7552403f245629e98a5e8c109",
     "semantic_hash": ""
   },
   "js/net/socket.js": {
-    "mtime": 1791397765.2936134,
-    "seen": 1791401171.10632,
-    "ast_hash": "982c9417276792ff5f306dbc5856b884",
+    "mtime": 1791403495.7692866,
+    "seen": 1792843273.9406562,
+    "ast_hash": "0b17e8e5167340ca11dedec15c43e690",
     "semantic_hash": ""
   },
   "server/index.js": {

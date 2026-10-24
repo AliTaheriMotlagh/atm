@@ -22,7 +22,7 @@ import { captureSnapshots } from './snapshots.js';
    or Three.js failed to load) every method is a harmless no-op. */
 export const world = {
   ok: false, near: null, track: null, focus() {}, teleport() {}, resetCoins() {}, honk() {},
-  me: () => ({ x: 0, z: 0, h: 0, v: 0, steer: 0 }), paintMe() {}, peerHonk() {}, dropPeer() {}, peerDist: () => null, toGrid() {}, setGate() {}, gemSpot: () => ({ x: 0, z: 0 }), showGems() {}
+  me: () => ({ x: 0, z: 0, h: 0, v: 0, steer: 0 }), peerHonk() {}, dropPeer() {}, peerDist: () => null, toGrid() {}, setGate() {}, gemSpot: () => ({ x: 0, z: 0 }), showGems() {}
 };
 
 export function startWorld() {
@@ -92,7 +92,7 @@ export function startWorld() {
   buildCars(w, world);
   buildTrack(w, world);
   buildGems(w, world);
-  const { colliders, LANDMARKS, lmById, COINS, S, car, wheels, fronts, peerCars, puff } = w;
+  const { colliders, LANDMARKS, lmById, COINS, S, car, wheels, wheelR, fronts, peerCars, puff } = w;
   const drawMinimap = createMinimap(w);
   let dustAcc = 0;
 
@@ -174,7 +174,7 @@ export function startWorld() {
     car.position.set(S.x, Math.abs(S.v) > 1 ? Math.sin(t * 22) * 0.03 : 0, S.z);
     car.rotation.y = S.h;
     car.rotation.z = -S.steer * clamp(S.v / 30, -1, 1) * 0.08;
-    wheels.forEach(w => { w.rotation.x += S.v * dt / 0.55; });
+    wheels.forEach(w => { w.rotation.x += S.v * dt / wheelR; });
     fronts.forEach(f => { f.rotation.y = S.steer * 0.45; });
     if (hop > 0) { hop = Math.max(0, hop - dt); car.position.y += Math.sin(hop / 0.3 * Math.PI) * 0.45; }
     if (!reduceMotion && driving && (Math.abs(S.v) > 26 || (Math.abs(S.v) > 12 && Math.abs(S.steer) > 0.7))) {

@@ -65,7 +65,7 @@ export function initNetPanel() {
   $('#net-colors').addEventListener('click', e => {
     const b = e.target.closest('[data-color]'); if (!b) return;
     me.color = Number(b.dataset.color); store.set('island-color', String(me.color));
-    world.paintMe(); sayHi(); renderNet(); sfx.play('tick');
+    sayHi(); renderNet(); sfx.play('tick');
   });
   $('#net-name').addEventListener('change', commitName);
   $('#net-name').addEventListener('keydown', e => { if (e.key === 'Enter') e.target.blur(); });
