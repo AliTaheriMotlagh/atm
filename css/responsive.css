@@ -1,6 +1,6 @@
 @media (min-width: 641px) and (max-width: 1100px) {
   .dossier { width: min(720px, 86vw); }
-  #minimap { width: 112px; height: 112px; }
+  body.touch #minimap { width: 112px; height: 112px; }
   .hud-left { flex-basis: 240px; }
 }
 @media (min-width: 1500px) {
@@ -9,7 +9,7 @@
   .brand b { font-size: 17px; }
   .brand span, .goal-f { font-size: 12px; }
   .hbtn { font-size: 15px; padding: 9px 16px; }
-  #minimap { width: 160px; height: 160px; }
+  body.touch #minimap { width: 160px; height: 160px; }
 }
 @media (min-width: 2200px) {
   .dossier { width: 860px; }
@@ -20,14 +20,14 @@
 @media (max-height: 620px) and (orientation: landscape) {
   .hud-top { padding-top: 6px; }
   .goal { max-height: 190px; overflow: auto; }
-  #minimap { width: 82px; height: 82px; }
+  body.touch #minimap { width: 82px; height: 82px; }
   .game-box { max-height: calc(100vh - 16px); max-height: calc(100dvh - 16px); padding: 15px; }
   .game-body { min-height: 180px; }
   .target-arena { height: 190px; }
   .horn { bottom: calc(env(safe-area-inset-bottom, 0px) + 20px); right: 96px; }
 }
 @media (max-width: 640px) {
-  #minimap { width: 92px; height: 92px; }
+  body.touch #minimap { width: 92px; height: 92px; }
   .brand span { display: none; }
   .hud-left { flex-basis: 170px; }
   .goal { padding: 8px 10px; gap: 5px; }

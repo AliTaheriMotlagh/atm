@@ -5,8 +5,8 @@ import { GH } from './links.js';
 
 const project = {
   id: 'atm', name: 'Project Island', color: '#d946ef', lang: 'JavaScript · Three.js',
-  tagline: 'This portfolio: a drivable 3D island where every landmark is a project, with mini-games and multiplayer races.',
-  chips: ['Three.js', 'WebRTC', 'Static site', 'Updated 7 Oct 2026'], live: true,
+  tagline: 'This portfolio: a drivable 3D Tehran where every landmark is a project, with mini-games, a GPS map and multiplayer races.',
+  chips: ['Three.js', 'WebRTC', 'Static site', 'Updated 25 Oct 2026'], live: true,
   repos: [{ url: GH + 'atm' }], site: 'https://alitaherimotlagh.vercel.app/',
   extraLinks: [{ k: 'CV', url: 'https://atm-cv.vercel.app' }],
   // You're already in it: embedding the island in itself would also add a ghost driver online.
@@ -15,15 +15,18 @@ const project = {
     line: 'You are standing in it. A portfolio you drive through instead of scrolling past.',
     rows: [
       ['Problem', 'Portfolios are lists of cards. Visitors skim three screenshots and leave without seeing how anything works.'],
-      ['Solution', 'Each project is a landmark on an island. Drive up to one to open a dossier with a live preview, notes from the README, recent commits and three mini-games themed on the project.'],
+      ['Solution', 'Each project is a landmark in a small, drivable Tehran. Drive up to one to open a dossier with a live preview, notes from the README, recent commits and three mini-games themed on the project.'],
       ['Who it\'s for', 'Recruiters, engineers and friends who would rather play for two minutes than read for ten.'],
       ['Why it stands out', 'No build step and no server: plain ES modules and Three.js on a static host. Multiplayer runs browser to browser over WebRTC, and public Nostr relays are only used for matchmaking.'],
       ['Status', 'Live at alitaherimotlagh.vercel.app. You\'re already here, so this dossier shows a picture instead of a live preview.']
     ]
   },
   design: [
-    { h: 'The island', items: [
-      'A ring road with a landmark per project, coins to collect, billboards and a drive-in cinema for the short films.',
+    { h: 'The city', items: [
+      'A small Tehran: the project ring in the middle, the ring highway, and Vanak, Tajrish, Gisha, Chitgar, the Grand Bazaar and Tehranpars around it, under the Alborz with Damavand behind.',
+      'Milad Tower, Azadi Tower, Tabiat Bridge, Chitgar Lake and Valiasr\'s plane trees, with taxis and Prides in the traffic.',
+      'A GTA-style radar that turns with the car, a full map with GPS waypoints and routes along the roads, and district names as you drive in.',
+      'Coins to collect, billboards and a drive-in cinema for the short films.',
       'Keyboard, touch joystick and boost. The camera eases between driving and dossier views.',
       'Each landmark is photographed from the 3D scene and the picture is reused as its project image.'
     ] },
@@ -50,11 +53,11 @@ const project = {
     arch: [{ h: 'Code layout', items: [
       '`js/projects/`: one module per landmark with its dossier, three challenges and 3D model.',
       '`js/games/`: the challenge runner, the arcade and shared game helpers.',
-      '`js/world/`: the Three.js scene, split into terrain, screens, landmarks, scenery, cars, track and minimap.',
+      '`js/world/`: the Three.js city. `plan.js` lays out every road and lot as data; terrain, city, scenery, traffic, GPS, radar and map are built from it.',
       '`js/net/`: peer-to-peer presence and races.',
       '`js/ui/`: shell, dossier, previews, cinema, social and modals.'
     ] }],
-    numbers: [['0', 'build steps'], ['0', 'servers'], ['30', 'mini-games'], ['24', 'drivers per room']]
+    numbers: [['0', 'build steps'], ['0', 'servers'], ['36', 'mini-games'], ['24', 'drivers per room']]
   },
   docs: {
     note: 'The code is ES modules, so open it through a local server rather than as a file.',

@@ -8,16 +8,18 @@ import { initPreview } from './ui/preview.js';
 import { initDossier, openDossier } from './ui/dossier.js';
 import { initCinema } from './ui/cinema.js';
 import { initSocial } from './ui/social.js';
-import { initShell } from './ui/shell.js';
+import { initShell, enterDrive } from './ui/shell.js';
+import { initBigmap, bigmap } from './ui/bigmap.js';
 import { initNet, netStart } from './net/net.js';
 import { initNetPanel, renderNet } from './net/panel.js';
 import { initRace } from './net/race.js';
 import { initBattle } from './net/battle.js';
 import { world, startWorld } from './world/world.js';
 
-/* Entry point: wire up every panel, then build the island once the display font is ready
+/* Entry point: wire up every panel, then build the city once the display font is ready
    (the signs and billboards are drawn with it). */
 initShell();
+initBigmap();
 initRunner();
 initArcade();
 initPreview();
@@ -36,12 +38,14 @@ function boot() {
     document.body.classList.add('no3d');
     $('#note3d').hidden = false; $('#controls-hint').hidden = true; $('#btn-start').hidden = true;
     $('#minimap').hidden = true; $('#btn-online').hidden = true;
-    document.querySelectorAll('[data-drive]').forEach(b => b.remove());
+    document.querySelectorAll('[data-drive],[data-gps]').forEach(b => b.remove());
   }
   renderNet();
   netStart();
+  // Deep links: #<project> opens its dossier, #drive skips the intro, #map opens the map.
   const h = location.hash.slice(1);
   if (byId[h]) openDossier(h);
+  else if (world.ok && (h === 'drive' || h === 'map')) { enterDrive(); if (h === 'map') bigmap.open(); }
   // Deep links such as #gridways also work when the hash changes without a reload.
   addEventListener('hashchange', () => { const id = location.hash.slice(1); if (byId[id] && app.current !== byId[id]) openDossier(id); });
 }

@@ -7,8 +7,12 @@ import { battleLocked } from '../net/battle.js';
 import { keys, input } from '../ui/input.js';
 import { openLandmark, overlayOpen } from '../ui/shell.js';
 import { TOUR } from '../projects/index.js';
-import { LIMIT, angleOf } from './layout.js';
+import { angleOf, districtAt } from './layout.js';
+import { inBounds, nearestNode, roadGraph } from './plan.js';
 import { buildTerrain } from './terrain.js';
+import { buildCity } from './city.js';
+import { buildTraffic } from './traffic.js';
+import { buildGps, updateGps } from './gps.js';
 import { createScreens } from './screens.js';
 import { buildLandmarks } from './landmarks.js';
 import { buildScenery } from './scenery.js';
@@ -18,10 +22,10 @@ import { buildGems } from './gems.js';
 import { createMinimap } from './minimap.js';
 import { captureSnapshots } from './snapshots.js';
 
-/* The 3D island. `world` is what the rest of the app talks to; until startWorld() succeeds (no WebGL,
+/* The 3D city. `world` is what the rest of the app talks to; until startWorld() succeeds (no WebGL,
    or Three.js failed to load) every method is a harmless no-op. */
 export const world = {
-  ok: false, near: null, track: null, focus() {}, teleport() {}, resetCoins() {}, honk() {},
+  ok: false, near: null, track: null, w: null, focus() {}, teleport() {}, warp() {}, resetCoins() {}, honk() {},
   me: () => ({ x: 0, z: 0, h: 0, v: 0, steer: 0 }), peerHonk() {}, dropPeer() {}, peerDist: () => null, toGrid() {}, setGate() {}, gemSpot: () => ({ x: 0, z: 0 }), showGems() {}
 };
 
@@ -44,28 +48,34 @@ export function startWorld() {
   stage.appendChild(renderer.domElement);
 
   const scene = new THREE.Scene();
-  const FOG = 0xcfeeff;
-  scene.fog = new THREE.Fog(FOG, 140, 360);
+  // Tehran's warm afternoon haze.
+  const FOG = 0xe6e4dc;
+  scene.fog = new THREE.Fog(FOG, 220, 900);
   scene.background = new THREE.Color(FOG);
-  const camera = new THREE.PerspectiveCamera(55, innerWidth / innerHeight, 0.5, 900);
+  const camera = new THREE.PerspectiveCamera(55, innerWidth / innerHeight, 0.5, 1700);
 
   // Sky dome
-  const sky = new THREE.Mesh(new THREE.SphereGeometry(500, 24, 12), new THREE.ShaderMaterial({
+  const sky = new THREE.Mesh(new THREE.SphereGeometry(1300, 24, 12), new THREE.ShaderMaterial({
     side: THREE.BackSide, depthWrite: false, fog: false,
-    uniforms: { top: { value: new THREE.Color(0x5fb4ff) }, bottom: { value: new THREE.Color(FOG) } },
+    uniforms: { top: { value: new THREE.Color(0x6aaee8) }, bottom: { value: new THREE.Color(FOG) } },
     vertexShader: 'varying float h; void main(){ h = normalize(position).y; gl_Position = projectionMatrix * modelViewMatrix * vec4(position,1.0); }',
     fragmentShader: 'uniform vec3 top; uniform vec3 bottom; varying float h; void main(){ gl_FragColor = vec4(mix(bottom, top, smoothstep(0.0, 0.55, h)), 1.0); }'
   }));
   scene.add(sky);
 
-  scene.add(new THREE.HemisphereLight(0xcfeaff, 0x6d8f52, 0.78));
-  const sun = new THREE.DirectionalLight(0xfff3dc, 0.92);
-  sun.position.set(70, 110, 45);
+  scene.add(new THREE.HemisphereLight(0xd6e6f5, 0x7a7452, 0.62));
+  // The sun's shadow box follows whatever the camera looks at, so shadows stay sharp in a big city.
+  const sun = new THREE.DirectionalLight(0xfff0d6, 0.9), SUN = new THREE.Vector3(70, 130, 45);
   sun.castShadow = true;
   sun.shadow.mapSize.set(isTouch ? 1024 : 2048, isTouch ? 1024 : 2048);
-  Object.assign(sun.shadow.camera, { left: -110, right: 110, top: 110, bottom: -110, near: 10, far: 320 });
+  Object.assign(sun.shadow.camera, { left: -100, right: 100, top: 100, bottom: -100, near: 10, far: 400 });
   sun.shadow.bias = -0.0006;
-  scene.add(sun);
+  scene.add(sun, sun.target);
+  const aimSun = (x, z) => {
+    // Snap to whole texels so the shadows don't shimmer while driving.
+    const step = 200 / sun.shadow.mapSize.x * 4; x = Math.round(x / step) * step; z = Math.round(z / step) * step;
+    sun.position.set(x + SUN.x, SUN.y, z + SUN.z); sun.target.position.set(x, 0, z); sun.target.updateMatrixWorld();
+  };
 
   const matCache = {};
   const mat = (c, o) => {
@@ -84,19 +94,23 @@ export function startWorld() {
   const rand = () => { seed |= 0; seed = seed + 0x6D2B79F5 | 0; let t = Math.imul(seed ^ seed >>> 15, 1 | seed); t = t + Math.imul(t ^ t >>> 7, 61 | t) ^ t; return ((t ^ t >>> 14) >>> 0) / 4294967296; };
 
   // Shared by the builders in this folder: they read what they need from it and add what they make.
-  const w = { scene, renderer, camera, M, mat, rand, tick: f => tickers.push(f), colliders: [], LANDMARKS: [], COINS: [] };
+  const w = { scene, renderer, camera, M, mat, rand, tick: f => tickers.push(f), colliders: [], LANDMARKS: [], COINS: [], blink: [], aimSun };
+  world.w = w;
   buildTerrain(w);
   w.makeScreen = createScreens(w.tick);
   buildLandmarks(w);
+  buildCity(w);
   buildScenery(w);
   buildCars(w, world);
   buildTrack(w, world);
   buildGems(w, world);
+  buildTraffic(w);
+  buildGps(w);
   const { colliders, LANDMARKS, lmById, COINS, S, car, wheels, wheelR, fronts, peerCars, puff } = w;
   const drawMinimap = createMinimap(w);
   let dustAcc = 0;
 
-  const camPos = new THREE.Vector3(110, 60, 0), camLook = new THREE.Vector3(0, 4, 0);
+  const camPos = new THREE.Vector3(260, 140, 0), camLook = new THREE.Vector3(0, 4, 0);
   let focusId = null;
 
   function teleport(id) {
@@ -107,6 +121,13 @@ export function startWorld() {
     car.position.set(S.x, 0, S.z); car.rotation.y = S.h;
   }
   world.teleport = teleport;
+  // Drop the car on the road nearest to (x, z), facing along it: "drive there" for spots that aren't landmarks.
+  world.warp = (x, z) => {
+    const { nodes } = roadGraph(), n = nodes[nearestNode(x, z)]; if (!n) return;
+    const nb = nodes[n.adj[0]?.to] || n;
+    S.x = n.x; S.z = n.z; S.h = Math.atan2(nb.x - n.x, nb.z - n.z); S.v = 0;
+    car.position.set(S.x, 0, S.z); car.rotation.y = S.h;
+  };
   world.focus = (id, tp) => { focusId = id; if (tp) teleport(id); };
   world.resetCoins = () => COINS.forEach(c => { c.userData.collected = false; c.visible = true; c.scale.setScalar(1); });
   let hop = 0;
@@ -127,12 +148,12 @@ export function startWorld() {
   /* --- loop --- */
   // Spawn on a random spoke so drivers who arrive together don't stack on one spot.
   {
-    const a = angleOf(Math.random() * TOUR.length | 0) + (Math.random() - 0.5) * 0.12, r = 15 + Math.random() * 3;
+    const a = angleOf(Math.random() * TOUR.length | 0) + (Math.random() - 0.5) * 0.08, r = 17 + Math.random() * 3;
     S.x = Math.cos(a) * r; S.z = Math.sin(a) * r; S.h = Math.atan2(Math.cos(a), Math.sin(a));
     car.position.set(S.x, 0, S.z); car.rotation.y = S.h;
   }
   const clock = new THREE.Clock();
-  let t = 0, frame = 0, snapped = false, lastBump = 0;
+  let t = 0, frame = 0, snapped = false, lastBump = 0, areaAcc = 0, area = '';
   const tmp = new THREE.Vector3(), tmp2 = new THREE.Vector3();
 
   function update(dt) {
@@ -146,30 +167,46 @@ export function startWorld() {
     }
     // Held on the grid during the race countdown.
     if (raceLocked() || battleLocked()) { thr = 0; steer = 0; boost = false; S.v = 0; }
-    const maxF = boost ? 34 : 21, maxR = 9;
-    if (thr > 0.05) S.v += thr * (S.v < 0 ? 42 : (boost ? 34 : 24)) * dt;
+    const maxF = boost ? 42 : 26, maxR = 10;
+    if (thr > 0.05) S.v += thr * (S.v < 0 ? 46 : (boost ? 40 : 27)) * dt;
     else if (thr < -0.05) S.v += thr * (S.v > 0 ? 42 : 16) * dt;
     else S.v *= Math.exp(-1.8 * dt);
     if (S.v > maxF) S.v += (maxF - S.v) * Math.min(1, dt * 3);
-    S.v = clamp(S.v, -maxR, 40);
+    S.v = clamp(S.v, -maxR, 48);
     S.steer += (steer - S.steer) * Math.min(1, dt * 10);
     S.h += S.steer * 1.9 * dt * clamp(S.v / 6, -1, 1);
     let nx = S.x + Math.sin(S.h) * S.v * dt, nz = S.z + Math.cos(S.h) * S.v * dt;
     for (const c of colliders) {
-      const dx = nx - c.x, dz = nz - c.z, d = Math.hypot(dx, dz), min = c.r + 1.5;
+      const dx = nx - c.x, dz = nz - c.z;
+      if (Math.abs(dx) > c.r + 2 || Math.abs(dz) > c.r + 2) continue;
+      if (c.hx) {
+        // A building: push out of the box along the shallower side, in the box's own frame.
+        const cs = Math.cos(c.rot), sn = Math.sin(c.rot), lx = dx * cs - dz * sn, lz = dx * sn + dz * cs;
+        const px = c.hx + 1.4 - Math.abs(lx), pz = c.hz + 1.4 - Math.abs(lz);
+        if (px <= 0 || pz <= 0) continue;
+        const ox = px < pz ? Math.sign(lx) * px : 0, oz = px < pz ? 0 : Math.sign(lz) * pz;
+        nx += ox * cs + oz * sn; nz += -ox * sn + oz * cs;
+        if (Math.abs(S.v) > 12 && t - lastBump > 0.4) { lastBump = t; sfx.tone(110, 0.14, 'square', 0.05); buzz(25); }
+        S.v *= 0.8; continue;
+      }
+      const d = Math.hypot(dx, dz), min = c.r + 1.5;
       if (d < min && d > 0.0001) { nx = c.x + dx / d * min; nz = c.z + dz / d * min; S.v *= 0.86; }
     }
-    for (const pc of peerCars.values()) {
-      if (!pc.g.visible) continue;
-      const dx = nx - pc.x, dz = nz - pc.z, d = Math.hypot(dx, dz), min = 3.4;
-      if (d < min && d > 0.0001) {
-        nx = pc.x + dx / d * min; nz = pc.z + dz / d * min;
-        if (Math.abs(S.v) > 6 && t - lastBump > 0.4) { lastBump = t; sfx.tone(130, 0.12, 'square', 0.05); buzz(15); }
-        S.v *= 0.9;
-      }
+    // Other drivers' cars and the traffic.
+    const bump = (ox, oz, onHit) => {
+      const dx = nx - ox, dz = nz - oz, d = Math.hypot(dx, dz), min = 3.4;
+      if (d >= min || d < 0.0001) return;
+      nx = ox + dx / d * min; nz = oz + dz / d * min;
+      if (Math.abs(S.v) > 6 && t - lastBump > 0.4) { lastBump = t; sfx.tone(130, 0.12, 'square', 0.05); buzz(15); onHit?.(); }
+      S.v *= 0.9;
+    };
+    for (const pc of peerCars.values()) if (pc.g.visible) bump(pc.x, pc.z);
+    for (const tc of w.traffic) if (tc.mesh.visible) bump(tc.x, tc.z, () => { tc.stun = 2; });
+    // City limits and the lake: slide along the edge instead of stopping dead.
+    if (!inBounds(nx, nz)) {
+      if (inBounds(nx, S.z)) nz = S.z; else if (inBounds(S.x, nz)) nx = S.x; else { nx = S.x; nz = S.z; }
+      S.v *= 0.7;
     }
-    const r = Math.hypot(nx, nz);
-    if (r > LIMIT) { nx *= LIMIT / r; nz *= LIMIT / r; S.v *= 0.7; }
     S.x = nx; S.z = nz;
     car.position.set(S.x, Math.abs(S.v) > 1 ? Math.sin(t * 22) * 0.03 : 0, S.z);
     car.rotation.y = S.h;
@@ -205,12 +242,23 @@ export function startWorld() {
       });
     }
     updateGame(dt, driving);
+    updateGps(S, dt);
+    // GTA-style district name, bottom right, whenever you drive into a new one.
+    if ((areaAcc += dt) > 0.5) {
+      areaAcc = 0;
+      const name = districtAt(S.x, S.z);
+      if (name !== area) {
+        const first = !area; area = name;
+        const el = $('#area');
+        if (el && !first && driving) { el.textContent = name; el.hidden = false; el.classList.remove('show'); void el.offsetWidth; el.classList.add('show'); }
+      }
+    }
 
     // camera
     const k = 1 - Math.exp(-(app.mode === 'drive' ? 4 : 2.2) * dt);
     if (app.mode === 'intro') {
-      const a = (reduceMotion ? 0.6 : t * 0.05) + 0.6;
-      tmp.set(Math.cos(a) * 128, 68, Math.sin(a) * 128); tmp2.set(0, 2, 0);
+      const a = (reduceMotion ? 0.6 : t * 0.04) + 0.6;
+      tmp.set(Math.cos(a) * 250, 120, Math.sin(a) * 250); tmp2.set(0, 10, 0);
     } else if (app.mode === 'dossier' && focusId && lmById[focusId]) {
       const l = lmById[focusId];
       const sway = reduceMotion ? 0 : Math.sin(t * 0.25) * 0.25;
@@ -223,12 +271,13 @@ export function startWorld() {
         tmp2.addScaledVector(right, dist * 0.32);
       }
     } else {
-      const back = 13 + Math.max(0, S.v) * 0.12;
-      tmp.set(S.x - Math.sin(S.h) * back, 6.5 + Math.max(0, S.v) * 0.03, S.z - Math.cos(S.h) * back);
+      const back = 13.5 + Math.max(0, S.v) * 0.12;
+      tmp.set(S.x - Math.sin(S.h) * back, 6.8 + Math.max(0, S.v) * 0.03, S.z - Math.cos(S.h) * back);
       tmp2.set(S.x + Math.sin(S.h) * 5, 1.6, S.z + Math.cos(S.h) * 5);
     }
     camPos.lerp(tmp, k); camLook.lerp(tmp2, k);
     camera.position.copy(camPos); camera.lookAt(camLook);
+    aimSun(camLook.x, camLook.z);
     // Widen the view a little at speed.
     const fov = 55 + (!reduceMotion && app.mode === 'drive' ? clamp((S.v - 20) / 14, 0, 1) * 8 : 0);
     if (Math.abs(fov - camera.fov) > 0.01) { camera.fov += (fov - camera.fov) * Math.min(1, dt * 3); camera.updateProjectionMatrix(); }
@@ -236,9 +285,9 @@ export function startWorld() {
 
   // Skip rendering while something opaque covers the island (a phone-width dossier or a modal), after a couple
   // of frames so the backdrop blur has a picture to blur.
-  const dossierEl = $('#dossier'), pgEl = $('#project-game'), arcEl = $('#arcade');
+  const dossierEl = $('#dossier'), pgEl = $('#project-game'), arcEl = $('#arcade'), mapEl = $('#bigmap');
   let coveredFrames = 0;
-  const covered = () => !pgEl.hidden || !arcEl.hidden || (!dossierEl.hidden && innerWidth <= 620);
+  const covered = () => !pgEl.hidden || !arcEl.hidden || !mapEl.hidden || (!dossierEl.hidden && innerWidth <= 620);
 
   function loop() {
     const dt = Math.min(clock.getDelta(), 0.05);

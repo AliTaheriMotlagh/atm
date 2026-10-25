@@ -3,10 +3,10 @@ import { ALL, TOUR } from '../projects/index.js';
 import { FILMS, CINEMA } from '../films.js';
 import { ROAD_R, ROAD_W, LM_R, CIN_R, angleOf, CIN_GAP } from './layout.js';
 import { makeSign } from './screens.js';
-import { strip } from './terrain.js';
 
-/* Puts every landmark on the island (home in the middle, projects on the spokes, the drive-in further out)
-   and the billboards between the spokes. Fills w.LANDMARKS, w.lmById, w.BOARDS and w.colliders. */
+/* Puts every landmark in the city (home in the middle, projects on the spokes, the drive-in further out)
+   and the billboards between the spokes. Their roads come from plan.js. Fills w.LANDMARKS, w.lmById, w.BOARDS
+   and w.colliders. */
 export function buildLandmarks(w) {
   const { scene, M, mat, colliders, LANDMARKS } = w;
   const kit = { M, mat, tick: w.tick, rand: w.rand, makeScreen: w.makeScreen };
@@ -38,17 +38,13 @@ export function buildLandmarks(w) {
   addLandmark(home, 0, 0, 0);
   rest.forEach((p, i) => {
     const a = angleOf(i);
-    const lm = addLandmark(p, Math.cos(a) * LM_R, Math.sin(a) * LM_R, a);
-    strip(w, a, ROAD_R + ROAD_W / 2, LM_R - lm.solidR + 0.5, 5, 0x3b404c, 0.03);
-    strip(w, a, 11, ROAD_R - ROAD_W / 2, 4.2, 0x3b404c, 0.03);
+    addLandmark(p, Math.cos(a) * LM_R, Math.sin(a) * LM_R, a);
   });
-  {
-    const a = angleOf(CIN_GAP), lm = addLandmark(CINEMA, Math.cos(a) * CIN_R, Math.sin(a) * CIN_R, a);
-    strip(w, a, ROAD_R + ROAD_W / 2, CIN_R - lm.solidR + 0.5, 5, 0x3b404c, 0.03);
-  }
+  { const a = angleOf(CIN_GAP); addLandmark(CINEMA, Math.cos(a) * CIN_R, Math.sin(a) * CIN_R, a); }
   w.lmById = Object.fromEntries(LANDMARKS.map(l => [l.p.id, l]));
 
-  // Billboards just outside the ring road, facing it, in the gaps between spokes (except the drive-in's).
+  // Billboards just outside the ring road, facing it, beside the connector in each gap between spokes
+  // (except the drive-in's).
   // Your logo, then the apps with a film poster after every second one.
   const media = [...FILMS.map(f => ({ kind: 'film', f, label: 'NOW ON YOUTUBE' })), { kind: 'films' }];
   const BOARD_SLIDES = [{ kind: 'me' }];
@@ -56,8 +52,8 @@ export function buildLandmarks(w) {
   BOARD_SLIDES.push(...media);
   w.BOARDS = [];
   TOUR.map((_, i) => i + 0.5).filter(gap => gap !== CIN_GAP).forEach((gap, n) => {
-    const a = angleOf(gap), r = ROAD_R + ROAD_W / 2 + 8, W = 11, H = W * 9 / 16, base = 2.8;
-    const g = new THREE.Group(); g.position.set(Math.cos(a) * r, 0, Math.sin(a) * r);
+    const a = angleOf(gap), r = ROAD_R + ROAD_W / 2 + 9, W = 11, H = W * 9 / 16, base = 2.8, side = 10;
+    const g = new THREE.Group(); g.position.set(Math.cos(a) * r - Math.sin(a) * side, 0, Math.sin(a) * r + Math.cos(a) * side);
     g.rotation.y = Math.atan2(-Math.cos(a), -Math.sin(a)); scene.add(g);
     [-W / 2 + 1.2, W / 2 - 1.2].forEach(lx => {
       M(new THREE.BoxGeometry(0.45, base + H, 0.45), mat(0x5b6270), lx, (base + H) / 2, -0.45, g);

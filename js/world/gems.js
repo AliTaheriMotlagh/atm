@@ -1,8 +1,9 @@
 import { TAU } from '../core/util.js';
-import { ISLAND } from './layout.js';
+import { ROAD_R, OUTER_R } from './layout.js';
+import { inBounds } from './plan.js';
 
-/* Gems for the online gem battle (net/battle.js). Spots come from a shared seed and avoid everything
-   solid, so every browser places them identically. Sets world.gemSpot and world.showGems; the drive
+/* Gems for the online gem battle (net/battle.js). Spots come from a shared seed, stay inside the highway (so a
+   60-second battle stays reachable) and avoid everything solid, so every browser places them identically. Sets world.gemSpot and world.showGems; the drive
    loop calls w.touchGems() and reports grabs through world.onGem(slot). */
 export function buildGems(w, world) {
   const { scene, M, tick, colliders } = w;
@@ -17,10 +18,10 @@ export function buildGems(w, world) {
     let s = (seed ^ Math.imul(i + 1, 0x9E3779B1)) | 0;
     const r = () => { s = s + 0x6D2B79F5 | 0; let t = Math.imul(s ^ s >>> 15, 1 | s); t = t + Math.imul(t ^ t >>> 7, 61 | t) ^ t; return ((t ^ t >>> 14) >>> 0) / 4294967296; };
     for (let tries = 0; tries < 60; tries++) {
-      const a = r() * TAU, rad = 14 + r() * (ISLAND - 22), x = Math.cos(a) * rad, z = Math.sin(a) * rad;
-      if (!colliders.some(c => Math.hypot(c.x - x, c.z - z) < c.r + 2.6)) return { x, z };
+      const a = r() * TAU, rad = 16 + r() * (OUTER_R - 12), x = Math.cos(a) * rad, z = Math.sin(a) * rad;
+      if (inBounds(x, z) && !colliders.some(c => Math.hypot(c.x - x, c.z - z) < c.r + 2.6)) return { x, z };
     }
-    const a = r() * TAU; return { x: Math.cos(a) * 34.5, z: Math.sin(a) * 34.5 }; // on the ring road, always clear
+    const a = r() * TAU; return { x: Math.cos(a) * ROAD_R, z: Math.sin(a) * ROAD_R }; // on the ring road, always clear
   };
   // list[k] is a spot or null; a slot keeps its "just grabbed" state until it moves.
   world.showGems = list => pool.forEach((m, k) => {

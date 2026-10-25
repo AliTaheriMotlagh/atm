@@ -16,10 +16,12 @@ import { battleKey } from '../net/battle.js';
 import { openDossier, closeDossier, dossierOpen, renderTab } from './dossier.js';
 import { setView, setFull, isFull } from './preview.js';
 import { cinema } from './cinema.js';
+import { bigmap } from './bigmap.js';
+import { setWaypoint } from '../world/gps.js';
 import { social } from './social.js';
 import { keys, initInput } from './input.js';
 
-/* The frame around the island: intro card, HUD buttons, project drawer, keyboard and focus handling. */
+/* The frame around the city: intro card, HUD buttons, project drawer, keyboard and focus handling. */
 
 // Landmarks open their dossier, except the drive-in, which opens the films.
 export function openLandmark(id, opts = {}) {
@@ -56,7 +58,7 @@ function afterWin() {
   if (dossierOpen()) closeDossier(); else setMode(world.ok ? 'drive' : 'intro');
 }
 
-// Collapsed by default on small screens so the island stays visible; the choice is remembered.
+// Collapsed by default on small screens so the city stays visible; the choice is remembered.
 function setGoalOpen(open) {
   $('#goal').classList.toggle('collapsed', !open);
   $('#goal-toggle').setAttribute('aria-expanded', String(open));
@@ -70,8 +72,8 @@ function renderSound() {
 // Copy that mentions how many landmarks and challenges there are.
 function renderCounts() {
   const n = TOUR.length, g = GAME_LIST.length;
-  $('#brand-sub').textContent = `project island · ${n} landmarks`;
-  $('#goal-note').innerHTML = `🏁 <b>Goal:</b> visit all ${n} project landmarks, collect 8 gold coins, open 3 dossiers, and beat at least one challenge at every project. There are ${g} challenges on the island, three per landmark. Your best tour time and personal records are saved on this device.`;
+  $('#brand-sub').textContent = `Tehran · ${n} landmarks`;
+  $('#goal-note').innerHTML = `🏁 <b>Goal:</b> visit all ${n} project landmarks, collect 8 gold coins, open 3 dossiers, and beat at least one challenge at every project. There are ${g} challenges in the city, three per landmark. Your best tour time and personal records are saved on this device.`;
 }
 
 function renderLists() {
@@ -86,6 +88,7 @@ function renderLists() {
       <div class="row">
         <button class="go" type="button" data-open="${p.id}">Open dossier</button>
         <button class="drive" type="button" data-drive="${p.id}">Drive there</button>
+        <button class="drive" type="button" data-gps="${p.id}" title="Set a GPS waypoint">📍 GPS</button>
         ${p.site ? `<a class="drive site-link" href="${p.site}" target="_blank" rel="noopener">Website ↗</a>` : ''}
       </div>
     </li>`).join('');
@@ -94,8 +97,8 @@ function renderLists() {
 /* Keyboard */
 const pgEl = $('#project-game'), netEl = $('#net');
 // The top-most modal layer, which keeps Tab focus inside it.
-const modalLayer = () => [$('#win'), pgEl, arcade.el, cinema.el, social.el, netEl].find(el => !el.hidden) || null;
-// Some overlay covers the island, so driving input is ignored.
+const modalLayer = () => [$('#win'), pgEl, arcade.el, cinema.el, social.el, netEl, bigmap.el].find(el => !el.hidden) || null;
+// Some overlay covers the city, so driving input is ignored.
 export const overlayOpen = () => !!modalLayer();
 
 function trapFocus(e) {
@@ -114,6 +117,7 @@ function onKeyDown(e) {
   if (k === 'escape') {
     if (!$('#win').hidden) afterWin();
     else if (gameOpen()) closeGame();
+    else if (bigmap.isOpen) bigmap.close();
     else if (arcade.isOpen) arcade.close();
     else if (cinema.isOpen) cinema.close();
     else if (social.isOpen) social.close();
@@ -125,8 +129,10 @@ function onKeyDown(e) {
   }
   if (k === 'tab') { trapFocus(e); return; }
   if (e.target.matches && e.target.matches('input, textarea, select')) return;
+  if (k === 'm' && bigmap.isOpen) { bigmap.close(); return; }
   if (overlayOpen() || dossierOpen()) return;
-  if (k === 'm') { toggleDrawer(); return; }
+  if (k === 'm') { if (world.ok) { toggleDrawer(false); bigmap.open(); } else toggleDrawer(); return; }
+  if (k === 'l') { toggleDrawer(); return; }
   if (k === 'g') { arcade.open(); return; }
   if (k === 'v') { cinema.open(); return; }
   if (k === 'p') { social.open(); return; }
@@ -150,11 +156,16 @@ export function initShell() {
 
   // One listener for every data-* action rendered anywhere on the page.
   document.addEventListener('click', e => {
-    const t = e.target.closest('[data-open],[data-drive],[data-copy],[data-tab],[data-view],[data-game]');
+    const t = e.target.closest('[data-open],[data-drive],[data-gps],[data-copy],[data-tab],[data-view],[data-game]');
     if (!t) return;
     if (t.dataset.game) openGame(t.dataset.game);
     else if (t.dataset.view) setView(t.dataset.view);
     else if (t.dataset.open) openDossier(t.dataset.open);
+    else if (t.dataset.gps) {
+      const l = world.w?.lmById[t.dataset.gps]; if (!l) return;
+      setWaypoint({ x: l.pos.x, z: l.pos.z, label: l.p.home ? 'About Ali' : l.p.name, color: l.p.color, arrive: 16 });
+      $('#drawer').hidden = true; $('#intro').hidden = true; setMode('drive');
+    }
     else if (t.dataset.drive) { $('#drawer').hidden = true; $('#intro').hidden = true; world.teleport(t.dataset.drive); setMode('drive'); }
     else if (t.dataset.copy) copyText(t, t.dataset.copy);
     else if (t.dataset.tab && app.current) renderTab(app.current, t.dataset.tab);
@@ -162,7 +173,7 @@ export function initShell() {
 
   $('#btn-list').onclick = () => toggleDrawer();
   $('#btn-intro-list').onclick = () => toggleDrawer(true);
-  $('#minimap').onclick = () => toggleDrawer();
+  $('#minimap').onclick = () => bigmap.open();
   $('#drawer-x').onclick = () => toggleDrawer(false);
   $('#btn-about').onclick = () => openDossier('about');
   $('#btn-start').onclick = () => { $('#intro').hidden = true; setMode('drive'); $('#stage canvas')?.focus(); };

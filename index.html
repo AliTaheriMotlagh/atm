@@ -4,13 +4,13 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Ali's Project Island</title>
-<meta name="description" content="Ali Taheri Motlagh's portfolio as a drivable 3D island. Each landmark is a project: Remixt, Khalabani, Gridways, StreetQuest, Nexus SCADA and more, with 30 project-themed mini-games.">
+<meta name="description" content="Ali Taheri Motlagh's portfolio as a drivable 3D Tehran. Each landmark is a project: Remixt, Khalabani, Gridways, StreetQuest, Nexus SCADA, Khabar, walki and more, with 36 project-themed mini-games.">
 <meta name="author" content="Ali Taheri Motlagh">
 <meta name="theme-color" content="#0d1628">
 <meta name="color-scheme" content="dark">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Ali's Project Island · Ali Taheri Motlagh">
-<meta property="og:description" content="Drive around a 3D island where every landmark is a real project, with live previews and 30 project-themed mini-games.">
+<meta property="og:description" content="Drive around a 3D Tehran where every landmark is a real project, past Milad Tower, Azadi Tower and the Grand Bazaar, with live previews and 36 project-themed mini-games.">
 <meta name="twitter:card" content="summary">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%F0%9F%8F%9D%EF%B8%8F%3C/text%3E%3C/svg%3E">
 <script type="application/ld+json">
@@ -27,6 +27,7 @@
 <link rel="stylesheet" href="css/cinema.css">
 <link rel="stylesheet" href="css/social.css">
 <link rel="stylesheet" href="css/net.css">
+<link rel="stylesheet" href="css/map.css">
 <link rel="stylesheet" href="css/games.css">
 <link rel="stylesheet" href="css/projects/about.css">
 <link rel="stylesheet" href="css/projects/remixt.css">
@@ -37,6 +38,8 @@
 <link rel="stylesheet" href="css/projects/algorithms.css">
 <link rel="stylesheet" href="css/projects/streetquest.css">
 <link rel="stylesheet" href="css/projects/nexus.css">
+<link rel="stylesheet" href="css/projects/khabar.css">
+<link rel="stylesheet" href="css/projects/walki.css">
 <link rel="stylesheet" href="css/projects/atm.css">
 <link rel="stylesheet" href="css/responsive.css">
 </head>
@@ -78,10 +81,12 @@
       <button class="hbtn" id="btn-about" type="button" aria-label="About Ali"><span aria-hidden="true">👤</span><span class="lbl">About</span></button>
       <button class="hbtn" id="btn-sound" type="button" aria-label="Sound" aria-pressed="true"><span id="sound-ico" aria-hidden="true">🔊</span></button>
     </div>
-    <canvas id="minimap" width="264" height="264" title="Open the project list" aria-hidden="true"></canvas>
+    <canvas id="minimap" width="264" height="264" title="Open the map (M)" aria-hidden="true"></canvas>
   </div>
 </div>
 
+<div class="gps" id="gps" hidden></div>
+<div class="area" id="area" hidden aria-live="polite"></div>
 <button class="prompt" id="prompt" type="button" hidden><kbd>E</kbd><span>Open <b id="prompt-name">Remixt</b></span></button>
 <div class="stick" id="stick" aria-hidden="true"><i></i></div>
 <button class="boost" id="boost" type="button" aria-label="Boost">Boost</button>
@@ -91,13 +96,13 @@
 <div class="race-hud" id="battle-hud" hidden></div>
 <div class="race-count" id="race-count" hidden aria-hidden="true"></div>
 <canvas id="fx" hidden aria-hidden="true"></canvas>
-<noscript><div class="noscript"><p>This portfolio is an interactive 3D island and needs JavaScript.<br>You can still browse the projects on <a href="https://github.com/AliTaheriMotlagh?tab=repositories">GitHub</a>.</p></div></noscript>
+<noscript><div class="noscript"><p>This portfolio is an interactive 3D city and needs JavaScript.<br>You can still browse the projects on <a href="https://github.com/AliTaheriMotlagh?tab=repositories">GitHub</a>.</p></div></noscript>
 
 <div class="intro" id="intro">
   <div class="card" role="dialog" aria-labelledby="intro-title">
-    <div class="eyebrow">Portfolio · drivable island</div>
+    <div class="eyebrow">Portfolio · drivable Tehran</div>
     <h1 id="intro-title">Ali Taheri Motlagh</h1>
-    <p class="lead">Every landmark on this island is one of my projects. Drive up to one and open its dossier: the live website, the repository, the pitch, the design notes and the tech behind it.</p>
+    <p class="lead">Every landmark in this little Tehran is one of my projects. Drive up to one and open its dossier: the live website, the repository, the pitch, the design notes and the tech behind it. Press <kbd>M</kbd> for the map and set a GPS waypoint.</p>
     <div class="row">
       <button class="btn" id="btn-start" type="button">Start driving</button>
       <button class="btn ghost" id="btn-intro-arcade" type="button">🎮 Play the arcade</button>
@@ -108,7 +113,8 @@
       <span><kbd>W</kbd><kbd>A</kbd><kbd>S</kbd><kbd>D</kbd> or arrows to drive</span>
       <span><kbd>Shift</kbd> boost</span>
       <span><kbd>E</kbd> open landmark</span>
-      <span><kbd>M</kbd> project list</span>
+      <span><kbd>M</kbd> map &amp; GPS</span>
+      <span><kbd>L</kbd> project list</span>
       <span><kbd>G</kbd> arcade</span>
       <span><kbd>V</kbd> films</span>
       <span><kbd>P</kbd> social posts</span>
@@ -118,9 +124,9 @@
       <span><kbd>B</kbd> gem battle</span>
       <span>Click any landmark to jump there</span>
     </div>
-    <p class="goal-note" id="goal-note">🏁 <b>Goal:</b> visit all 9 project landmarks, collect 8 gold coins, open 3 dossiers, and beat at least one challenge at every project. There are 30 challenges on the island, three per landmark. Your best tour time and personal records are saved on this device.</p>
+    <p class="goal-note" id="goal-note">🏁 <b>Goal:</b> visit all 11 project landmarks, collect 8 gold coins, open 3 dossiers, and beat at least one challenge at every project. There are 36 challenges in the city, three per landmark. Your best tour time and personal records are saved on this device.</p>
     <p class="net-note" id="intro-net" hidden><span class="live-dot" aria-hidden="true"></span><span id="intro-net-text"></span></p>
-    <p class="note3d" id="note3d" hidden>Your browser couldn't start the 3D view, so the island is off. Every project is still one click away below.</p>
+    <p class="note3d" id="note3d" hidden>Your browser couldn't start the 3D view, so the city is off. Every project is still one click away below.</p>
     <div class="chips" id="intro-chips"></div>
   </div>
 </div>
@@ -191,7 +197,7 @@
       <input id="net-name" maxlength="16" autocomplete="off" spellcheck="false" enterkeyhint="done">
       <div class="swatches" id="net-colors" role="radiogroup" aria-label="Car colour"></div>
     </div>
-    <div class="net-list-h"><h3>On the island</h3><span id="net-count"></span></div>
+    <div class="net-list-h"><h3>In the city</h3><span id="net-count"></span></div>
     <ul class="net-list" id="net-list"></ul>
     <div class="net-rooms">
       <button class="btn ghost" id="net-invite" type="button">🔗 Copy invite link</button>
@@ -219,6 +225,25 @@
         <button class="btn" id="pg-next" type="button" hidden>Next →</button>
       </div>
     </div>
+  </section>
+</div>
+
+<div class="bigmap" id="bigmap" hidden>
+  <section class="bigmap-box" role="dialog" aria-modal="true" aria-labelledby="map-title">
+    <canvas id="map-cv" tabindex="0" aria-label="City map. Drag to move, scroll or pinch to zoom, click a place for its card or anywhere to set a waypoint. Arrow keys move, plus and minus zoom."></canvas>
+    <header class="map-head">
+      <div class="map-title"><div class="eyebrow">Tehran · Ali's project city</div><h2 id="map-title">Map</h2></div>
+      <div class="map-tools">
+        <button class="hbtn" id="map-clear" type="button" hidden>Clear waypoint</button>
+        <button class="hbtn" id="map-me" type="button" aria-label="Centre on me">◎<span class="lbl">Me</span></button>
+        <button class="hbtn" id="map-zout" type="button" aria-label="Zoom out">−</button>
+        <button class="hbtn" id="map-zin" type="button" aria-label="Zoom in">+</button>
+        <button class="x" id="map-x" type="button" aria-label="Close map">×</button>
+      </div>
+    </header>
+    <nav class="map-legend" id="map-legend" aria-label="Places"></nav>
+    <div class="map-card" id="map-card" hidden></div>
+    <p class="map-hint">Drag to move · scroll or pinch to zoom · click anywhere to set a waypoint</p>
   </section>
 </div>
 

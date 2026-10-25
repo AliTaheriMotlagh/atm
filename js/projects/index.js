@@ -7,11 +7,13 @@ import siktir from './siktir.js';
 import algorithms from './algorithms.js';
 import streetquest from './streetquest.js';
 import nexus from './nexus.js';
+import khabar from './khabar.js';
+import walki from './walki.js';
 import atm from './atm.js';
 
 /* Every landmark on the island. The first one is home (the house in the middle); the rest stand
    clockwise around the ring road in this order. To add a project, write its module and list it here. */
-export const ALL = [about, remixt, khalabani, gridways, vasatyab, siktir, algorithms, streetquest, nexus, atm];
+export const ALL = [about, remixt, khalabani, gridways, vasatyab, siktir, algorithms, streetquest, nexus, khabar, walki, atm];
 export const TOUR = ALL.filter(p => !p.home);
 export const byId = Object.fromEntries(ALL.map(p => [p.id, p]));
 

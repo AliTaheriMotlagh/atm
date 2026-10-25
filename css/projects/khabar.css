@@ -1,0 +1,22 @@
+/* Khabar */
+.kh-card { width: 100%; min-height: 120px; padding: 16px 18px; border-radius: 16px; background: #f4f6fb; color: #151b2e; display: grid; gap: 8px; align-content: start; box-shadow: 0 10px 30px rgba(0,0,0,.25); }
+.kh-card.in { animation: pop2 .22s ease-out; }
+.kh-card p { margin: 0; font-size: clamp(17px, 4.6vw, 21px); font-weight: 700; line-height: 1.3; }
+.kh-src { font-family: var(--f-mono); font-size: 11px; color: #2f4fd8; }
+.kh-topics { width: 100%; display: grid; grid-template-columns: repeat(auto-fit, minmax(128px, 1fr)); gap: 8px; }
+.kh-days { display: flex; gap: 6px; }
+.kh-days i { width: 30px; height: 30px; border-radius: 9px; border: 2px solid var(--pc); opacity: .45; display: grid; place-items: center; font-style: normal; }
+.kh-days i.on { background: var(--pc); opacity: 1; }
+.kh-days i.on::after { content: "🔥"; font-size: 15px; }
+.kh-grid { width: min(380px, 100%); display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; }
+.kh-story {
+  aspect-ratio: 4 / 5; padding: 6px; border: 1px solid var(--line); border-radius: 14px; background: rgba(255,255,255,.06);
+  display: grid; place-items: center; align-content: center; gap: 4px; transition: transform .1s, background .1s, opacity .2s;
+}
+.kh-story span { font-size: clamp(26px, 8vw, 34px); line-height: 1; }
+.kh-story small { font-size: 11px; color: var(--muted); font-family: var(--f-mono); }
+.kh-story.new { background: var(--pc); border-color: transparent; transform: scale(1.05); box-shadow: 0 0 0 3px #fff, 0 10px 28px rgba(47,79,216,.5); }
+.kh-story.new small { color: #fff; font-weight: 700; }
+.kh-story.read { opacity: .4; transform: none; box-shadow: none; }
+.kh-story.gone { opacity: .2; }
+.kh-catch canvas { height: clamp(240px, 44vh, 360px); }
