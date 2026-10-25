@@ -121,11 +121,10 @@ export function startWorld() {
     car.position.set(S.x, 0, S.z); car.rotation.y = S.h;
   }
   world.teleport = teleport;
-  // Drop the car on the road nearest to (x, z), facing along it: "drive there" for spots that aren't landmarks.
+  // Drop the car on the road nearest to (x, z), facing it: "drive there" for spots that aren't landmarks.
   world.warp = (x, z) => {
     const { nodes } = roadGraph(), n = nodes[nearestNode(x, z)]; if (!n) return;
-    const nb = nodes[n.adj[0]?.to] || n;
-    S.x = n.x; S.z = n.z; S.h = Math.atan2(nb.x - n.x, nb.z - n.z); S.v = 0;
+    S.x = n.x; S.z = n.z; S.h = Math.atan2(x - n.x, z - n.z); S.v = 0;
     car.position.set(S.x, 0, S.z); car.rotation.y = S.h;
   };
   world.focus = (id, tp) => { focusId = id; if (tp) teleport(id); };

@@ -66,9 +66,9 @@
     "semantic_hash": ""
   },
   "js/main.js": {
-    "mtime": 1791396414.0200148,
-    "seen": 1791397088.91567,
-    "ast_hash": "b24c09b2c904bf226a2644c079927ca6",
+    "mtime": 1792926835.0421681,
+    "seen": 1792928339.584817,
+    "ast_hash": "5130da39e7a7064e22687ab9c85f732a",
     "semantic_hash": ""
   },
   "js/net/battle.js": {
@@ -114,9 +114,9 @@
     "semantic_hash": ""
   },
   "js/projects/atm.js": {
-    "mtime": 1791398279.772425,
-    "seen": 1791401171.106324,
-    "ast_hash": "a4a0b1fd9fc8800b673c438cf8b25714",
+    "mtime": 1792927116.8429291,
+    "seen": 1792928339.584852,
+    "ast_hash": "ca969fddd843dcb13aedc218ec1dda83",
     "semantic_hash": ""
   },
   "js/projects/gridways.js": {
@@ -126,9 +126,9 @@
     "semantic_hash": ""
   },
   "js/projects/index.js": {
-    "mtime": 1791395479.0720546,
-    "seen": 1791397088.915678,
-    "ast_hash": "5248b6b7f8199ab8ad9decc8df888050",
+    "mtime": 1792924081.4558246,
+    "seen": 1792928339.584859,
+    "ast_hash": "b1b1a05150060df03399802265a0c3bd",
     "semantic_hash": ""
   },
   "js/projects/khalabani.js": {
@@ -210,9 +210,9 @@
     "semantic_hash": ""
   },
   "js/ui/shell.js": {
-    "mtime": 1791396414.0107865,
-    "seen": 1791397088.915689,
-    "ast_hash": "ca7e5b0da6a780e969c145ff502fbb75",
+    "mtime": 1792927116.8425164,
+    "seen": 1792928339.5849159,
+    "ast_hash": "06522d1bcbbca83ed2e1e96b897a1bda",
     "semantic_hash": ""
   },
   "js/ui/social.js": {
@@ -228,33 +228,33 @@
     "semantic_hash": ""
   },
   "js/world/gems.js": {
-    "mtime": 1791396358.6042535,
-    "seen": 1791397088.915691,
-    "ast_hash": "10a482f2cbbe9933240f927a6eac566f",
+    "mtime": 1792925190.7580945,
+    "seen": 1792928339.584928,
+    "ast_hash": "72e72f2ccdae48b4b1cab56f79656258",
     "semantic_hash": ""
   },
   "js/world/landmarks.js": {
-    "mtime": 1791395751.7645328,
-    "seen": 1791397088.915692,
-    "ast_hash": "61fd6a4893da5264ed9ed0a1f5e7d017",
+    "mtime": 1792924914.1388233,
+    "seen": 1792928339.584934,
+    "ast_hash": "85ec4bc1c1d99d95e61bf128c7ca60ed",
     "semantic_hash": ""
   },
   "js/world/layout.js": {
-    "mtime": 1791395715.9967902,
-    "seen": 1791397088.915692,
-    "ast_hash": "bd6d979594c32c579a31b087e7ce5eda",
+    "mtime": 1792925665.2463014,
+    "seen": 1792928339.584936,
+    "ast_hash": "193385bbb4217e95c9f24c904ff94125",
     "semantic_hash": ""
   },
   "js/world/minimap.js": {
-    "mtime": 1791396374.4279256,
-    "seen": 1791397088.915693,
-    "ast_hash": "d13717a8187818721aa8274382e5acc1",
+    "mtime": 1792925339.6346846,
+    "seen": 1792928339.5849411,
+    "ast_hash": "83e48a2e329270ce60238ce625e0079d",
     "semantic_hash": ""
   },
   "js/world/scenery.js": {
-    "mtime": 1791395758.3773205,
-    "seen": 1791397088.915694,
-    "ast_hash": "4ccaa002917b9fe64a6b04336d0347e7",
+    "mtime": 1792925200.860256,
+    "seen": 1792928339.5849469,
+    "ast_hash": "5a8863bab658ba4405f1ebf4182b7fcb",
     "semantic_hash": ""
   },
   "js/world/screens.js": {
@@ -264,15 +264,15 @@
     "semantic_hash": ""
   },
   "js/world/snapshots.js": {
-    "mtime": 1791395785.9468894,
-    "seen": 1791397088.9156961,
-    "ast_hash": "efb1a236222d9d6b68e46a989aa43971",
+    "mtime": 1792925190.757641,
+    "seen": 1792928339.584953,
+    "ast_hash": "f6b8bda500645ae2ecf59c01af9bdf5d",
     "semantic_hash": ""
   },
   "js/world/terrain.js": {
-    "mtime": 1791395718.998812,
-    "seen": 1791397088.9156961,
-    "ast_hash": "6755d3465430599c40d781b69f081b38",
+    "mtime": 1792926774.4595444,
+    "seen": 1792928339.584955,
+    "ast_hash": "76fd85d9f5137aa80d919340161f5d7c",
     "semantic_hash": ""
   },
   "js/world/track.js": {
@@ -282,9 +282,9 @@
     "semantic_hash": ""
   },
   "js/world/world.js": {
-    "mtime": 1792843848.1693606,
-    "seen": 1792844261.32968,
-    "ast_hash": "be176d9956db9c6a4c3ed2ac463d7960",
+    "mtime": 1792928326.9544282,
+    "seen": 1792928339.5849652,
+    "ast_hash": "e0c830c64b37fe9d33c956ae279a9ffd",
     "semantic_hash": ""
   },
   "CLAUDE.md": {
@@ -294,9 +294,9 @@
     "semantic_hash": ""
   },
   "README.md": {
-    "mtime": 1791401169.71683,
-    "seen": 1791401171.106354,
-    "ast_hash": "89dee0c193bc37a2c80cccdc07b86c4a",
+    "mtime": 1792928214.5429661,
+    "seen": 1792928339.584979,
+    "ast_hash": "dd51ae49b6c9eea67678fdaea54e2c77",
     "semantic_hash": ""
   },
   "images/README.md": {
@@ -306,9 +306,9 @@
     "semantic_hash": ""
   },
   "index.html": {
-    "mtime": 1791396387.899074,
-    "seen": 1791397088.915701,
-    "ast_hash": "f9565e5d63c0446b2ac719b2bc536ed6",
+    "mtime": 1792927116.842144,
+    "seen": 1792928339.584985,
+    "ast_hash": "b84a5b9e5ab050c34e0626f0e997ecb0",
     "semantic_hash": ""
   },
   "images/streetquest-beacon.jpg": {
@@ -405,6 +405,90 @@
     "mtime": 1791401158.7174275,
     "seen": 1791401171.106365,
     "ast_hash": "475975f347f942cdc0dda656ae20deaf",
+    "semantic_hash": ""
+  },
+  "js/projects/khabar.js": {
+    "mtime": 1792928176.6008728,
+    "seen": 1792928339.584862,
+    "ast_hash": "e56881a7765a75e6102192c560b9fcc4",
+    "semantic_hash": ""
+  },
+  "js/projects/walki.js": {
+    "mtime": 1792924034.8086534,
+    "seen": 1792928339.5848892,
+    "ast_hash": "f0209ff6defa875e0f99135090a068ea",
+    "semantic_hash": ""
+  },
+  "js/ui/bigmap.js": {
+    "mtime": 1792926774.4599848,
+    "seen": 1792928339.5848908,
+    "ast_hash": "176790f320b5d024f364a18b635aa331",
+    "semantic_hash": ""
+  },
+  "js/world/city.js": {
+    "mtime": 1792925200.860773,
+    "seen": 1792928339.584925,
+    "ast_hash": "b34c19939d51416704f4b441c91a5a0a",
+    "semantic_hash": ""
+  },
+  "js/world/gps.js": {
+    "mtime": 1792925136.1325722,
+    "seen": 1792928339.5849311,
+    "ast_hash": "d91e29111ec1bed723ca5a3ef7db785f",
+    "semantic_hash": ""
+  },
+  "js/world/mapimage.js": {
+    "mtime": 1792925255.5848882,
+    "seen": 1792928339.584939,
+    "ast_hash": "94a0dfcadfc49d141a7bc5e0da029e90",
+    "semantic_hash": ""
+  },
+  "js/world/plan.js": {
+    "mtime": 1792925665.2467148,
+    "seen": 1792928339.584944,
+    "ast_hash": "0c3e8c5b8c670ee07ece345c663481b0",
+    "semantic_hash": ""
+  },
+  "js/world/traffic.js": {
+    "mtime": 1792925101.7948809,
+    "seen": 1792928339.5849621,
+    "ast_hash": "1c7f70d117464d2b3d24bdde40fd80f3",
+    "semantic_hash": ""
+  },
+  "images/khabar-home.jpg": {
+    "mtime": 1792923821.020935,
+    "seen": 1792928339.585005,
+    "ast_hash": "ab86a8cdaafb34661e0314eb22f95fd6",
+    "semantic_hash": ""
+  },
+  "images/khabar-story.jpg": {
+    "mtime": 1792923821.0822005,
+    "seen": 1792928339.5850081,
+    "ast_hash": "a10d982a2b1feb341ba92fd3d72f5b71",
+    "semantic_hash": ""
+  },
+  "images/khabar-today.jpg": {
+    "mtime": 1792923821.1425765,
+    "seen": 1792928339.5850098,
+    "ast_hash": "d8d78a5c0f2bc4ad5ae00825025e5858",
+    "semantic_hash": ""
+  },
+  "images/walki-channel.jpg": {
+    "mtime": 1792923821.26372,
+    "seen": 1792928339.585033,
+    "ast_hash": "a25bd5d3fa12f082a2acd4df1703eccd",
+    "semantic_hash": ""
+  },
+  "images/walki-join.jpg": {
+    "mtime": 1792923821.2027874,
+    "seen": 1792928339.585036,
+    "ast_hash": "305e9145e1598389b37f1d3581c31a64",
+    "semantic_hash": ""
+  },
+  "images/walki-light.jpg": {
+    "mtime": 1792923821.3259976,
+    "seen": 1792928339.5850382,
+    "ast_hash": "6c5336a4030442821d19be6500777390",
     "semantic_hash": ""
   }
 }

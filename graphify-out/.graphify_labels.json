@@ -1,14 +1,21 @@
 {
-  "0": "rnd",
+  "0": "shuffle",
   "1": "net.js",
-  "2": "world.js",
-  "3": "buzz",
+  "2": "plan.js",
+  "3": "projects/index.js",
   "4": "$",
   "5": "Ali's Project Island",
-  "6": "social.js",
+  "6": "bigmap.js",
   "7": "CLAUDE.md",
   "8": "images/README.md",
   "9": "package.json",
   "10": "joinRoom",
-  "15": "turn.js"
+  "11": "rnd",
+  "12": "screens.js",
+  "13": "preview.js",
+  "14": "shake",
+  "15": "turn.js",
+  "16": "buzz",
+  "17": "hexNum",
+  "18": "walki.js"
 }

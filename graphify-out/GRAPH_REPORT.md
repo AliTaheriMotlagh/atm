@@ -1,56 +1,63 @@
-# Graph Report - atm  (2026-10-24)
+# Graph Report - atm  (2026-10-25)
 
 ## Corpus Check
-- 56 files · ~79,603 words
+- 64 files · ~112,721 words
 - Verdict: corpus is large enough that graph structure adds value.
-- Unclassified: 22 file(s) not represented in the graph (top: .css 19, (none) 3)
+- Unclassified: 25 file(s) not represented in the graph (top: .css 22, (none) 3)
 
 ## Summary
-- 448 nodes · 1544 edges · 12 communities (9 shown, 3 thin omitted)
-- Extraction: 95% EXTRACTED · 5% INFERRED · 0% AMBIGUOUS · INFERRED: 72 edges (avg confidence: 0.85)
+- 589 nodes · 2050 edges · 19 communities (16 shown, 3 thin omitted)
+- Extraction: 95% EXTRACTED · 5% INFERRED · 0% AMBIGUOUS · INFERRED: 102 edges (avg confidence: 0.85)
 - Token cost: 0 input · 0 output
 
 ## Graph Freshness
-- Built from commit: `4981b67f`
+- Built from commit: `16618efb`
 - Run `git rev-parse HEAD` and compare to check if the graph is stale.
 - Run `graphify update .` after code changes (no API cost).
 
 ## Community Hubs (Navigation)
-- rnd
+- shuffle
 - net.js
-- world.js
-- buzz
+- plan.js
+- projects/index.js
 - $
 - Ali's Project Island
-- social.js
+- bigmap.js
 - CLAUDE.md
 - images/README.md
 - package.json
 - joinRoom
+- rnd
+- screens.js
+- preview.js
+- shake
+- buzz
+- hexNum
+- walki.js
 
 ## God Nodes (most connected - your core abstractions)
-1. `$` - 109 edges
-2. `buzz()` - 40 edges
-3. `rnd()` - 32 edges
-4. `esc()` - 30 edges
-5. `hexNum()` - 30 edges
-6. `startWorld()` - 28 edges
-7. `shake()` - 27 edges
-8. `selfKey()` - 26 edges
-9. `renderNet()` - 24 edges
-10. `sfx` - 22 edges
+1. `$` - 124 edges
+2. `buzz()` - 49 edges
+3. `rnd()` - 41 edges
+4. `startWorld()` - 36 edges
+5. `esc()` - 35 edges
+6. `hexNum()` - 34 edges
+7. `shake()` - 32 edges
+8. `sfx` - 27 edges
+9. `selfKey()` - 26 edges
+10. `clamp()` - 24 edges
 
 ## Surprising Connections (you probably didn't know these)
+- `Desktop` --references--> `H()`  [INFERRED]
+  README.md → js/ui/bigmap.js
 - `Desktop` --references--> `M()`  [INFERRED]
   README.md → js/world/world.js
-- `landmark()` --calls--> `hexNum()`  [EXTRACTED]
-  js/films.js → js/core/util.js
-- `whack()` --calls--> `buzz()`  [EXTRACTED]
+- `Radar, map and GPS` --references--> `M()`  [INFERRED]
+  README.md → js/world/world.js
+- `spawn()` --calls--> `rnd()`  [EXTRACTED]
   js/projects/siktir.js → js/core/util.js
-- `open()` --indirect_call--> `add()`  [INFERRED]
-  js/net/socket.js → js/projects/nexus.js
-- `enterDrive()` --calls--> `setMode()`  [EXTRACTED]
-  js/ui/shell.js → js/core/app.js
+- `spawn()` --calls--> `rnd()`  [EXTRACTED]
+  js/projects/streetquest.js → js/core/util.js
 
 ## Import Cycles
 - 3-file cycle: `js/net/net.js -> js/net/race.js -> js/ui/shell.js -> js/net/net.js`
@@ -67,35 +74,35 @@
 - 5-file cycle: `js/net/net.js -> js/net/panel.js -> js/net/race.js -> js/world/world.js -> js/world/cars.js -> js/net/net.js`
 - 5-file cycle: `js/net/net.js -> js/net/panel.js -> js/net/race.js -> js/world/world.js -> js/world/minimap.js -> js/net/net.js`
 
-## Communities (12 total, 3 thin omitted)
+## Communities (19 total, 3 thin omitted)
 
-### Community 0 - "rnd"
-Cohesion: 0.05
-Nodes (76): sfx, clamp(), hexNum(), isTouch, rnd(), shake(), shuffle(), keepFocus() (+68 more)
+### Community 0 - "shuffle"
+Cohesion: 0.12
+Nodes (22): shuffle(), orderGame(), gMemory(), gStack(), gTimeline(), landmark(), project, gMesh() (+14 more)
 
 ### Community 1 - "net.js"
-Cohesion: 0.08
-Nodes (77): store, ordinal(), applyGem(), award(), battle, BATTLE_ACTIONS, battleBusy(), battleKey() (+69 more)
-
-### Community 2 - "world.js"
-Cohesion: 0.08
-Nodes (50): reduceMotion, TAU, CINEMA, FILMS, landmark(), ytThumb(), battleLocked(), raceLocked() (+42 more)
-
-### Community 3 - "buzz"
 Cohesion: 0.09
-Nodes (42): confetti(), fx, toast(), emit(), handlers, on(), buzz(), fmtTime() (+34 more)
+Nodes (79): toast(), store, fmtTime(), ordinal(), applyGem(), award(), battle, BATTLE_ACTIONS (+71 more)
+
+### Community 2 - "plan.js"
+Cohesion: 0.05
+Nodes (103): inkFor(), TAU, battleLocked(), raceLocked(), updateGame(), TOUR, input, overlayOpen() (+95 more)
+
+### Community 3 - "projects/index.js"
+Cohesion: 0.16
+Nodes (22): sfx, isTouch, keepFocus(), secs(), gSort(), project, project, project (+14 more)
 
 ### Community 4 - "$"
-Cohesion: 0.08
-Nodes (76): app, setMode(), $, copyText(), esc(), fmt(), inkFor(), prettyUrl() (+68 more)
+Cohesion: 0.06
+Nodes (96): app, setMode(), confetti(), fx, emit(), handlers, on(), $ (+88 more)
 
 ### Community 5 - "Ali's Project Island"
 Cohesion: 0.08
-Nodes (25): M(), About Ali, Adding a project, Ali's Project Island, Billboards, Code layout, Controls, Desktop (+17 more)
+Nodes (26): M(), About Ali, Adding a project, Ali's Project Island, Billboards, Code layout, Controls, Desktop (+18 more)
 
-### Community 6 - "social.js"
-Cohesion: 0.29
-Nodes (9): modal(), sheetSwipe(), initSocial(), liUrn(), loadX(), renderSocial(), socEl, social (+1 more)
+### Community 6 - "bigmap.js"
+Cohesion: 0.12
+Nodes (38): clamp(), draw(), gCatch(), card(), draw(), gGlide(), draw(), card (+30 more)
 
 ### Community 9 - "package.json"
 Cohesion: 0.10
@@ -105,23 +112,51 @@ Nodes (18): ws, http, rooms, send(), server, { WebSocketServer }, wss, dependenc
 Cohesion: 0.83
 Nodes (4): joinRoom(), connect(), open(), retryLater()
 
+### Community 11 - "rnd"
+Cohesion: 0.16
+Nodes (19): rnd(), gBinary(), gMixer(), gRhythm(), tap(), gTempo(), countIn(), tap() (+11 more)
+
+### Community 12 - "screens.js"
+Cohesion: 0.17
+Nodes (17): CINEMA, FILMS, ytThumb(), buildCars(), buildCar(), nameTag(), peerCar(), puff() (+9 more)
+
+### Community 13 - "preview.js"
+Cohesion: 0.22
+Nodes (17): prettyUrl(), canEmbed(), composeShots(), fitSite(), imageCache, poster(), refreshImage(), resolveImage() (+9 more)
+
+### Community 14 - "shake"
+Cohesion: 0.18
+Nodes (17): shake(), gHanoi(), pick(), gRoute(), pick(), gRush(), send(), gAlarms() (+9 more)
+
+### Community 16 - "buzz"
+Cohesion: 0.19
+Nodes (14): buzz(), gCoinRun(), gTagger(), pick(), show(), gReact(), press(), gReflex() (+6 more)
+
+### Community 17 - "hexNum"
+Cohesion: 0.15
+Nodes (11): hexNum(), landmark(), landmark(), landmark(), landmark(), landmark(), landmark(), gHunt() (+3 more)
+
+### Community 18 - "walki.js"
+Cohesion: 0.36
+Nodes (7): gFloor(), end(), start(), gHold(), landmark(), project, ptt()
+
 ## Knowledge Gaps
 - **3 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
 
 ## Suggested Questions
 _Questions this graph is uniquely positioned to answer:_
 
-- **Why does `$` connect `$` to `rnd`, `net.js`, `world.js`, `buzz`, `social.js`?**
-  _High betweenness centrality (0.347) - this node is a cross-community bridge._
-- **Should `rnd` be split into smaller, more focused modules?**
-  _Cohesion score 0.05306930693069307 - nodes in this community are weakly interconnected._
-- **Why does `startWorld()` connect `world.js` to `rnd`, `buzz`, `$`, `Ali's Project Island`?**
-  _High betweenness centrality (0.120) - this node is a cross-community bridge._
+- **Why does `$` connect `$` to `shuffle`, `net.js`, `plan.js`, `projects/index.js`, `bigmap.js`, `rnd`, `screens.js`, `preview.js`, `shake`, `buzz`, `hexNum`, `walki.js`?**
+  _High betweenness centrality (0.354) - this node is a cross-community bridge._
+- **Should `shuffle` be split into smaller, more focused modules?**
+  _Cohesion score 0.12 - nodes in this community are weakly interconnected._
+- **Why does `startWorld()` connect `plan.js` to `$`, `Ali's Project Island`, `bigmap.js`, `screens.js`, `buzz`?**
+  _High betweenness centrality (0.071) - this node is a cross-community bridge._
 - **Should `net.js` be split into smaller, more focused modules?**
-  _Cohesion score 0.08347338935574229 - nodes in this community are weakly interconnected._
-- **Why does `M()` connect `Ali's Project Island` to `world.js`?**
-  _High betweenness centrality (0.099) - this node is a cross-community bridge._
-- **Should `world.js` be split into smaller, more focused modules?**
-  _Cohesion score 0.07885304659498207 - nodes in this community are weakly interconnected._
-- **Should `buzz` be split into smaller, more focused modules?**
-  _Cohesion score 0.08928571428571429 - nodes in this community are weakly interconnected._
+  _Cohesion score 0.0855386260358193 - nodes in this community are weakly interconnected._
+- **Why does `buzz()` connect `buzz` to `shuffle`, `net.js`, `plan.js`, `projects/index.js`, `$`, `bigmap.js`, `shake`, `hexNum`, `walki.js`?**
+  _High betweenness centrality (0.068) - this node is a cross-community bridge._
+- **Should `plan.js` be split into smaller, more focused modules?**
+  _Cohesion score 0.05113718673040707 - nodes in this community are weakly interconnected._
+- **Should `$` be split into smaller, more focused modules?**
+  _Cohesion score 0.05978705978705979 - nodes in this community are weakly interconnected._
