@@ -38,9 +38,13 @@ export function startWorld() {
   } catch (e) { return false; }
 
   const stage = $('#stage');
+  // Size from the stage element (a fixed, full-viewport box) instead of window.innerWidth/Height:
+  // on phones innerHeight disagrees with the visible area while the browser chrome slides away, and
+  // rotation fires resize before innerHeight has settled — both stretch the WebGL canvas in landscape.
+  const viewSize = () => ({ w: stage.clientWidth || innerWidth, h: stage.clientHeight || innerHeight });
   // Phones and tablets get a lower pixel ratio and shadow map: the difference is hard to see, the battery saving isn't.
-  renderer.setPixelRatio(Math.min(devicePixelRatio || 1, isTouch ? 1.5 : 1.75));
-  renderer.setSize(innerWidth, innerHeight);
+  const pixelRatio = () => Math.min(devicePixelRatio || 1, isTouch ? 1.5 : 1.75);
+  renderer.setPixelRatio(pixelRatio());
   renderer.shadowMap.enabled = true;
   renderer.shadowMap.type = THREE.PCFSoftShadowMap;
   renderer.domElement.tabIndex = 0;
@@ -52,7 +56,18 @@ export function startWorld() {
   const FOG = 0xe6e4dc;
   scene.fog = new THREE.Fog(FOG, 220, 900);
   scene.background = new THREE.Color(FOG);
-  const camera = new THREE.PerspectiveCamera(55, innerWidth / innerHeight, 0.5, 1700);
+  const camera = new THREE.PerspectiveCamera(55, 1, 0.5, 1700);
+  // setSize(..., false) keeps CSS width/height:100% in charge of the display size; we only set the
+  // drawing-buffer size here, so a stale inline pixel size can never stretch the 3D view.
+  function resize() {
+    const { w, h } = viewSize();
+    if (!w || !h) return;
+    renderer.setPixelRatio(pixelRatio()); // DPR changes on rotation / when moving between displays
+    renderer.setSize(w, h, false);
+    camera.aspect = w / h;
+    camera.updateProjectionMatrix();
+  }
+  resize();
 
   // Sky dome
   const sky = new THREE.Mesh(new THREE.SphereGeometry(1300, 24, 12), new THREE.ShaderMaterial({
@@ -138,7 +153,10 @@ export function startWorld() {
   renderer.domElement.addEventListener('pointerdown', e => { downAt = [e.clientX, e.clientY]; });
   renderer.domElement.addEventListener('pointerup', e => {
     if (!downAt || Math.hypot(e.clientX - downAt[0], e.clientY - downAt[1]) > 8) return;
-    ndc.set(e.clientX / innerWidth * 2 - 1, -(e.clientY / innerHeight) * 2 + 1);
+    // Map the pointer into normalized device coords using the canvas box, so picking stays
+    // accurate in landscape and when the browser chrome changes the window size.
+    const rect = renderer.domElement.getBoundingClientRect();
+    ndc.set((e.clientX - rect.left) / rect.width * 2 - 1, -((e.clientY - rect.top) / rect.height) * 2 + 1);
     ray.setFromCamera(ndc, camera);
     const hit = ray.intersectObjects(LANDMARKS.map(l => l.hit))[0];
     if (hit) openLandmark(hit.object.userData.id);
@@ -303,10 +321,18 @@ export function startWorld() {
     }
     requestAnimationFrame(loop);
   }
-  addEventListener('resize', () => {
-    renderer.setSize(innerWidth, innerHeight);
-    camera.aspect = innerWidth / innerHeight; camera.updateProjectionMatrix();
-  });
+  // Rotation fires resize and orientationchange at different times, and often before the mobile
+  // viewport has settled. Defer to the next frame and re-read the stage box so the 3D view always
+  // ends up correctly proportioned in both portrait and landscape.
+  let resizeQueued = false;
+  const queueResize = () => {
+    if (resizeQueued) return;
+    resizeQueued = true;
+    requestAnimationFrame(() => { resizeQueued = false; resize(); });
+  };
+  addEventListener('resize', queueResize);
+  addEventListener('orientationchange', queueResize);
+  if (window.visualViewport) visualViewport.addEventListener('resize', queueResize);
   camera.position.copy(camPos); camera.lookAt(camLook);
   loop();
   return true;

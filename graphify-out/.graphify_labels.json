@@ -11,13 +11,12 @@
   "9": "package.json",
   "10": "joinRoom",
   "11": "rnd",
-  "12": "world.js",
-  "13": "preview.js",
+  "12": "screens.js",
+  "13": "functions/api/visits.js",
   "14": "shake",
   "15": "turn.js",
   "16": "buzz",
   "17": "hexNum",
   "18": "walki.js",
-  "19": "gTempo",
   "20": "api/visits.js"
 }

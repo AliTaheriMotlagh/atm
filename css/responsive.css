@@ -65,6 +65,14 @@
   .goal { max-width: 180px; }
   .target-arena { height: 260px; }
 }
+/* Short landscape (phones held sideways): keep the island visible and the sheets scrollable. */
+@media (max-height: 500px) and (orientation: landscape) {
+  .intro { padding: 8px 12px; place-items: start center; }
+  .intro .card { padding: 16px 18px; gap: 10px; max-height: calc(100dvh - 16px); overflow-y: auto; }
+  .card h1 { font-size: 28px; }
+  .goal { max-height: 132px; }
+  .game-box { max-height: calc(100dvh - 12px); padding: 10px 14px; }
+}
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; }
 }

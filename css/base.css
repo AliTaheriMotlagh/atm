@@ -41,4 +41,9 @@ code { font-family: var(--f-mono); font-size: .88em; background: rgba(255,255,25
 
 #stage { position: fixed; inset: 0; }
 #stage canvas { display: block; width: 100%; height: 100%; touch-action: none; outline: none; }
+/* Crawlable project text: hidden visually, but present for search engines and assistive tech. */
+.sr-seo {
+  position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px;
+  overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border: 0;
+}
 

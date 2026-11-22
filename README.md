@@ -229,6 +229,12 @@ Deep links: `#drive` skips the intro, `#map` opens the map, and `#<project id>` 
 
 You can also use any static server such as `npx serve` or deploy the file to Vercel, Netlify, GitHub Pages, Cloudflare Pages, or another static host.
 
+### Cloudflare Pages deployment
+
+Deploy the repository as a static site (no build command, output directory = repo root). The visit counter endpoint `/api/visits` is handled by `functions/api/visits.js`, the Cloudflare Pages Function version of Vercel's `api/visits.js`. The browser receives the same `{ visits }` JSON on either host.
+
+For a **durable, global** count, create a KV namespace in the Cloudflare dashboard (Workers & Pages → KV → Create namespace) and bind it to this project with the variable name **`VISITS`** (Settings → Functions → KV namespace bindings). The function stores the total under the key `count`. Without that binding it falls back to an in-memory value that resets when the isolate is recycled, so the binding is recommended for a real visit counter.
+
 ## Controls
 
 ### Desktop
