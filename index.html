@@ -3,18 +3,61 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Ali's Project Island</title>
-<meta name="description" content="Ali Taheri Motlagh's portfolio as a drivable 3D Tehran. Each landmark is a project: Remixt, Khalabani, Gridways, StreetQuest, Nexus SCADA, Khabar, walki and more, with 36 project-themed mini-games.">
+<title>Ali Taheri Motlagh | Project Island — Drivable Tehran</title>
+<meta name="description" content="Ali Taheri's interactive portfolio: drive a drivable 3D Tehran where every landmark is a real project, with live previews and 36 mini-games.">
 <meta name="author" content="Ali Taheri Motlagh">
+<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
 <meta name="theme-color" content="#0d1628">
 <meta name="color-scheme" content="dark">
 <meta property="og:type" content="website">
+<meta property="og:site_name" content="Ali's Project Island">
+<meta property="og:locale" content="en_US">
+<meta property="og:url" content="https://alitaherimotlagh.remixt.app/">
 <meta property="og:title" content="Ali's Project Island · Ali Taheri Motlagh">
 <meta property="og:description" content="Drive around a 3D Tehran where every landmark is a real project, past Milad Tower, Azadi Tower and the Grand Bazaar, with live previews and 36 project-themed mini-games.">
-<meta name="twitter:card" content="summary">
+<meta property="og:image" content="https://alitaherimotlagh.remixt.app/images/atm.jpg">
+<meta property="og:image:width" content="1600">
+<meta property="og:image:height" content="900">
+<meta property="og:image:alt" content="Ali Taheri Motlagh's Project Island: a drivable 3D Tehran where every landmark is a real project.">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:site" content="@Atmbanksepah">
+<meta name="twitter:title" content="Ali's Project Island · Ali Taheri Motlagh">
+<meta name="twitter:description" content="Drive around a 3D Tehran where every landmark is a real project, past Milad Tower, Azadi Tower and the Grand Bazaar, with live previews and 36 project-themed mini-games.">
+<meta name="twitter:image" content="https://alitaherimotlagh.remixt.app/images/atm.jpg">
+<meta name="twitter:image:alt" content="Ali Taheri Motlagh's Project Island: a drivable 3D Tehran where every landmark is a real project.">
+<link rel="canonical" href="https://alitaherimotlagh.remixt.app/">
+<link rel="sitemap" type="application/xml" href="/sitemap.xml">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%F0%9F%8F%9D%EF%B8%8F%3C/text%3E%3C/svg%3E">
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"Person","name":"Ali Taheri Motlagh","jobTitle":"Senior Frontend Developer","sameAs":["https://github.com/AliTaheriMotlagh","https://www.linkedin.com/in/alitaherimotlagh/"],"knowsAbout":["TypeScript","Angular","NgRx","RxJS","Canvas","Three.js"]}
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Person",
+      "@id": "https://alitaherimotlagh.remixt.app/#person",
+      "name": "Ali Taheri Motlagh",
+      "url": "https://alitaherimotlagh.remixt.app/",
+      "jobTitle": "Senior Frontend Developer",
+      "description": "Senior frontend developer with 13+ years of professional experience across frontend engineering, full-stack development and DevOps.",
+      "knowsAbout": ["TypeScript", "Angular", "NgRx", "RxJS", "Canvas", "Three.js"],
+      "sameAs": [
+        "https://github.com/AliTaheriMotlagh",
+        "https://www.linkedin.com/in/alitaherimotlagh/",
+        "https://x.com/Atmbanksepah",
+        "https://www.youtube.com/@Alitaherimotlagh",
+        "https://linktr.ee/alanfilm"
+      ]
+    },
+    {
+      "@type": "WebSite",
+      "@id": "https://alitaherimotlagh.remixt.app/#website",
+      "url": "https://alitaherimotlagh.remixt.app/",
+      "name": "Project Island",
+      "description": "An interactive 3D portfolio: drive through a drivable Tehran where every landmark is a real project, with live previews and project-themed mini-games.",
+      "inLanguage": "en"
+    }
+  ]
+}
 </script>
 <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -73,7 +116,7 @@
   </div>
   <div class="hud-right">
     <div class="hud-btns">
-      <button class="hbtn online" id="btn-online" type="button" aria-label="Drivers online"><span class="live-dot" aria-hidden="true"></span><b id="online-n">1</b><span class="lbl">Online</span></button>
+      <button class="hbtn online" id="btn-online" type="button"><span class="live-dot" aria-hidden="true"></span><b id="online-n">1</b><span class="lbl">Online</span></button>
       <button class="hbtn" id="btn-list" type="button" aria-label="Projects"><span aria-hidden="true">☰</span><span class="lbl">Projects</span></button>
       <button class="hbtn hot" id="btn-arcade" type="button" aria-label="Arcade"><span aria-hidden="true">🎮</span><span class="lbl">Arcade</span></button>
       <button class="hbtn" id="btn-films" type="button" aria-label="Films"><span aria-hidden="true">🎬</span><span class="lbl">Films</span></button>
@@ -125,9 +168,16 @@
       <span>Click any landmark to jump there</span>
     </div>
     <p class="goal-note" id="goal-note">🏁 <b>Goal:</b> visit all 11 project landmarks, collect 8 gold coins, open 3 dossiers, and beat at least one challenge at every project. There are 36 challenges in the city, three per landmark. Your best tour time and personal records are saved on this device.</p>
+    <p class="visit-count"><span class="live-dot" aria-hidden="true"></span> <b id="visit-n">0</b> visits</p>
     <p class="net-note" id="intro-net" hidden><span class="live-dot" aria-hidden="true"></span><span id="intro-net-text"></span></p>
     <p class="note3d" id="note3d" hidden>Your browser couldn't start the 3D view, so the city is off. Every project is still one click away below.</p>
     <div class="chips" id="intro-chips"></div>
+    <nav class="row ext" aria-label="Elsewhere on the web">
+      <a href="https://github.com/AliTaheriMotlagh" target="_blank" rel="noopener">GitHub ↗</a>
+      <a href="https://x.com/Atmbanksepah" target="_blank" rel="noopener">𝕏 @Atmbanksepah ↗</a>
+      <a href="https://www.youtube.com/@Alitaherimotlagh" target="_blank" rel="noopener">YouTube ↗</a>
+      <a href="https://remixt.app" target="_blank" rel="noopener">remixt.app ↗</a>
+    </nav>
   </div>
 </div>
 

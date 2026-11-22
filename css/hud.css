@@ -154,6 +154,10 @@ body.touch.driving .horn { display: block; }
 .chip b { display: block; font-size: 14px; }
 .chip small { display: block; color: var(--muted); font-size: 12px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 .note3d { font-size: 13px; color: var(--accent); }
+.visit-count { margin: 0; font-family: var(--f-mono); font-size: 12px; color: var(--muted); display: flex; align-items: center; gap: 8px; }
+.visit-count b { color: var(--paper); font-variant-numeric: tabular-nums; }
+.ext a { font-family: var(--f-mono); font-size: 12px; color: var(--muted); text-decoration: none; border: 1px solid var(--line); padding: 7px 12px; border-radius: 999px; transition: color .2s, border-color .2s; }
+.ext a:hover { color: var(--accent); border-color: var(--accent); }
 
 /* Project list drawer */
 .drawer {

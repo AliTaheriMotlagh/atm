@@ -307,18 +307,6 @@
       "source_location": "L4"
     },
     {
-      "id": "js_core_util_fmttime",
-      "label": "fmtTime()",
-      "_callable": true,
-      "_origin": "ast",
-      "community": 1,
-      "community_name": "net.js",
-      "file_type": "code",
-      "norm_label": "fmttime()",
-      "source_file": "js/core/util.js",
-      "source_location": "L21"
-    },
-    {
       "id": "js_core_util_ordinal",
       "label": "ordinal()",
       "_callable": true,
@@ -856,7 +844,7 @@
       "file_type": "code",
       "norm_label": "initnetpanel()",
       "source_file": "js/net/panel.js",
-      "source_location": "L63"
+      "source_location": "L62"
     },
     {
       "id": "js_net_panel_rendernet",
@@ -1087,18 +1075,6 @@
       "source_location": "L9"
     },
     {
-      "id": "js_ui_shell_enterdrive",
-      "label": "enterDrive()",
-      "_callable": true,
-      "_origin": "ast",
-      "community": 1,
-      "community_name": "net.js",
-      "file_type": "code",
-      "norm_label": "enterdrive()",
-      "source_file": "js/ui/shell.js",
-      "source_location": "L39"
-    },
-    {
       "id": "js_net_socket_socketlib_joinroom",
       "label": "joinRoom()",
       "_callable": true,
@@ -1217,42 +1193,6 @@
       "norm_label": "tap()",
       "source_file": "js/projects/remixt.js",
       "source_location": "L90"
-    },
-    {
-      "id": "js_projects_remixt_gtempo",
-      "label": "gTempo()",
-      "_callable": true,
-      "_origin": "ast",
-      "community": 11,
-      "community_name": "rnd",
-      "file_type": "code",
-      "norm_label": "gtempo()",
-      "source_file": "js/projects/remixt.js",
-      "source_location": "L101"
-    },
-    {
-      "id": "js_projects_remixt_gtempo_countin",
-      "label": "countIn()",
-      "_callable": true,
-      "_origin": "ast",
-      "community": 11,
-      "community_name": "rnd",
-      "file_type": "code",
-      "norm_label": "countin()",
-      "source_file": "js/projects/remixt.js",
-      "source_location": "L109"
-    },
-    {
-      "id": "js_projects_remixt_gtempo_tap",
-      "label": "tap()",
-      "_callable": true,
-      "_origin": "ast",
-      "community": 11,
-      "community_name": "rnd",
-      "file_type": "code",
-      "norm_label": "tap()",
-      "source_file": "js/projects/remixt.js",
-      "source_location": "L114"
     },
     {
       "id": "js_projects_vasatyab_gfair",
@@ -1387,16 +1327,52 @@
       "source_location": "L185"
     },
     {
-      "id": "js_films_ytthumb",
-      "label": "ytThumb()",
+      "id": "js_net_battle_battlelocked",
+      "label": "battleLocked()",
       "_callable": true,
       "_origin": "ast",
       "community": 12,
-      "community_name": "screens.js",
+      "community_name": "world.js",
       "file_type": "code",
-      "norm_label": "ytthumb()",
-      "source_file": "js/films.js",
-      "source_location": "L8"
+      "norm_label": "battlelocked()",
+      "source_file": "js/net/battle.js",
+      "source_location": "L25"
+    },
+    {
+      "id": "js_net_race_racelocked",
+      "label": "raceLocked()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 12,
+      "community_name": "world.js",
+      "file_type": "code",
+      "norm_label": "racelocked()",
+      "source_file": "js/net/race.js",
+      "source_location": "L16"
+    },
+    {
+      "id": "js_progress_updategame",
+      "label": "updateGame()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 12,
+      "community_name": "world.js",
+      "file_type": "code",
+      "norm_label": "updategame()",
+      "source_file": "js/progress.js",
+      "source_location": "L91"
+    },
+    {
+      "id": "js_ui_shell_overlayopen",
+      "label": "overlayOpen()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 12,
+      "community_name": "world.js",
+      "file_type": "code",
+      "norm_label": "overlayopen()",
+      "source_file": "js/ui/shell.js",
+      "source_location": "L102"
     },
     {
       "id": "js_world_cars_buildcars",
@@ -1404,7 +1380,7 @@
       "_callable": true,
       "_origin": "ast",
       "community": 12,
-      "community_name": "screens.js",
+      "community_name": "world.js",
       "file_type": "code",
       "norm_label": "buildcars()",
       "source_file": "js/world/cars.js",
@@ -1416,7 +1392,7 @@
       "_callable": true,
       "_origin": "ast",
       "community": 12,
-      "community_name": "screens.js",
+      "community_name": "world.js",
       "file_type": "code",
       "norm_label": "buildcar()",
       "source_file": "js/world/cars.js",
@@ -1428,7 +1404,7 @@
       "_callable": true,
       "_origin": "ast",
       "community": 12,
-      "community_name": "screens.js",
+      "community_name": "world.js",
       "file_type": "code",
       "norm_label": "nametag()",
       "source_file": "js/world/cars.js",
@@ -1440,7 +1416,7 @@
       "_callable": true,
       "_origin": "ast",
       "community": 12,
-      "community_name": "screens.js",
+      "community_name": "world.js",
       "file_type": "code",
       "norm_label": "peercar()",
       "source_file": "js/world/cars.js",
@@ -1452,11 +1428,119 @@
       "_callable": true,
       "_origin": "ast",
       "community": 12,
-      "community_name": "screens.js",
+      "community_name": "world.js",
       "file_type": "code",
       "norm_label": "puff()",
       "source_file": "js/world/cars.js",
       "source_location": "L162"
+    },
+    {
+      "id": "js_world_gems_buildgems",
+      "label": "buildGems()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 12,
+      "community_name": "world.js",
+      "file_type": "code",
+      "norm_label": "buildgems()",
+      "source_file": "js/world/gems.js",
+      "source_location": "L8"
+    },
+    {
+      "id": "js_world_gps_buildgps",
+      "label": "buildGps()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 12,
+      "community_name": "world.js",
+      "file_type": "code",
+      "norm_label": "buildgps()",
+      "source_file": "js/world/gps.js",
+      "source_location": "L28"
+    },
+    {
+      "id": "js_world_gps_renderchip",
+      "label": "renderChip()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 12,
+      "community_name": "world.js",
+      "file_type": "code",
+      "norm_label": "renderchip()",
+      "source_file": "js/world/gps.js",
+      "source_location": "L19"
+    },
+    {
+      "id": "js_world_gps_setwaypoint",
+      "label": "setWaypoint()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 12,
+      "community_name": "world.js",
+      "file_type": "code",
+      "norm_label": "setwaypoint()",
+      "source_file": "js/world/gps.js",
+      "source_location": "L12"
+    },
+    {
+      "id": "js_world_gps_updategps",
+      "label": "updateGps()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 12,
+      "community_name": "world.js",
+      "file_type": "code",
+      "norm_label": "updategps()",
+      "source_file": "js/world/gps.js",
+      "source_location": "L41"
+    },
+    {
+      "id": "js_world_plan_nearestnode",
+      "label": "nearestNode()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 12,
+      "community_name": "world.js",
+      "file_type": "code",
+      "norm_label": "nearestnode()",
+      "source_file": "js/world/plan.js",
+      "source_location": "L346"
+    },
+    {
+      "id": "js_world_plan_roadgraph",
+      "label": "roadGraph()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 12,
+      "community_name": "world.js",
+      "file_type": "code",
+      "norm_label": "roadgraph()",
+      "source_file": "js/world/plan.js",
+      "source_location": "L270"
+    },
+    {
+      "id": "js_world_plan_route",
+      "label": "route()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 12,
+      "community_name": "world.js",
+      "file_type": "code",
+      "norm_label": "route()",
+      "source_file": "js/world/plan.js",
+      "source_location": "L357"
+    },
+    {
+      "id": "js_world_plan_segs",
+      "label": "segs()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 12,
+      "community_name": "world.js",
+      "file_type": "code",
+      "norm_label": "segs()",
+      "source_file": "js/world/plan.js",
+      "source_location": "L225"
     },
     {
       "id": "js_world_screens_createscreens",
@@ -1464,7 +1548,7 @@
       "_callable": true,
       "_origin": "ast",
       "community": 12,
-      "community_name": "screens.js",
+      "community_name": "world.js",
       "file_type": "code",
       "norm_label": "createscreens()",
       "source_file": "js/world/screens.js",
@@ -1476,7 +1560,7 @@
       "_callable": true,
       "_origin": "ast",
       "community": 12,
-      "community_name": "screens.js",
+      "community_name": "world.js",
       "file_type": "code",
       "norm_label": "makescreen()",
       "source_file": "js/world/screens.js",
@@ -1488,7 +1572,7 @@
       "_callable": true,
       "_origin": "ast",
       "community": 12,
-      "community_name": "screens.js",
+      "community_name": "world.js",
       "file_type": "code",
       "norm_label": "drawslide()",
       "source_file": "js/world/screens.js",
@@ -1500,7 +1584,7 @@
       "_callable": true,
       "_origin": "ast",
       "community": 12,
-      "community_name": "screens.js",
+      "community_name": "world.js",
       "file_type": "code",
       "norm_label": "drawthumb()",
       "source_file": "js/world/screens.js",
@@ -1512,7 +1596,7 @@
       "_callable": true,
       "_origin": "ast",
       "community": 12,
-      "community_name": "screens.js",
+      "community_name": "world.js",
       "file_type": "code",
       "norm_label": "fittext()",
       "source_file": "js/world/screens.js",
@@ -1524,7 +1608,7 @@
       "_callable": true,
       "_origin": "ast",
       "community": 12,
-      "community_name": "screens.js",
+      "community_name": "world.js",
       "file_type": "code",
       "norm_label": "roundrect()",
       "source_file": "js/world/screens.js",
@@ -1536,7 +1620,7 @@
       "_callable": true,
       "_origin": "ast",
       "community": 12,
-      "community_name": "screens.js",
+      "community_name": "world.js",
       "file_type": "code",
       "norm_label": "webimg()",
       "source_file": "js/world/screens.js",
@@ -1548,11 +1632,107 @@
       "_callable": true,
       "_origin": "ast",
       "community": 12,
-      "community_name": "screens.js",
+      "community_name": "world.js",
       "file_type": "code",
       "norm_label": "wraptext()",
       "source_file": "js/world/screens.js",
       "source_location": "L42"
+    },
+    {
+      "id": "js_world_snapshots_capturesnapshots",
+      "label": "captureSnapshots()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 12,
+      "community_name": "world.js",
+      "file_type": "code",
+      "norm_label": "capturesnapshots()",
+      "source_file": "js/world/snapshots.js",
+      "source_location": "L4"
+    },
+    {
+      "id": "js_world_track_buildtrack",
+      "label": "buildTrack()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 12,
+      "community_name": "world.js",
+      "file_type": "code",
+      "norm_label": "buildtrack()",
+      "source_file": "js/world/track.js",
+      "source_location": "L7"
+    },
+    {
+      "id": "js_world_traffic_buildtraffic",
+      "label": "buildTraffic()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 12,
+      "community_name": "world.js",
+      "file_type": "code",
+      "norm_label": "buildtraffic()",
+      "source_file": "js/world/traffic.js",
+      "source_location": "L28"
+    },
+    {
+      "id": "js_world_traffic_cargeo",
+      "label": "carGeo()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 12,
+      "community_name": "world.js",
+      "file_type": "code",
+      "norm_label": "cargeo()",
+      "source_file": "js/world/traffic.js",
+      "source_location": "L11"
+    },
+    {
+      "id": "js_world_world_startworld",
+      "label": "startWorld()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 12,
+      "community_name": "world.js",
+      "file_type": "code",
+      "norm_label": "startworld()",
+      "source_file": "js/world/world.js",
+      "source_location": "L32"
+    },
+    {
+      "id": "js_world_world_startworld_loop",
+      "label": "loop()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 12,
+      "community_name": "world.js",
+      "file_type": "code",
+      "norm_label": "loop()",
+      "source_file": "js/world/world.js",
+      "source_location": "L291"
+    },
+    {
+      "id": "js_world_world_startworld_teleport",
+      "label": "teleport()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 12,
+      "community_name": "world.js",
+      "file_type": "code",
+      "norm_label": "teleport()",
+      "source_file": "js/world/world.js",
+      "source_location": "L116"
+    },
+    {
+      "id": "js_world_world_startworld_update",
+      "label": "update()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 12,
+      "community_name": "world.js",
+      "file_type": "code",
+      "norm_label": "update()",
+      "source_file": "js/world/world.js",
+      "source_location": "L158"
     },
     {
       "id": "js_core_util_prettyurl",
@@ -2047,6 +2227,18 @@
       "source_location": "L101"
     },
     {
+      "id": "js_projects_siktir_landmark",
+      "label": "landmark()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 16,
+      "community_name": "buzz",
+      "file_type": "code",
+      "norm_label": "landmark()",
+      "source_file": "js/projects/siktir.js",
+      "source_location": "L145"
+    },
+    {
       "id": "js_projects_streetquest_grange",
       "label": "gRange()",
       "_callable": true,
@@ -2167,18 +2359,6 @@
       "source_location": "L158"
     },
     {
-      "id": "js_projects_siktir_landmark",
-      "label": "landmark()",
-      "_callable": true,
-      "_origin": "ast",
-      "community": 17,
-      "community_name": "hexNum",
-      "file_type": "code",
-      "norm_label": "landmark()",
-      "source_file": "js/projects/siktir.js",
-      "source_location": "L145"
-    },
-    {
       "id": "js_projects_streetquest_ghunt",
       "label": "gHunt()",
       "_callable": true,
@@ -2237,6 +2417,42 @@
       "norm_label": "pin()",
       "source_file": "js/projects/vasatyab.js",
       "source_location": "L164"
+    },
+    {
+      "id": "js_world_landmarks_buildlandmarks",
+      "label": "buildLandmarks()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 17,
+      "community_name": "hexNum",
+      "file_type": "code",
+      "norm_label": "buildlandmarks()",
+      "source_file": "js/world/landmarks.js",
+      "source_location": "L10"
+    },
+    {
+      "id": "js_world_landmarks_buildlandmarks_addlandmark",
+      "label": "addLandmark()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 17,
+      "community_name": "hexNum",
+      "file_type": "code",
+      "norm_label": "addlandmark()",
+      "source_file": "js/world/landmarks.js",
+      "source_location": "L14"
+    },
+    {
+      "id": "js_world_screens_makesign",
+      "label": "makeSign()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 17,
+      "community_name": "hexNum",
+      "file_type": "code",
+      "norm_label": "makesign()",
+      "source_file": "js/world/screens.js",
+      "source_location": "L11"
     },
     {
       "id": "js_projects_walki_gfloor",
@@ -2311,64 +2527,40 @@
       "source_location": "L76"
     },
     {
-      "id": "js_core_util_inkfor",
-      "label": "inkFor()",
+      "id": "js_projects_remixt_gtempo",
+      "label": "gTempo()",
       "_callable": true,
       "_origin": "ast",
-      "community": 2,
-      "community_name": "plan.js",
+      "community": 19,
+      "community_name": "gTempo",
       "file_type": "code",
-      "norm_label": "inkfor()",
-      "source_file": "js/core/util.js",
-      "source_location": "L10"
+      "norm_label": "gtempo()",
+      "source_file": "js/projects/remixt.js",
+      "source_location": "L101"
     },
     {
-      "id": "js_net_battle_battlelocked",
-      "label": "battleLocked()",
+      "id": "js_projects_remixt_gtempo_countin",
+      "label": "countIn()",
       "_callable": true,
       "_origin": "ast",
-      "community": 2,
-      "community_name": "plan.js",
+      "community": 19,
+      "community_name": "gTempo",
       "file_type": "code",
-      "norm_label": "battlelocked()",
-      "source_file": "js/net/battle.js",
-      "source_location": "L25"
+      "norm_label": "countin()",
+      "source_file": "js/projects/remixt.js",
+      "source_location": "L109"
     },
     {
-      "id": "js_net_race_racelocked",
-      "label": "raceLocked()",
+      "id": "js_projects_remixt_gtempo_tap",
+      "label": "tap()",
       "_callable": true,
       "_origin": "ast",
-      "community": 2,
-      "community_name": "plan.js",
+      "community": 19,
+      "community_name": "gTempo",
       "file_type": "code",
-      "norm_label": "racelocked()",
-      "source_file": "js/net/race.js",
-      "source_location": "L16"
-    },
-    {
-      "id": "js_progress_updategame",
-      "label": "updateGame()",
-      "_callable": true,
-      "_origin": "ast",
-      "community": 2,
-      "community_name": "plan.js",
-      "file_type": "code",
-      "norm_label": "updategame()",
-      "source_file": "js/progress.js",
-      "source_location": "L91"
-    },
-    {
-      "id": "js_ui_shell_overlayopen",
-      "label": "overlayOpen()",
-      "_callable": true,
-      "_origin": "ast",
-      "community": 2,
-      "community_name": "plan.js",
-      "file_type": "code",
-      "norm_label": "overlayopen()",
-      "source_file": "js/ui/shell.js",
-      "source_location": "L102"
+      "norm_label": "tap()",
+      "source_file": "js/projects/remixt.js",
+      "source_location": "L114"
     },
     {
       "id": "js_world_city_buildcity",
@@ -2477,90 +2669,6 @@
       "norm_label": "mountain()",
       "source_file": "js/world/city.js",
       "source_location": "L103"
-    },
-    {
-      "id": "js_world_gems_buildgems",
-      "label": "buildGems()",
-      "_callable": true,
-      "_origin": "ast",
-      "community": 2,
-      "community_name": "plan.js",
-      "file_type": "code",
-      "norm_label": "buildgems()",
-      "source_file": "js/world/gems.js",
-      "source_location": "L8"
-    },
-    {
-      "id": "js_world_gps_buildgps",
-      "label": "buildGps()",
-      "_callable": true,
-      "_origin": "ast",
-      "community": 2,
-      "community_name": "plan.js",
-      "file_type": "code",
-      "norm_label": "buildgps()",
-      "source_file": "js/world/gps.js",
-      "source_location": "L28"
-    },
-    {
-      "id": "js_world_gps_renderchip",
-      "label": "renderChip()",
-      "_callable": true,
-      "_origin": "ast",
-      "community": 2,
-      "community_name": "plan.js",
-      "file_type": "code",
-      "norm_label": "renderchip()",
-      "source_file": "js/world/gps.js",
-      "source_location": "L19"
-    },
-    {
-      "id": "js_world_gps_setwaypoint",
-      "label": "setWaypoint()",
-      "_callable": true,
-      "_origin": "ast",
-      "community": 2,
-      "community_name": "plan.js",
-      "file_type": "code",
-      "norm_label": "setwaypoint()",
-      "source_file": "js/world/gps.js",
-      "source_location": "L12"
-    },
-    {
-      "id": "js_world_gps_updategps",
-      "label": "updateGps()",
-      "_callable": true,
-      "_origin": "ast",
-      "community": 2,
-      "community_name": "plan.js",
-      "file_type": "code",
-      "norm_label": "updategps()",
-      "source_file": "js/world/gps.js",
-      "source_location": "L41"
-    },
-    {
-      "id": "js_world_landmarks_buildlandmarks",
-      "label": "buildLandmarks()",
-      "_callable": true,
-      "_origin": "ast",
-      "community": 2,
-      "community_name": "plan.js",
-      "file_type": "code",
-      "norm_label": "buildlandmarks()",
-      "source_file": "js/world/landmarks.js",
-      "source_location": "L10"
-    },
-    {
-      "id": "js_world_landmarks_buildlandmarks_addlandmark",
-      "label": "addLandmark()",
-      "_callable": true,
-      "_origin": "ast",
-      "community": 2,
-      "community_name": "plan.js",
-      "file_type": "code",
-      "norm_label": "addlandmark()",
-      "source_file": "js/world/landmarks.js",
-      "source_location": "L14"
     },
     {
       "id": "js_world_layout_alborz",
@@ -2851,18 +2959,6 @@
       "source_location": "L234"
     },
     {
-      "id": "js_world_plan_nearestnode",
-      "label": "nearestNode()",
-      "_callable": true,
-      "_origin": "ast",
-      "community": 2,
-      "community_name": "plan.js",
-      "file_type": "code",
-      "norm_label": "nearestnode()",
-      "source_file": "js/world/plan.js",
-      "source_location": "L346"
-    },
-    {
       "id": "js_world_plan_onroad",
       "label": "onRoad()",
       "_callable": true,
@@ -2935,42 +3031,6 @@
       "source_location": "L38"
     },
     {
-      "id": "js_world_plan_roadgraph",
-      "label": "roadGraph()",
-      "_callable": true,
-      "_origin": "ast",
-      "community": 2,
-      "community_name": "plan.js",
-      "file_type": "code",
-      "norm_label": "roadgraph()",
-      "source_file": "js/world/plan.js",
-      "source_location": "L270"
-    },
-    {
-      "id": "js_world_plan_route",
-      "label": "route()",
-      "_callable": true,
-      "_origin": "ast",
-      "community": 2,
-      "community_name": "plan.js",
-      "file_type": "code",
-      "norm_label": "route()",
-      "source_file": "js/world/plan.js",
-      "source_location": "L357"
-    },
-    {
-      "id": "js_world_plan_segs",
-      "label": "segs()",
-      "_callable": true,
-      "_origin": "ast",
-      "community": 2,
-      "community_name": "plan.js",
-      "file_type": "code",
-      "norm_label": "segs()",
-      "source_file": "js/world/plan.js",
-      "source_location": "L225"
-    },
-    {
       "id": "js_world_plan_stamp",
       "label": "stamp()",
       "_callable": true,
@@ -2993,30 +3053,6 @@
       "norm_label": "buildscenery()",
       "source_file": "js/world/scenery.js",
       "source_location": "L7"
-    },
-    {
-      "id": "js_world_screens_makesign",
-      "label": "makeSign()",
-      "_callable": true,
-      "_origin": "ast",
-      "community": 2,
-      "community_name": "plan.js",
-      "file_type": "code",
-      "norm_label": "makesign()",
-      "source_file": "js/world/screens.js",
-      "source_location": "L11"
-    },
-    {
-      "id": "js_world_snapshots_capturesnapshots",
-      "label": "captureSnapshots()",
-      "_callable": true,
-      "_origin": "ast",
-      "community": 2,
-      "community_name": "plan.js",
-      "file_type": "code",
-      "norm_label": "capturesnapshots()",
-      "source_file": "js/world/snapshots.js",
-      "source_location": "L4"
     },
     {
       "id": "js_world_terrain_buildterrain",
@@ -3101,90 +3137,6 @@
       "norm_label": "ribbon()",
       "source_file": "js/world/terrain.js",
       "source_location": "L40"
-    },
-    {
-      "id": "js_world_track_buildtrack",
-      "label": "buildTrack()",
-      "_callable": true,
-      "_origin": "ast",
-      "community": 2,
-      "community_name": "plan.js",
-      "file_type": "code",
-      "norm_label": "buildtrack()",
-      "source_file": "js/world/track.js",
-      "source_location": "L7"
-    },
-    {
-      "id": "js_world_traffic_buildtraffic",
-      "label": "buildTraffic()",
-      "_callable": true,
-      "_origin": "ast",
-      "community": 2,
-      "community_name": "plan.js",
-      "file_type": "code",
-      "norm_label": "buildtraffic()",
-      "source_file": "js/world/traffic.js",
-      "source_location": "L28"
-    },
-    {
-      "id": "js_world_traffic_cargeo",
-      "label": "carGeo()",
-      "_callable": true,
-      "_origin": "ast",
-      "community": 2,
-      "community_name": "plan.js",
-      "file_type": "code",
-      "norm_label": "cargeo()",
-      "source_file": "js/world/traffic.js",
-      "source_location": "L11"
-    },
-    {
-      "id": "js_world_world_startworld",
-      "label": "startWorld()",
-      "_callable": true,
-      "_origin": "ast",
-      "community": 2,
-      "community_name": "plan.js",
-      "file_type": "code",
-      "norm_label": "startworld()",
-      "source_file": "js/world/world.js",
-      "source_location": "L32"
-    },
-    {
-      "id": "js_world_world_startworld_loop",
-      "label": "loop()",
-      "_callable": true,
-      "_origin": "ast",
-      "community": 2,
-      "community_name": "plan.js",
-      "file_type": "code",
-      "norm_label": "loop()",
-      "source_file": "js/world/world.js",
-      "source_location": "L291"
-    },
-    {
-      "id": "js_world_world_startworld_teleport",
-      "label": "teleport()",
-      "_callable": true,
-      "_origin": "ast",
-      "community": 2,
-      "community_name": "plan.js",
-      "file_type": "code",
-      "norm_label": "teleport()",
-      "source_file": "js/world/world.js",
-      "source_location": "L116"
-    },
-    {
-      "id": "js_world_world_startworld_update",
-      "label": "update()",
-      "_callable": true,
-      "_origin": "ast",
-      "community": 2,
-      "community_name": "plan.js",
-      "file_type": "code",
-      "norm_label": "update()",
-      "source_file": "js/world/world.js",
-      "source_location": "L158"
     },
     {
       "id": "js_games_kit_keepfocus",
@@ -3353,6 +3305,54 @@
       "norm_label": "fmt()",
       "source_file": "js/core/util.js",
       "source_location": "L4"
+    },
+    {
+      "id": "js_core_util_fmttime",
+      "label": "fmtTime()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 4,
+      "community_name": "$",
+      "file_type": "code",
+      "norm_label": "fmttime()",
+      "source_file": "js/core/util.js",
+      "source_location": "L21"
+    },
+    {
+      "id": "js_core_util_inkfor",
+      "label": "inkFor()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 4,
+      "community_name": "$",
+      "file_type": "code",
+      "norm_label": "inkfor()",
+      "source_file": "js/core/util.js",
+      "source_location": "L10"
+    },
+    {
+      "id": "js_core_visits_initvisits",
+      "label": "initVisits()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 4,
+      "community_name": "$",
+      "file_type": "code",
+      "norm_label": "initvisits()",
+      "source_file": "js/core/visits.js",
+      "source_location": "L4"
+    },
+    {
+      "id": "js_films_ytthumb",
+      "label": "ytThumb()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 4,
+      "community_name": "$",
+      "file_type": "code",
+      "norm_label": "ytthumb()",
+      "source_file": "js/films.js",
+      "source_location": "L8"
     },
     {
       "id": "js_films_ytwatch",
@@ -3532,7 +3532,7 @@
       "file_type": "code",
       "norm_label": "boot()",
       "source_file": "js/main.js",
-      "source_location": "L35"
+      "source_location": "L37"
     },
     {
       "id": "js_net_panel_opennet",
@@ -3929,6 +3929,18 @@
       "norm_label": "afterwin()",
       "source_file": "js/ui/shell.js",
       "source_location": "L55"
+    },
+    {
+      "id": "js_ui_shell_enterdrive",
+      "label": "enterDrive()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 4,
+      "community_name": "$",
+      "file_type": "code",
+      "norm_label": "enterdrive()",
+      "source_file": "js/ui/shell.js",
+      "source_location": "L39"
     },
     {
       "id": "js_ui_shell_honk",
@@ -4517,6 +4529,28 @@
       "source_location": "L5"
     },
     {
+      "id": "js_core_effects",
+      "label": "effects.js",
+      "_origin": "ast",
+      "community": 1,
+      "community_name": "net.js",
+      "file_type": "code",
+      "norm_label": "effects.js",
+      "source_file": "js/core/effects.js",
+      "source_location": "L1"
+    },
+    {
+      "id": "js_core_effects_fx",
+      "label": "fx",
+      "_origin": "ast",
+      "community": 1,
+      "community_name": "net.js",
+      "file_type": "code",
+      "norm_label": "fx",
+      "source_file": "js/core/effects.js",
+      "source_location": "L12"
+    },
+    {
       "id": "js_core_store",
       "label": "store.js",
       "_origin": "ast",
@@ -4537,6 +4571,17 @@
       "norm_label": "store",
       "source_file": "js/core/store.js",
       "source_location": "L2"
+    },
+    {
+      "id": "js_core_util_reducemotion",
+      "label": "reduceMotion",
+      "_origin": "ast",
+      "community": 1,
+      "community_name": "net.js",
+      "file_type": "code",
+      "norm_label": "reducemotion",
+      "source_file": "js/core/util.js",
+      "source_location": "L16"
     },
     {
       "id": "js_net_battle",
@@ -4682,6 +4727,17 @@
       "source_location": "L12"
     },
     {
+      "id": "js_net_panel_netpanel",
+      "label": "netPanel",
+      "_origin": "ast",
+      "community": 1,
+      "community_name": "net.js",
+      "file_type": "code",
+      "norm_label": "netpanel",
+      "source_file": "js/net/panel.js",
+      "source_location": "L13"
+    },
+    {
       "id": "js_net_race",
       "label": "race.js",
       "_origin": "ast",
@@ -4748,47 +4804,36 @@
       "source_location": "L1"
     },
     {
-      "id": "js_projects_vasatyab_project",
-      "label": "project",
-      "_origin": "ast",
-      "community": 11,
-      "community_name": "rnd",
-      "file_type": "code",
-      "norm_label": "project",
-      "source_file": "js/projects/vasatyab.js",
-      "source_location": "L5"
-    },
-    {
-      "id": "js_films",
-      "label": "films.js",
+      "id": "js_ui_input",
+      "label": "input.js",
       "_origin": "ast",
       "community": 12,
-      "community_name": "screens.js",
+      "community_name": "world.js",
       "file_type": "code",
-      "norm_label": "films.js",
-      "source_file": "js/films.js",
+      "norm_label": "input.js",
+      "source_file": "js/ui/input.js",
       "source_location": "L1"
     },
     {
-      "id": "js_films_cinema",
-      "label": "CINEMA",
+      "id": "js_ui_input_input",
+      "label": "input",
       "_origin": "ast",
       "community": 12,
-      "community_name": "screens.js",
+      "community_name": "world.js",
       "file_type": "code",
-      "norm_label": "cinema",
-      "source_file": "js/films.js",
-      "source_location": "L12"
+      "norm_label": "input",
+      "source_file": "js/ui/input.js",
+      "source_location": "L5"
     },
     {
-      "id": "js_films_films",
-      "label": "FILMS",
+      "id": "js_ui_input_keys",
+      "label": "keys",
       "_origin": "ast",
       "community": 12,
-      "community_name": "screens.js",
+      "community_name": "world.js",
       "file_type": "code",
-      "norm_label": "films",
-      "source_file": "js/films.js",
+      "norm_label": "keys",
+      "source_file": "js/ui/input.js",
       "source_location": "L4"
     },
     {
@@ -4796,10 +4841,21 @@
       "label": "cars.js",
       "_origin": "ast",
       "community": 12,
-      "community_name": "screens.js",
+      "community_name": "world.js",
       "file_type": "code",
       "norm_label": "cars.js",
       "source_file": "js/world/cars.js",
+      "source_location": "L1"
+    },
+    {
+      "id": "js_world_gps",
+      "label": "gps.js",
+      "_origin": "ast",
+      "community": 12,
+      "community_name": "world.js",
+      "file_type": "code",
+      "norm_label": "gps.js",
+      "source_file": "js/world/gps.js",
       "source_location": "L1"
     },
     {
@@ -4807,7 +4863,7 @@
       "label": "screens.js",
       "_origin": "ast",
       "community": 12,
-      "community_name": "screens.js",
+      "community_name": "world.js",
       "file_type": "code",
       "norm_label": "screens.js",
       "source_file": "js/world/screens.js",
@@ -4818,11 +4874,44 @@
       "label": "webImgs",
       "_origin": "ast",
       "community": 12,
-      "community_name": "screens.js",
+      "community_name": "world.js",
       "file_type": "code",
       "norm_label": "webimgs",
       "source_file": "js/world/screens.js",
       "source_location": "L28"
+    },
+    {
+      "id": "js_world_traffic",
+      "label": "traffic.js",
+      "_origin": "ast",
+      "community": 12,
+      "community_name": "world.js",
+      "file_type": "code",
+      "norm_label": "traffic.js",
+      "source_file": "js/world/traffic.js",
+      "source_location": "L1"
+    },
+    {
+      "id": "js_world_traffic_paints",
+      "label": "PAINTS",
+      "_origin": "ast",
+      "community": 12,
+      "community_name": "world.js",
+      "file_type": "code",
+      "norm_label": "paints",
+      "source_file": "js/world/traffic.js",
+      "source_location": "L9"
+    },
+    {
+      "id": "js_world_world",
+      "label": "world.js",
+      "_origin": "ast",
+      "community": 12,
+      "community_name": "world.js",
+      "file_type": "code",
+      "norm_label": "world.js",
+      "source_file": "js/world/world.js",
+      "source_location": "L1"
     },
     {
       "id": "js_ui_preview",
@@ -4924,6 +5013,17 @@
       "source_location": "L1"
     },
     {
+      "id": "js_projects_siktir_project",
+      "label": "project",
+      "_origin": "ast",
+      "community": 16,
+      "community_name": "buzz",
+      "file_type": "code",
+      "norm_label": "project",
+      "source_file": "js/projects/siktir.js",
+      "source_location": "L5"
+    },
+    {
       "id": "js_projects_streetquest",
       "label": "streetquest.js",
       "_origin": "ast",
@@ -4990,17 +5090,6 @@
       "source_location": "L17"
     },
     {
-      "id": "js_ui_input_input",
-      "label": "input",
-      "_origin": "ast",
-      "community": 2,
-      "community_name": "plan.js",
-      "file_type": "code",
-      "norm_label": "input",
-      "source_file": "js/ui/input.js",
-      "source_location": "L5"
-    },
-    {
       "id": "js_world_city",
       "label": "city.js",
       "_origin": "ast",
@@ -5020,17 +5109,6 @@
       "file_type": "code",
       "norm_label": "gems.js",
       "source_file": "js/world/gems.js",
-      "source_location": "L1"
-    },
-    {
-      "id": "js_world_gps",
-      "label": "gps.js",
-      "_origin": "ast",
-      "community": 2,
-      "community_name": "plan.js",
-      "file_type": "code",
-      "norm_label": "gps.js",
-      "source_file": "js/world/gps.js",
       "source_location": "L1"
     },
     {
@@ -5087,17 +5165,6 @@
       "norm_label": "cin_r",
       "source_file": "js/world/layout.js",
       "source_location": "L8"
-    },
-    {
-      "id": "js_world_layout_districts",
-      "label": "DISTRICTS",
-      "_origin": "ast",
-      "community": 2,
-      "community_name": "plan.js",
-      "file_type": "code",
-      "norm_label": "districts",
-      "source_file": "js/world/layout.js",
-      "source_location": "L22"
     },
     {
       "id": "js_world_layout_island",
@@ -5430,36 +5497,14 @@
       "source_location": "L1"
     },
     {
-      "id": "js_world_traffic",
-      "label": "traffic.js",
+      "id": "api_visits",
+      "label": "api/visits.js",
       "_origin": "ast",
-      "community": 2,
-      "community_name": "plan.js",
+      "community": 20,
+      "community_name": "api/visits.js",
       "file_type": "code",
-      "norm_label": "traffic.js",
-      "source_file": "js/world/traffic.js",
-      "source_location": "L1"
-    },
-    {
-      "id": "js_world_traffic_paints",
-      "label": "PAINTS",
-      "_origin": "ast",
-      "community": 2,
-      "community_name": "plan.js",
-      "file_type": "code",
-      "norm_label": "paints",
-      "source_file": "js/world/traffic.js",
-      "source_location": "L9"
-    },
-    {
-      "id": "js_world_world",
-      "label": "world.js",
-      "_origin": "ast",
-      "community": 2,
-      "community_name": "plan.js",
-      "file_type": "code",
-      "norm_label": "world.js",
-      "source_file": "js/world/world.js",
+      "norm_label": "api/visits.js",
+      "source_file": "api/visits.js",
       "source_location": "L1"
     },
     {
@@ -5584,17 +5629,6 @@
       "source_location": "L1"
     },
     {
-      "id": "js_projects_index_game_list",
-      "label": "GAME_LIST",
-      "_origin": "ast",
-      "community": 3,
-      "community_name": "projects/index.js",
-      "file_type": "code",
-      "norm_label": "game_list",
-      "source_file": "js/projects/index.js",
-      "source_location": "L21"
-    },
-    {
       "id": "js_projects_index_gamebyid",
       "label": "gameById",
       "_origin": "ast",
@@ -5604,6 +5638,17 @@
       "norm_label": "gamebyid",
       "source_file": "js/projects/index.js",
       "source_location": "L22"
+    },
+    {
+      "id": "js_projects_index_games",
+      "label": "GAMES",
+      "_origin": "ast",
+      "community": 3,
+      "community_name": "projects/index.js",
+      "file_type": "code",
+      "norm_label": "games",
+      "source_file": "js/projects/index.js",
+      "source_location": "L20"
     },
     {
       "id": "js_projects_khabar",
@@ -5738,14 +5783,14 @@
       "source_location": "L6"
     },
     {
-      "id": "js_projects_siktir_project",
+      "id": "js_projects_vasatyab_project",
       "label": "project",
       "_origin": "ast",
       "community": 3,
       "community_name": "projects/index.js",
       "file_type": "code",
       "norm_label": "project",
-      "source_file": "js/projects/siktir.js",
+      "source_file": "js/projects/vasatyab.js",
       "source_location": "L5"
     },
     {
@@ -5769,28 +5814,6 @@
       "norm_label": "app",
       "source_file": "js/core/app.js",
       "source_location": "L4"
-    },
-    {
-      "id": "js_core_effects",
-      "label": "effects.js",
-      "_origin": "ast",
-      "community": 4,
-      "community_name": "$",
-      "file_type": "code",
-      "norm_label": "effects.js",
-      "source_file": "js/core/effects.js",
-      "source_location": "L1"
-    },
-    {
-      "id": "js_core_effects_fx",
-      "label": "fx",
-      "_origin": "ast",
-      "community": 4,
-      "community_name": "$",
-      "file_type": "code",
-      "norm_label": "fx",
-      "source_file": "js/core/effects.js",
-      "source_location": "L12"
     },
     {
       "id": "js_core_events",
@@ -5826,15 +5849,48 @@
       "source_location": "L2"
     },
     {
-      "id": "js_core_util_reducemotion",
-      "label": "reduceMotion",
+      "id": "js_core_visits",
+      "label": "core/visits.js",
       "_origin": "ast",
       "community": 4,
       "community_name": "$",
       "file_type": "code",
-      "norm_label": "reducemotion",
-      "source_file": "js/core/util.js",
-      "source_location": "L16"
+      "norm_label": "core/visits.js",
+      "source_file": "js/core/visits.js",
+      "source_location": "L1"
+    },
+    {
+      "id": "js_films",
+      "label": "films.js",
+      "_origin": "ast",
+      "community": 4,
+      "community_name": "$",
+      "file_type": "code",
+      "norm_label": "films.js",
+      "source_file": "js/films.js",
+      "source_location": "L1"
+    },
+    {
+      "id": "js_films_cinema",
+      "label": "CINEMA",
+      "_origin": "ast",
+      "community": 4,
+      "community_name": "$",
+      "file_type": "code",
+      "norm_label": "cinema",
+      "source_file": "js/films.js",
+      "source_location": "L12"
+    },
+    {
+      "id": "js_films_films",
+      "label": "FILMS",
+      "_origin": "ast",
+      "community": 4,
+      "community_name": "$",
+      "file_type": "code",
+      "norm_label": "films",
+      "source_file": "js/films.js",
+      "source_location": "L4"
     },
     {
       "id": "js_games_arcade",
@@ -5903,17 +5959,6 @@
       "source_location": "L1"
     },
     {
-      "id": "js_net_panel_netpanel",
-      "label": "netPanel",
-      "_origin": "ast",
-      "community": 4,
-      "community_name": "$",
-      "file_type": "code",
-      "norm_label": "netpanel",
-      "source_file": "js/net/panel.js",
-      "source_location": "L13"
-    },
-    {
       "id": "js_progress",
       "label": "progress.js",
       "_origin": "ast",
@@ -5969,15 +6014,15 @@
       "source_location": "L18"
     },
     {
-      "id": "js_projects_index_games",
-      "label": "GAMES",
+      "id": "js_projects_index_game_list",
+      "label": "GAME_LIST",
       "_origin": "ast",
       "community": 4,
       "community_name": "$",
       "file_type": "code",
-      "norm_label": "games",
+      "norm_label": "game_list",
       "source_file": "js/projects/index.js",
-      "source_location": "L20"
+      "source_location": "L21"
     },
     {
       "id": "js_ui_bigmap_bigmap",
@@ -6066,28 +6111,6 @@
       "norm_label": "del",
       "source_file": "js/ui/dossier.js",
       "source_location": "L12"
-    },
-    {
-      "id": "js_ui_input",
-      "label": "input.js",
-      "_origin": "ast",
-      "community": 4,
-      "community_name": "$",
-      "file_type": "code",
-      "norm_label": "input.js",
-      "source_file": "js/ui/input.js",
-      "source_location": "L1"
-    },
-    {
-      "id": "js_ui_input_keys",
-      "label": "keys",
-      "_origin": "ast",
-      "community": 4,
-      "community_name": "$",
-      "file_type": "code",
-      "norm_label": "keys",
-      "source_file": "js/ui/input.js",
-      "source_location": "L4"
     },
     {
       "id": "js_ui_modal",
@@ -6576,6 +6599,17 @@
       "norm_label": "gps",
       "source_file": "js/world/gps.js",
       "source_location": "L8"
+    },
+    {
+      "id": "js_world_layout_districts",
+      "label": "DISTRICTS",
+      "_origin": "ast",
+      "community": 6,
+      "community_name": "bigmap.js",
+      "file_type": "code",
+      "norm_label": "districts",
+      "source_file": "js/world/layout.js",
+      "source_location": "L22"
     },
     {
       "id": "js_world_mapimage_extent",
@@ -7332,7 +7366,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "js/main.js",
-      "source_location": "L36",
+      "source_location": "L38",
       "weight": 1.0
     },
     {
@@ -7344,7 +7378,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "js/main.js",
-      "source_location": "L39",
+      "source_location": "L41",
       "weight": 1.0
     },
     {
@@ -7356,7 +7390,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "js/main.js",
-      "source_location": "L43",
+      "source_location": "L45",
       "weight": 1.0
     },
     {
@@ -7368,7 +7402,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "js/main.js",
-      "source_location": "L44",
+      "source_location": "L46",
       "weight": 1.0
     },
     {
@@ -7380,7 +7414,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "js/main.js",
-      "source_location": "L47",
+      "source_location": "L49",
       "weight": 1.0
     },
     {
@@ -7392,7 +7426,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "js/main.js",
-      "source_location": "L48",
+      "source_location": "L50",
       "weight": 1.0
     },
     {
@@ -8772,7 +8806,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "js/net/panel.js",
-      "source_location": "L64",
+      "source_location": "L63",
       "weight": 1.0
     },
     {
@@ -8784,7 +8818,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "js/net/panel.js",
-      "source_location": "L68",
+      "source_location": "L67",
       "weight": 1.0
     },
     {
@@ -8796,7 +8830,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "js/net/panel.js",
-      "source_location": "L68",
+      "source_location": "L67",
       "weight": 1.0
     },
     {
@@ -8808,7 +8842,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "js/net/panel.js",
-      "source_location": "L75",
+      "source_location": "L74",
       "weight": 1.0
     },
     {
@@ -8820,7 +8854,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "js/net/panel.js",
-      "source_location": "L79",
+      "source_location": "L78",
       "weight": 1.0
     },
     {
@@ -8832,7 +8866,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "js/net/panel.js",
-      "source_location": "L80",
+      "source_location": "L79",
       "weight": 1.0
     },
     {
@@ -8856,7 +8890,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "js/net/panel.js",
-      "source_location": "L44",
+      "source_location": "L43",
       "weight": 1.0
     },
     {
@@ -8868,7 +8902,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "js/net/panel.js",
-      "source_location": "L44",
+      "source_location": "L43",
       "weight": 1.0
     },
     {
@@ -8880,7 +8914,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "js/net/panel.js",
-      "source_location": "L52",
+      "source_location": "L51",
       "weight": 1.0
     },
     {
@@ -8892,7 +8926,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "js/net/panel.js",
-      "source_location": "L54",
+      "source_location": "L53",
       "weight": 1.0
     },
     {
@@ -8904,7 +8938,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "js/net/panel.js",
-      "source_location": "L57",
+      "source_location": "L56",
       "weight": 1.0
     },
     {
@@ -16613,7 +16647,7 @@
     },
     {
       "source": "js_main",
-      "target": "js_ui_social_initsocial",
+      "target": "js_ui_cinema_initcinema",
       "relation": "imports",
       "_origin": "ast",
       "confidence": "EXTRACTED",
@@ -16625,7 +16659,7 @@
     },
     {
       "source": "js_main",
-      "target": "js_ui_shell_enterdrive",
+      "target": "js_ui_social_initsocial",
       "relation": "imports",
       "_origin": "ast",
       "confidence": "EXTRACTED",
@@ -16633,6 +16667,18 @@
       "context": "import",
       "source_file": "js/main.js",
       "source_location": "L11",
+      "weight": 1.0
+    },
+    {
+      "source": "js_main",
+      "target": "js_ui_shell_enterdrive",
+      "relation": "imports",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "import",
+      "source_file": "js/main.js",
+      "source_location": "L12",
       "weight": 1.0
     },
     {
@@ -16644,7 +16690,7 @@
       "confidence_score": 1.0,
       "context": "import",
       "source_file": "js/main.js",
-      "source_location": "L11",
+      "source_location": "L12",
       "weight": 1.0
     },
     {
@@ -16656,7 +16702,7 @@
       "confidence_score": 1.0,
       "context": "import",
       "source_file": "js/main.js",
-      "source_location": "L12",
+      "source_location": "L13",
       "weight": 1.0
     },
     {
@@ -16668,7 +16714,7 @@
       "confidence_score": 1.0,
       "context": "import",
       "source_file": "js/main.js",
-      "source_location": "L12",
+      "source_location": "L13",
       "weight": 1.0
     },
     {
@@ -16680,7 +16726,7 @@
       "confidence_score": 1.0,
       "context": "import",
       "source_file": "js/main.js",
-      "source_location": "L13",
+      "source_location": "L14",
       "weight": 1.0
     },
     {
@@ -16692,7 +16738,7 @@
       "confidence_score": 1.0,
       "context": "import",
       "source_file": "js/main.js",
-      "source_location": "L13",
+      "source_location": "L14",
       "weight": 1.0
     },
     {
@@ -16704,7 +16750,7 @@
       "confidence_score": 1.0,
       "context": "import",
       "source_file": "js/main.js",
-      "source_location": "L14",
+      "source_location": "L15",
       "weight": 1.0
     },
     {
@@ -16716,7 +16762,7 @@
       "confidence_score": 1.0,
       "context": "import",
       "source_file": "js/main.js",
-      "source_location": "L14",
+      "source_location": "L15",
       "weight": 1.0
     },
     {
@@ -16728,7 +16774,7 @@
       "confidence_score": 1.0,
       "context": "import",
       "source_file": "js/main.js",
-      "source_location": "L15",
+      "source_location": "L16",
       "weight": 1.0
     },
     {
@@ -16740,7 +16786,7 @@
       "confidence_score": 1.0,
       "context": "import",
       "source_file": "js/main.js",
-      "source_location": "L16",
+      "source_location": "L17",
       "weight": 1.0
     },
     {
@@ -16752,7 +16798,7 @@
       "confidence_score": 1.0,
       "context": "import",
       "source_file": "js/main.js",
-      "source_location": "L17",
+      "source_location": "L18",
       "weight": 1.0
     },
     {
@@ -16764,7 +16810,7 @@
       "confidence_score": 1.0,
       "context": "import",
       "source_file": "js/main.js",
-      "source_location": "L17",
+      "source_location": "L18",
       "weight": 1.0
     },
     {
@@ -16781,7 +16827,7 @@
     },
     {
       "source": "js_main",
-      "target": "js_projects_index_byid",
+      "target": "js_core_visits_initvisits",
       "relation": "imports",
       "_origin": "ast",
       "confidence": "EXTRACTED",
@@ -16793,7 +16839,7 @@
     },
     {
       "source": "js_main",
-      "target": "js_progress_rendergamehud",
+      "target": "js_projects_index_byid",
       "relation": "imports",
       "_origin": "ast",
       "confidence": "EXTRACTED",
@@ -16805,7 +16851,7 @@
     },
     {
       "source": "js_main",
-      "target": "js_games_runner_initrunner",
+      "target": "js_progress_rendergamehud",
       "relation": "imports",
       "_origin": "ast",
       "confidence": "EXTRACTED",
@@ -16817,7 +16863,7 @@
     },
     {
       "source": "js_main",
-      "target": "js_games_arcade_initarcade",
+      "target": "js_games_runner_initrunner",
       "relation": "imports",
       "_origin": "ast",
       "confidence": "EXTRACTED",
@@ -16829,7 +16875,7 @@
     },
     {
       "source": "js_main",
-      "target": "js_ui_preview_initpreview",
+      "target": "js_games_arcade_initarcade",
       "relation": "imports",
       "_origin": "ast",
       "confidence": "EXTRACTED",
@@ -16841,6 +16887,18 @@
     },
     {
       "source": "js_main",
+      "target": "js_ui_preview_initpreview",
+      "relation": "imports",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "import",
+      "source_file": "js/main.js",
+      "source_location": "L8",
+      "weight": 1.0
+    },
+    {
+      "source": "js_main",
       "target": "js_ui_dossier_initdossier",
       "relation": "imports",
       "_origin": "ast",
@@ -16848,24 +16906,12 @@
       "confidence_score": 1.0,
       "context": "import",
       "source_file": "js/main.js",
-      "source_location": "L8",
+      "source_location": "L9",
       "weight": 1.0
     },
     {
       "source": "js_main",
       "target": "js_ui_dossier_opendossier",
-      "relation": "imports",
-      "_origin": "ast",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "context": "import",
-      "source_file": "js/main.js",
-      "source_location": "L8",
-      "weight": 1.0
-    },
-    {
-      "source": "js_main",
-      "target": "js_ui_cinema_initcinema",
       "relation": "imports",
       "_origin": "ast",
       "confidence": "EXTRACTED",
@@ -22517,7 +22563,7 @@
     },
     {
       "source": "js_main",
-      "target": "js_ui_social",
+      "target": "js_ui_cinema",
       "relation": "imports_from",
       "_origin": "ast",
       "confidence": "EXTRACTED",
@@ -22529,7 +22575,7 @@
     },
     {
       "source": "js_main",
-      "target": "js_ui_shell",
+      "target": "js_ui_social",
       "relation": "imports_from",
       "_origin": "ast",
       "confidence": "EXTRACTED",
@@ -22541,7 +22587,7 @@
     },
     {
       "source": "js_main",
-      "target": "js_ui_bigmap",
+      "target": "js_ui_shell",
       "relation": "imports_from",
       "_origin": "ast",
       "confidence": "EXTRACTED",
@@ -22553,7 +22599,7 @@
     },
     {
       "source": "js_main",
-      "target": "js_net_net",
+      "target": "js_ui_bigmap",
       "relation": "imports_from",
       "_origin": "ast",
       "confidence": "EXTRACTED",
@@ -22565,7 +22611,7 @@
     },
     {
       "source": "js_main",
-      "target": "js_net_panel",
+      "target": "js_net_net",
       "relation": "imports_from",
       "_origin": "ast",
       "confidence": "EXTRACTED",
@@ -22577,7 +22623,7 @@
     },
     {
       "source": "js_main",
-      "target": "js_net_race",
+      "target": "js_net_panel",
       "relation": "imports_from",
       "_origin": "ast",
       "confidence": "EXTRACTED",
@@ -22589,7 +22635,7 @@
     },
     {
       "source": "js_main",
-      "target": "js_net_battle",
+      "target": "js_net_race",
       "relation": "imports_from",
       "_origin": "ast",
       "confidence": "EXTRACTED",
@@ -22601,7 +22647,7 @@
     },
     {
       "source": "js_main",
-      "target": "js_world_world",
+      "target": "js_net_battle",
       "relation": "imports_from",
       "_origin": "ast",
       "confidence": "EXTRACTED",
@@ -22609,6 +22655,18 @@
       "context": "import",
       "source_file": "js/main.js",
       "source_location": "L17",
+      "weight": 1.0
+    },
+    {
+      "source": "js_main",
+      "target": "js_world_world",
+      "relation": "imports_from",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "import",
+      "source_file": "js/main.js",
+      "source_location": "L18",
       "weight": 1.0
     },
     {
@@ -22625,7 +22683,7 @@
     },
     {
       "source": "js_main",
-      "target": "js_projects_index",
+      "target": "js_core_visits",
       "relation": "imports_from",
       "_origin": "ast",
       "confidence": "EXTRACTED",
@@ -22637,7 +22695,7 @@
     },
     {
       "source": "js_main",
-      "target": "js_progress",
+      "target": "js_projects_index",
       "relation": "imports_from",
       "_origin": "ast",
       "confidence": "EXTRACTED",
@@ -22649,7 +22707,7 @@
     },
     {
       "source": "js_main",
-      "target": "js_games_runner",
+      "target": "js_progress",
       "relation": "imports_from",
       "_origin": "ast",
       "confidence": "EXTRACTED",
@@ -22661,7 +22719,7 @@
     },
     {
       "source": "js_main",
-      "target": "js_games_arcade",
+      "target": "js_games_runner",
       "relation": "imports_from",
       "_origin": "ast",
       "confidence": "EXTRACTED",
@@ -22673,7 +22731,7 @@
     },
     {
       "source": "js_main",
-      "target": "js_ui_preview",
+      "target": "js_games_arcade",
       "relation": "imports_from",
       "_origin": "ast",
       "confidence": "EXTRACTED",
@@ -22685,7 +22743,7 @@
     },
     {
       "source": "js_main",
-      "target": "js_ui_dossier",
+      "target": "js_ui_preview",
       "relation": "imports_from",
       "_origin": "ast",
       "confidence": "EXTRACTED",
@@ -22697,7 +22755,7 @@
     },
     {
       "source": "js_main",
-      "target": "js_ui_cinema",
+      "target": "js_ui_dossier",
       "relation": "imports_from",
       "_origin": "ast",
       "confidence": "EXTRACTED",
@@ -25644,6 +25702,17 @@
       "weight": 1.0
     },
     {
+      "source": "js_core_visits",
+      "target": "js_core_visits_initvisits",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "js/core/visits.js",
+      "source_location": "L4",
+      "weight": 1.0
+    },
+    {
       "source": "js_films",
       "target": "js_films_cinema",
       "relation": "contains",
@@ -26509,7 +26578,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "js/net/panel.js",
-      "source_location": "L63",
+      "source_location": "L62",
       "weight": 1.0
     },
     {
@@ -29889,7 +29958,7 @@
       "confidence_score": 0.85,
       "context": "argument",
       "source_file": "js/main.js",
-      "source_location": "L53",
+      "source_location": "L55",
       "weight": 1.0
     },
     {
@@ -29925,7 +29994,7 @@
       "confidence_score": 0.85,
       "context": "argument",
       "source_file": "js/net/panel.js",
-      "source_location": "L70",
+      "source_location": "L69",
       "weight": 1.0
     },
     {
@@ -31082,5 +31151,5 @@
     }
   ],
   "hyperedges": [],
-  "built_at_commit": "16618efb5c8a40d41345b618c4c1be8aae962a04"
+  "built_at_commit": "ce1c14914ea9c5e8b2192fddc1543ff3eade1e89"
 }

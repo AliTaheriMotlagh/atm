@@ -1,5 +1,6 @@
 import { $ } from './core/util.js';
 import { app } from './core/app.js';
+import { initVisits } from './core/visits.js';
 import { byId } from './projects/index.js';
 import { renderGameHud } from './progress.js';
 import { initRunner } from './games/runner.js';
@@ -31,6 +32,7 @@ initNetPanel();
 initRace();
 initBattle();
 renderGameHud();
+initVisits();
 
 function boot() {
   world.ok = startWorld();

@@ -29,7 +29,6 @@ export function renderNet() {
   const b = $('#btn-online');
   $('#online-n').textContent = n;
   b.classList.toggle('on', net.status === 'online');
-  b.setAttribute('aria-label', `${n} driver${n === 1 ? '' : 's'} online`);
   $('#intro-net').hidden = !(net.status === 'online' && others);
   $('#intro-net-text').textContent = `${others} other driver${others === 1 ? ' is' : 's are'} on the island right now. Press Start to drive with them.`;
   if (netEl.hidden) return;
