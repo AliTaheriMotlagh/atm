@@ -7,8 +7,8 @@ const project = {
   id: 'atm', name: 'Project Island', color: '#d946ef', lang: 'JavaScript · Three.js',
   tagline: 'This portfolio: a drivable 3D Tehran where every landmark is a project, with mini-games, a GPS map and multiplayer races.',
   chips: ['Three.js', 'WebRTC', 'Static site', 'Updated 25 Oct 2026'], live: true,
-  repos: [{ url: GH + 'atm' }], site: 'https://alitaherimotlagh.vercel.app/',
-  extraLinks: [{ k: 'CV', url: 'https://atm-cv.vercel.app' }],
+  repos: [{ url: GH + 'atm' }], site: 'https://alitaherimotlagh.remixt.app/',
+  extraLinks: [{ k: 'CV', url: 'https://atm.remixt.app' }],
   // You're already in it: embedding the island in itself would also add a ghost driver online.
   embed: false,
   pitch: {

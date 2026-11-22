@@ -7,7 +7,7 @@ Instead of scrolling through a conventional portfolio, visitors drive around a s
 ## Portfolio
 
 - GitHub: https://github.com/AliTaheriMotlagh
-- CV: https://atm-cv.vercel.app
+- CV: https://atm.remixt.app/
 - LinkedIn: https://www.linkedin.com/in/alitaherimotlagh/
 - Projects: https://github.com/AliTaheriMotlagh?tab=repositories
 
@@ -15,17 +15,17 @@ Instead of scrolling through a conventional portfolio, visitors drive around a s
 
 | Project | Live website | Source |
 | --- | --- | --- |
-| Remixt | https://remixt-free.vercel.app | https://github.com/AliTaheriMotlagh/remixt |
+| Remixt | https://remixt.app | https://github.com/AliTaheriMotlagh/remixt |
 | Khalabani | https://khalabani.vercel.app | https://github.com/AliTaheriMotlagh/khalabani |
 | Gridways | https://gridways.vercel.app | https://github.com/AliTaheriMotlagh/gridways |
 | VasatYab | https://vasatyab.vercel.app | https://github.com/AliTaheriMotlagh/vasat-yab |
 | Siktir | https://siktir-backend.onrender.com | Frontend: https://github.com/AliTaheriMotlagh/siktir-frontend · Backend: https://github.com/AliTaheriMotlagh/siktir-backend |
 | TypeScript Algorithms | — | https://github.com/AliTaheriMotlagh/typescript-algorithms-and-data-structures |
-| StreetQuest | https://streetquest-free.vercel.app | https://github.com/AliTaheriMotlagh/streetquest |
+| StreetQuest | https://streetquest.remixt.app | https://github.com/AliTaheriMotlagh/streetquest |
 | Nexus SCADA | https://nexus-scada.onrender.com | https://github.com/AliTaheriMotlagh/nexus-scada |
-| Khabar (Future Focus) | https://khabar-ai.vercel.app | https://github.com/AliTaheriMotlagh/khabar |
+| Khabar (Future Focus) | https://blog.remixt.app | https://github.com/AliTaheriMotlagh/khabar |
 | walki | https://walki-free.vercel.app | https://github.com/AliTaheriMotlagh/walki |
-| Project Island (this site) | https://alitaherimotlagh.vercel.app | https://github.com/AliTaheriMotlagh/atm |
+| Project Island (this site) | https://alitaherimotlagh.remixt.app | https://github.com/AliTaheriMotlagh/atm |
 
 ## Short films
 

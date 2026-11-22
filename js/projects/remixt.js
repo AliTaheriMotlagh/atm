@@ -7,7 +7,7 @@ const project = {
   id: 'remixt', name: 'Remixt', color: '#ff4f8b', lang: 'TypeScript · Python',
   tagline: 'Remix any song in your browser. AI splits vocals from the beat, and you pair any vocal with any beat.',
   chips: ['Next.js', 'WebGPU', 'Updated 30 Sep 2026'], live: true,
-  repos: [{ url: GH + 'remixt' }], site: 'https://remixt-free.vercel.app',
+  repos: [{ url: GH + 'remixt' }], site: 'https://remixt.app',
   pitch: {
     line: 'A browser DAW where uploading a song gives you its vocal and beat stems in seconds, without the song leaving your device.',
     rows: [

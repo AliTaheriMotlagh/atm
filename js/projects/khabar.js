@@ -7,7 +7,7 @@ const project = {
   id: 'khabar', name: 'Khabar', color: '#2f4fd8', lang: 'TypeScript · Astro + Python',
   tagline: 'Future Focus: a Persian AI and tech news site that builds itself from a Telegram channel every 20 minutes.',
   chips: ['Astro', 'Telegram → web', 'Updated 25 Oct 2026'], live: true,
-  repos: [{ url: GH + 'khabar' }], site: 'https://khabar-ai.vercel.app',
+  repos: [{ url: GH + 'khabar' }], site: 'https://blog.remixt.app',
   // The site sends X-Frame-Options: SAMEORIGIN, so the dossier links out instead of embedding it.
   embed: false,
   shots: ['images/khabar-home.jpg', 'images/khabar-story.jpg', 'images/khabar-today.jpg'],

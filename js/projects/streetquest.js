@@ -6,7 +6,7 @@ const project = {
   id: 'streetquest', name: 'StreetQuest', color: '#84cc16', lang: 'TypeScript · Next.js',
   tagline: 'A real-world GPS war game. Plant a base where you stand, march an army down real streets and breach rival bases in first person.',
   chips: ['Next.js', 'Three.js', 'PWA', 'Updated 7 Oct 2026'], live: true,
-  repos: [{ url: GH + 'streetquest' }], site: 'https://streetquest-free.vercel.app',
+  repos: [{ url: GH + 'streetquest' }], site: 'https://streetquest.remixt.app',
   // The site sends X-Frame-Options: SAMEORIGIN, so it can't run inside the dossier.
   embed: false,
   shots: ['images/streetquest-map.jpg', 'images/streetquest-beacon.jpg', 'images/streetquest-goals.jpg'],
