@@ -235,6 +235,35 @@ Deploy the repository as a static site (no build command, output directory = rep
 
 For a **durable, global** count, create a KV namespace in the Cloudflare dashboard (Workers & Pages → KV → Create namespace) and bind it to this project with the variable name **`VISITS`** (Settings → Functions → KV namespace bindings). The function stores the total under the key `count`. Without that binding it falls back to an in-memory value that resets when the isolate is recycled, so the binding is recommended for a real visit counter.
 
+### SEO and the other remixt.app sites
+
+This is one property in a small network owned by the same author. The four official sister sites are linked in the intro, in the crawlable text block, in the `ItemList` structured data (`#projects`), in `ProfilePage.relatedLink` and in `Person.sameAs` (the CV site):
+
+| Site | What it is | Anchor text used |
+| --- | --- | --- |
+| https://remixt.app | Browser vocal remover, stem splitter and remix studio | "Remixt · vocal remixer" |
+| https://blog.remixt.app | Khabar / Future Focus — Persian AI and tech news | "Khabar · Future Focus news" |
+| https://streetquest.remixt.app | Real-world GPS money game | "StreetQuest · GPS game" |
+| https://atm.remixt.app | CV — founding engineer, Angular and TypeScript | "CV · Angular & TypeScript" |
+
+Linking rules used here (worth keeping if you add more sites):
+
+- Descriptive anchor text that names the product and what it does — never "click here" or a bare domain.
+- The links are ordinary **dofollow** links (same owner, so no `nofollow`/`sponsored`) with `rel="noopener"` because they open a new tab. Do **not** add `noreferrer`: it would hide the referral in the other sites' analytics.
+- `hreflang` is only for translated versions of the *same* page, not for sister sites. This page is `en`; `blog.remixt.app` is Persian and must declare its own `hreflang="fa"`. Cross-declaring hreflang between different sites is an error.
+- One `<h1>` per page (the intro title). The crawlable `.sr-seo` section uses `<h2>`/`<h3>` and real links, so crawlers that don't execute JavaScript still see the content.
+
+Target keywords: **Ali Taheri Motlagh**, senior frontend developer, founding engineer, Angular, TypeScript, NgRx, Three.js, drivable 3D Tehran, interactive portfolio, Project Island, Remixt, StreetQuest, Future Focus / Khabar. They appear naturally in the title, meta description, `keywords` meta (a convenience for smaller engines — Google ignores it), headings, image captions and structured data. Avoid stuffing; keep the title under ~60 characters and the description under ~160.
+
+Sitemaps and crawling:
+
+- `sitemap.xml` contains **only** this host. The sitemap protocol requires all URLs in one file to share a host, so do not paste the other domains into it. Each sister site needs its own sitemap submitted to its own Search Console property; a sitemap index can group them only when you control all the hosts.
+- Hash routes (`#drive`, `#map`, `#walki`) are fragments: Google ignores them, so they are deliberately absent from the sitemap. There is exactly one indexable URL.
+- `sitemap.xml` also has an **image sitemap** section for the OG image and three project screenshots, with titles and captions.
+- `robots.txt` allows everything except the JSON API and points to the absolute sitemap URL. `_headers` adds nosniff, a cross-origin referrer policy that still passes the origin to sister sites, and HSTS.
+
+If the canonical host ever changes, update it in one pass: `<title>` metadata, `og:*`/`twitter:*`, `rel="canonical"`, `hreflang`, all JSON-LD `@id`/`url` values, `robots.txt` and `sitemap.xml`.
+
 ## Controls
 
 ### Desktop

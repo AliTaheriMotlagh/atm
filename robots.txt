@@ -1,4 +1,5 @@
 User-agent: *
 Allow: /
+Disallow: /api/
 
 Sitemap: https://alitaherimotlagh.remixt.app/sitemap.xml

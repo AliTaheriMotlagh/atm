@@ -1,0 +1,18 @@
+# Cloudflare Pages headers. Kept intentionally narrow: no CSP or frame rules, because the island
+# embeds live project previews (including voice/chat apps) in sandboxed iframes.
+/*
+  X-Content-Type-Options: nosniff
+  Referrer-Policy: strict-origin-when-cross-origin
+  Strict-Transport-Security: max-age=31536000; includeSubDomains
+
+/css/*
+  Cache-Control: public, max-age=86400, must-revalidate
+
+/js/*
+  Cache-Control: public, max-age=86400, must-revalidate
+
+/images/*
+  Cache-Control: public, max-age=604800, must-revalidate
+
+/api/*
+  Cache-Control: no-store

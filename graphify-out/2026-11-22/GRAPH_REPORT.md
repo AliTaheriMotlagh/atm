@@ -1,17 +1,17 @@
 # Graph Report - atm  (2026-11-22)
 
 ## Corpus Check
-- 66 files · ~113,174 words
+- 67 files · ~114,344 words
 - Verdict: corpus is large enough that graph structure adds value.
 - Unclassified: 26 file(s) not represented in the graph (top: .css 22, (none) 3, .xml 1)
 
 ## Summary
-- 592 nodes · 2053 edges · 21 communities (17 shown, 4 thin omitted)
+- 600 nodes · 2064 edges · 20 communities (16 shown, 4 thin omitted)
 - Extraction: 95% EXTRACTED · 5% INFERRED · 0% AMBIGUOUS · INFERRED: 102 edges (avg confidence: 0.85)
 - Token cost: 0 input · 0 output
 
 ## Graph Freshness
-- Built from commit: `ce1c1491`
+- Built from commit: `27041a7e`
 - Run `git rev-parse HEAD` and compare to check if the graph is stale.
 - Run `graphify update .` after code changes (no API cost).
 
@@ -28,19 +28,18 @@
 - package.json
 - joinRoom
 - rnd
-- world.js
-- preview.js
+- screens.js
+- functions/api/visits.js
 - shake
 - buzz
 - hexNum
 - walki.js
-- gTempo
 
 ## God Nodes (most connected - your core abstractions)
 1. `$` - 124 edges
 2. `buzz()` - 49 edges
 3. `rnd()` - 41 edges
-4. `startWorld()` - 36 edges
+4. `startWorld()` - 37 edges
 5. `esc()` - 35 edges
 6. `hexNum()` - 34 edges
 7. `shake()` - 32 edges
@@ -75,35 +74,35 @@
 - 5-file cycle: `js/net/net.js -> js/net/panel.js -> js/net/race.js -> js/world/world.js -> js/world/cars.js -> js/net/net.js`
 - 5-file cycle: `js/net/net.js -> js/net/panel.js -> js/net/race.js -> js/world/world.js -> js/world/minimap.js -> js/net/net.js`
 
-## Communities (21 total, 4 thin omitted)
+## Communities (20 total, 4 thin omitted)
 
 ### Community 0 - "shuffle"
 Cohesion: 0.12
 Nodes (22): shuffle(), orderGame(), gMemory(), gStack(), gTimeline(), landmark(), project, gMesh() (+14 more)
 
 ### Community 1 - "net.js"
-Cohesion: 0.08
-Nodes (80): fx, toast(), store, ordinal(), reduceMotion, applyGem(), award(), battle (+72 more)
+Cohesion: 0.06
+Nodes (100): confetti(), fx, toast(), emit(), handlers, store, fmtTime(), ordinal() (+92 more)
 
 ### Community 2 - "plan.js"
-Cohesion: 0.06
-Nodes (76): TAU, TOUR, buildCity(), builder(), box(), geo(), quad(), tri() (+68 more)
+Cohesion: 0.05
+Nodes (101): reduceMotion, TAU, battleLocked(), raceLocked(), updateGame(), TOUR, input, overlayOpen() (+93 more)
 
 ### Community 3 - "projects/index.js"
-Cohesion: 0.16
-Nodes (22): sfx, isTouch, keepFocus(), secs(), gSort(), project, project, project (+14 more)
+Cohesion: 0.21
+Nodes (17): sfx, isTouch, keepFocus(), secs(), gSort(), project, project, project (+9 more)
 
 ### Community 4 - "$"
 Cohesion: 0.06
-Nodes (99): app, setMode(), confetti(), emit(), handlers, on(), $, copyText() (+91 more)
+Nodes (92): app, setMode(), on(), $, copyText(), esc(), fmt(), inkFor() (+84 more)
 
 ### Community 5 - "Ali's Project Island"
 Cohesion: 0.08
 Nodes (26): M(), About Ali, Adding a project, Ali's Project Island, Billboards, Code layout, Controls, Desktop (+18 more)
 
 ### Community 6 - "bigmap.js"
-Cohesion: 0.11
-Nodes (39): clamp(), draw(), gCatch(), card(), draw(), gGlide(), draw(), card (+31 more)
+Cohesion: 0.10
+Nodes (40): net, NET_COLORS, draw(), card(), draw(), draw(), bigmap, card (+32 more)
 
 ### Community 9 - "package.json"
 Cohesion: 0.10
@@ -114,36 +113,32 @@ Cohesion: 0.83
 Nodes (4): joinRoom(), connect(), open(), retryLater()
 
 ### Community 11 - "rnd"
-Cohesion: 0.22
-Nodes (15): rnd(), gBinary(), gMixer(), gRhythm(), tap(), gFair(), setup(), gMapMid() (+7 more)
+Cohesion: 0.14
+Nodes (20): rnd(), gBinary(), gMixer(), gRhythm(), tap(), gTempo(), countIn(), tap() (+12 more)
 
-### Community 12 - "world.js"
-Cohesion: 0.10
-Nodes (37): battleLocked(), raceLocked(), updateGame(), input, keys, overlayOpen(), buildCars(), buildCar() (+29 more)
+### Community 12 - "screens.js"
+Cohesion: 0.23
+Nodes (12): CINEMA, FILMS, landmark(), ytThumb(), createScreens(), makeScreen(), drawSlide(), drawThumb() (+4 more)
 
-### Community 13 - "preview.js"
-Cohesion: 0.22
-Nodes (17): prettyUrl(), canEmbed(), composeShots(), fitSite(), imageCache, poster(), refreshImage(), resolveImage() (+9 more)
+### Community 13 - "functions/api/visits.js"
+Cohesion: 0.53
+Nodes (5): headers, onRequest(), readCount(), send(), writeCount()
 
 ### Community 14 - "shake"
-Cohesion: 0.18
-Nodes (17): shake(), gHanoi(), pick(), gRoute(), pick(), gRush(), send(), gAlarms() (+9 more)
+Cohesion: 0.13
+Nodes (22): shake(), gHanoi(), pick(), gRoute(), pick(), gRush(), send(), gTagger() (+14 more)
 
 ### Community 16 - "buzz"
-Cohesion: 0.16
-Nodes (16): buzz(), gCoinRun(), gTagger(), pick(), show(), gReact(), press(), gReflex() (+8 more)
+Cohesion: 0.14
+Nodes (18): buzz(), clamp(), gCoinRun(), gCatch(), gFlow(), gGlide(), gLanding(), landmark() (+10 more)
 
 ### Community 17 - "hexNum"
-Cohesion: 0.15
-Nodes (13): hexNum(), landmark(), landmark(), landmark(), landmark(), landmark(), gHunt(), landmark() (+5 more)
+Cohesion: 0.19
+Nodes (13): hexNum(), landmark(), landmark(), landmark(), landmark(), landmark(), landmark(), buildCars() (+5 more)
 
 ### Community 18 - "walki.js"
 Cohesion: 0.36
 Nodes (7): gFloor(), end(), start(), gHold(), landmark(), project, ptt()
-
-### Community 19 - "gTempo"
-Cohesion: 1.00
-Nodes (3): gTempo(), countIn(), tap()
 
 ## Knowledge Gaps
 - **4 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
@@ -151,17 +146,17 @@ Nodes (3): gTempo(), countIn(), tap()
 ## Suggested Questions
 _Questions this graph is uniquely positioned to answer:_
 
-- **Why does `$` connect `$` to `shuffle`, `net.js`, `plan.js`, `projects/index.js`, `bigmap.js`, `rnd`, `world.js`, `preview.js`, `shake`, `buzz`, `hexNum`, `walki.js`?**
-  _High betweenness centrality (0.352) - this node is a cross-community bridge._
+- **Why does `$` connect `$` to `shuffle`, `net.js`, `plan.js`, `projects/index.js`, `bigmap.js`, `rnd`, `screens.js`, `shake`, `buzz`, `hexNum`, `walki.js`?**
+  _High betweenness centrality (0.344) - this node is a cross-community bridge._
 - **Should `shuffle` be split into smaller, more focused modules?**
   _Cohesion score 0.12 - nodes in this community are weakly interconnected._
-- **Why does `startWorld()` connect `world.js` to `plan.js`, `$`, `Ali's Project Island`, `bigmap.js`, `buzz`, `hexNum`?**
-  _High betweenness centrality (0.071) - this node is a cross-community bridge._
+- **Why does `startWorld()` connect `plan.js` to `net.js`, `$`, `Ali's Project Island`, `bigmap.js`, `screens.js`, `buzz`, `hexNum`?**
+  _High betweenness centrality (0.073) - this node is a cross-community bridge._
 - **Should `net.js` be split into smaller, more focused modules?**
-  _Cohesion score 0.08043922369765066 - nodes in this community are weakly interconnected._
-- **Why does `buzz()` connect `buzz` to `shuffle`, `net.js`, `projects/index.js`, `$`, `bigmap.js`, `world.js`, `shake`, `hexNum`, `walki.js`?**
-  _High betweenness centrality (0.068) - this node is a cross-community bridge._
+  _Cohesion score 0.06005056890012642 - nodes in this community are weakly interconnected._
+- **Why does `buzz()` connect `buzz` to `shuffle`, `net.js`, `plan.js`, `projects/index.js`, `$`, `shake`, `walki.js`?**
+  _High betweenness centrality (0.066) - this node is a cross-community bridge._
 - **Should `plan.js` be split into smaller, more focused modules?**
-  _Cohesion score 0.06442127773322641 - nodes in this community are weakly interconnected._
+  _Cohesion score 0.05128205128205128 - nodes in this community are weakly interconnected._
 - **Should `$` be split into smaller, more focused modules?**
-  _Cohesion score 0.06039434870361745 - nodes in this community are weakly interconnected._
+  _Cohesion score 0.062454212454212454 - nodes in this community are weakly interconnected._
