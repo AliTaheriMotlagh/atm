@@ -2,10 +2,10 @@
   "0": "shuffle",
   "1": "net.js",
   "2": "plan.js",
-  "3": "sfx.js",
+  "3": "hexNum",
   "4": "$",
   "5": "Ali's Project Island",
-  "6": "world.js",
+  "6": "bigmap.js",
   "7": "CLAUDE.md",
   "8": "images/README.md",
   "9": "package.json",
@@ -16,10 +16,9 @@
   "14": "shake",
   "15": "turn.js",
   "16": "buzz",
-  "17": "hexNum",
+  "17": "about.js",
   "18": "walki.js",
-  "19": "preview.js",
   "20": "api/visits.js",
-  "21": "streetquest.js",
-  "22": "gRhythm"
+  "21": "projects/index.js",
+  "22": "gTempo"
 }

@@ -229,11 +229,15 @@ Deep links: `#drive` skips the intro, `#map` opens the map, and `#<project id>` 
 
 You can also use any static server such as `npx serve` or deploy the file to Vercel, Netlify, GitHub Pages, Cloudflare Pages, or another static host.
 
-### Cloudflare Pages deployment
+### Cloudflare deployment
 
-Deploy the repository as a static site (no build command, output directory = repo root). The visit counter endpoint `/api/visits` is handled by `functions/api/visits.js`, the Cloudflare Pages Function version of Vercel's `api/visits.js`. The browser receives the same `{ visits }` JSON on either host.
+The repo works on both Cloudflare products; pick one per project in the dashboard.
 
-For a **durable, global** count, create a KV namespace in the Cloudflare dashboard (Workers & Pages → KV → Create namespace) and bind it to this project with the variable name **`VISITS`** (Settings → Functions → KV namespace bindings). The function stores the total under the key `count`. Without that binding it falls back to an in-memory value that resets when the isolate is recycled, so the binding is recommended for a real visit counter.
+**Workers (recommended, `npx wrangler deploy`).** `wrangler.jsonc` deploys the repo root as static assets and sends `/api/*` to `worker.js`, which serves the visit counter and TURN credentials with the same responses as Vercel. `.assetsignore` keeps source code, `server/`, `graphify-out/` and the Wrangler config out of the public upload. If your Worker has a different name than `atm`, change `name` in `wrangler.jsonc` (or delete it when Workers Builds injects the name) so a deploy updates that Worker instead of creating a second one.
+
+**Pages (`wrangler pages deploy .`).** No build command and output directory = repo root. `/api/visits` is handled by `functions/api/visits.js`, the Cloudflare Pages Function twin of Vercel's `api/visits.js`. This is the setup the error "This project has a `functions` directory and static files in its root" refers to: that folder is for Pages, so deploy the repo as a Pages project, not with `wrangler deploy` (which now expects the Worker in `wrangler.jsonc`).
+
+For a **durable, global** count, create a KV namespace (Workers & Pages → KV → Create namespace) and bind it with the variable name **`VISITS`** — in `wrangler.jsonc` (`kv_namespaces`, see the commented example) for a Worker, or in Settings → Functions → KV namespace bindings for Pages. The function stores the total under the key `count`. Without that binding it falls back to an in-memory value that resets when the isolate is recycled, so the binding is recommended for a real visit counter.
 
 ### SEO and the other remixt.app sites
 

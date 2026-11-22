@@ -1,0 +1,18 @@
+# Keep source, tooling and per-host config out of the public static upload.
+.git
+.gitignore
+.claude
+.DS_Store
+.assetsignore
+.vercelignore
+api
+functions
+server
+graphify-out
+node_modules
+wrangler.jsonc
+worker.js
+render.yaml
+README.md
+CLAUDE.md
+.wrangler

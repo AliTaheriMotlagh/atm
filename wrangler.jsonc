@@ -1,0 +1,21 @@
+{
+  // Worker name as shown in Cloudflare (Workers & Pages). Change it if your Worker is named
+  // differently, otherwise `wrangler deploy` creates a second Worker instead of updating yours.
+  "name": "atm",
+  "main": "worker.js",
+  "compatibility_date": "2026-11-22",
+
+  "assets": {
+    // The repo root is the static site; .assetsignore keeps code and tooling out of the upload.
+    "directory": ".",
+    "binding": "ASSETS",
+    "run_worker_first": ["/api/*"]
+  },
+
+  "observability": { "enabled": true }
+
+  // Durable, global visit counter (optional):
+  //   npx wrangler kv namespace create VISITS
+  // then add the printed id here:
+  // "kv_namespaces": [{ "binding": "VISITS", "id": "<namespace-id>" }]
+}
