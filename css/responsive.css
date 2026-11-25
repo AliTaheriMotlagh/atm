@@ -69,7 +69,7 @@
 @media (max-height: 500px) and (orientation: landscape) {
   .intro { padding: 8px 12px; place-items: start center; }
   .intro .card { padding: 16px 18px; gap: 10px; max-height: calc(100dvh - 16px); overflow-y: auto; }
-  .card h1 { font-size: 28px; }
+  .card h1, .card .h1 { font-size: 28px; }
   .goal { max-height: 132px; }
   .game-box { max-height: calc(100dvh - 12px); padding: 10px 14px; }
 }

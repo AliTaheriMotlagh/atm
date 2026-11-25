@@ -9,13 +9,19 @@
     // The repo root is the static site; .assetsignore keeps code and tooling out of the upload.
     "directory": ".",
     "binding": "ASSETS",
-    "run_worker_first": ["/api/*"]
+    "run_worker_first": ["/api/*"],
+    // /index.html → / and /about/ ↔ /about, so each page has one canonical URL.
+    "html_handling": "auto-trailing-slash",
+    // Unknown paths get a real 404 (not the home page), which keeps soft-404s out of search results.
+    "not_found_handling": "none"
   },
 
-  "observability": { "enabled": true }
+  // Global visit counter: one SQLite-backed Durable Object (included in the Workers Free plan).
+  // Nothing to create in the dashboard: `wrangler deploy` provisions it from this block.
+  "durable_objects": {
+    "bindings": [{ "name": "VISIT_COUNTER", "class_name": "VisitCounter" }]
+  },
+  "migrations": [{ "tag": "v1", "new_sqlite_classes": ["VisitCounter"] }],
 
-  // Durable, global visit counter (optional):
-  //   npx wrangler kv namespace create VISITS
-  // then add the printed id here:
-  // "kv_namespaces": [{ "binding": "VISITS", "id": "<namespace-id>" }]
+  "observability": { "enabled": true }
 }

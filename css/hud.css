@@ -9,7 +9,9 @@
 .brand {
   background: var(--panel); border: 1px solid var(--line); border-radius: 12px;
   padding: 8px 12px; min-width: 0; backdrop-filter: blur(6px);
+  text-align: left; transition: border-color .2s;
 }
+.brand:hover { border-color: var(--accent); }
 .brand b { display: block; font-family: var(--f-display); font-weight: 400; font-size: 14px; letter-spacing: .02em; color: var(--accent); }
 .brand span { display: block; font-family: var(--f-mono); font-size: 11px; color: var(--muted); }
 .hud-left { display: flex; flex-direction: column; gap: 8px; min-width: 0; flex: 0 1 210px; }
@@ -113,7 +115,7 @@ body.touch.driving .boost { display: block; }
 body.touch.driving .horn { display: block; }
 .horn:active { background: var(--accent); }
 #fx { position: fixed; inset: 0; z-index: 70; width: 100%; height: 100%; pointer-events: none; }
-.noscript { position: fixed; inset: 0; z-index: 100; display: grid; place-items: center; padding: 24px; background: var(--ink); text-align: center; }
+.noscript { position: fixed; left: 0; right: 0; bottom: 0; z-index: 100; margin: 0; padding: 12px 16px; background: var(--accent); color: var(--accent-ink); text-align: center; font-weight: 700; }
 
 /* Intro card */
 .intro {
@@ -129,7 +131,7 @@ body.touch.driving .horn { display: block; }
   display: grid; gap: 18px;
 }
 .eyebrow { font-family: var(--f-mono); font-size: 12px; letter-spacing: .12em; text-transform: uppercase; color: var(--muted); }
-.card h1 {
+.card h1, .card .h1 {
   margin: 0; font-family: var(--f-display); font-weight: 400; line-height: .98;
   font-size: clamp(30px, 7vw, 56px); color: var(--accent); text-wrap: balance;
 }

@@ -1,0 +1,16 @@
+{
+  "name": "Ali Taheri Motlagh — Project Island",
+  "short_name": "Project Island",
+  "description": "Portfolio of Ali Taheri Motlagh, senior frontend developer: a drivable 3D Tehran where every landmark is a real project.",
+  "start_url": "/",
+  "scope": "/",
+  "display": "fullscreen",
+  "orientation": "any",
+  "background_color": "#0d1628",
+  "theme_color": "#0d1628",
+  "icons": [
+    { "src": "/favicon.svg", "sizes": "any", "type": "image/svg+xml" },
+    { "src": "/icon-192.png", "sizes": "192x192", "type": "image/png" },
+    { "src": "/icon-512.png", "sizes": "512x512", "type": "image/png" }
+  ]
+}

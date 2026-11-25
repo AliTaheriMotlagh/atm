@@ -73,14 +73,48 @@ function renderSound() {
 function renderCounts() {
   const n = TOUR.length, g = GAME_LIST.length;
   $('#brand-sub').textContent = `Tehran · ${n} landmarks`;
-  $('#goal-note').innerHTML = `🏁 <b>Goal:</b> visit all ${n} project landmarks, collect 8 gold coins, open 3 dossiers, and beat at least one challenge at every project. There are ${g} challenges in the city, three per landmark. Your best tour time and personal records are saved on this device.`;
+  $('#stat-projects').textContent = n;
+  $('#stat-games').textContent = g;
+  $('#goal-note').innerHTML = `🏁 <b>Island tour:</b> visit all ${n} landmarks, collect 8 gold coins, open 3 dossiers and beat a challenge at every project. There are ${g} challenges, three per landmark; your best time is saved on this device.`;
+}
+
+/* Landing page (#intro): smooth in-page scrolling, a solid nav once scrolled, cards that rise into view. */
+function initLanding() {
+  const land = $('#intro');
+  const scrollTo = id => document.getElementById(id)?.scrollIntoView({ behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth', block: 'start' });
+  land.addEventListener('click', e => {
+    const t = e.target.closest('[data-scroll]'); if (!t) return;
+    e.preventDefault(); scrollTo(t.dataset.scroll);
+  });
+  $('#btn-intro-list').onclick = () => scrollTo('work');
+  const onScroll = () => land.classList.toggle('scrolled', land.scrollTop > 24);
+  land.addEventListener('scroll', onScroll, { passive: true }); onScroll();
+  // Focus the page so arrow keys / space scroll it right away.
+  if (!land.hidden && (!document.activeElement || document.activeElement === document.body)) land.focus({ preventScroll: true });
+
+  if (!('IntersectionObserver' in window)) return;
+  const items = [...land.querySelectorAll('.steps li, .work')];
+  land.classList.add('reveal-on');
+  const io = new IntersectionObserver(entries => entries.forEach(en => {
+    if (!en.isIntersecting) return;
+    en.target.classList.add('in'); io.unobserve(en.target);
+  }), { root: land, rootMargin: '0px 0px -8% 0px', threshold: 0.08 });
+  // Stagger cards that enter together (same row).
+  items.forEach((el, i) => { el.style.setProperty('--rd', `${(i % 3) * 90}ms`); io.observe(el); });
+}
+
+// Back to the landing page from the city (HUD name button).
+function showIntro() {
+  if (!$('#intro').hidden) return;
+  closeGame(); arcade.close(); cinema.close(); social.close(); netPanel.close(); toggleDrawer(false);
+  if (bigmap.isOpen) bigmap.close();
+  if (dossierOpen()) closeDossier();
+  setMode('intro');
+  const land = $('#intro'); land.hidden = false; land.scrollTop = 0;
+  land.focus({ preventScroll: true });
 }
 
 function renderLists() {
-  $('#intro-chips').innerHTML = ALL.map(p => `
-    <button class="chip" type="button" data-open="${p.id}" style="--c:${p.color}">
-      <i class="dot"></i><span><b>${esc(p.name)}</b><small>${esc(p.home ? 'Who I am, skills, contact' : p.tagline)}</small></span>
-    </button>`).join('');
   $('#plist').innerHTML = ALL.map(p => `
     <li class="pitem" style="--c:${p.color};--ci:${inkFor(p.color)}">
       <div class="top"><i class="dot"></i><b>${esc(p.name)}</b><span class="lang">${esc(p.home ? 'home' : p.lang.split(' ')[0])}</span></div>
@@ -141,7 +175,11 @@ function onKeyDown(e) {
   if (k === 'r') { if (!e.repeat && world.ok) raceKey(); return; }
   if (k === 'b') { if (!e.repeat && world.ok) battleKey(); return; }
   if ((k === 'e' || k === 'enter') && app.mode === 'drive' && world.near && document.activeElement.tagName !== 'BUTTON') { openLandmark(world.near, { teleport: false }); e.preventDefault(); return; }
-  if (app.mode === 'intro' && ['w', 'a', 's', 'd', 'arrowup', 'arrowdown', 'arrowleft', 'arrowright'].includes(k) && $('#drawer').hidden) { $('#intro').hidden = true; setMode('drive'); }
+  // On the landing page the arrow keys and space scroll it; W A S D start driving.
+  if (app.mode === 'intro' && !$('#intro').hidden) {
+    if (['arrowup', 'arrowdown', 'arrowleft', 'arrowright', ' ', 'pageup', 'pagedown', 'home', 'end'].includes(k)) return;
+    if (['w', 'a', 's', 'd'].includes(k) && $('#drawer').hidden && world.ok) { $('#intro').hidden = true; setMode('drive'); }
+  }
   if (['arrowup', 'arrowdown', 'arrowleft', 'arrowright', ' '].includes(k) && app.mode === 'drive') e.preventDefault();
   keys[k] = true;
 }
@@ -153,6 +191,7 @@ export function initShell() {
   }
   renderCounts();
   renderLists();
+  initLanding();
 
   // One listener for every data-* action rendered anywhere on the page.
   document.addEventListener('click', e => {
@@ -172,7 +211,7 @@ export function initShell() {
   });
 
   $('#btn-list').onclick = () => toggleDrawer();
-  $('#btn-intro-list').onclick = () => toggleDrawer(true);
+  $('#brand').onclick = showIntro;
   $('#minimap').onclick = () => bigmap.open();
   $('#drawer-x').onclick = () => toggleDrawer(false);
   $('#btn-about').onclick = () => openDossier('about');

@@ -3,28 +3,18 @@
         xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
   <url>
     <loc>https://alitaherimotlagh.remixt.app/</loc>
-    <lastmod>2026-11-22</lastmod>
+    <lastmod>2026-11-25</lastmod>
     <changefreq>monthly</changefreq>
     <priority>1.0</priority>
-    <image:image>
-      <image:loc>https://alitaherimotlagh.remixt.app/images/atm.jpg</image:loc>
-      <image:title>Ali Taheri Motlagh — Project Island, a drivable 3D Tehran</image:title>
-      <image:caption>The interactive 3D portfolio: drive through Tehran where each landmark is a real project.</image:caption>
-    </image:image>
-    <image:image>
-      <image:loc>https://alitaherimotlagh.remixt.app/images/remixt.jpg</image:loc>
-      <image:title>Remixt — split any song into vocals and beat</image:title>
-      <image:caption>The Remixt audio project, one of the landmarks on Project Island.</image:caption>
-    </image:image>
-    <image:image>
-      <image:loc>https://alitaherimotlagh.remixt.app/images/streetquest-map.jpg</image:loc>
-      <image:title>StreetQuest — your city is the game map</image:title>
-      <image:caption>The StreetQuest GPS game shown inside its project dossier.</image:caption>
-    </image:image>
-    <image:image>
-      <image:loc>https://alitaherimotlagh.remixt.app/images/khabar-home.jpg</image:loc>
-      <image:title>Khabar / Future Focus — AI and technology news</image:title>
-      <image:caption>The Khabar news project shown inside its project dossier.</image:caption>
-    </image:image>
+    <image:image><image:loc>https://alitaherimotlagh.remixt.app/images/og.jpg</image:loc></image:image>
+    <image:image><image:loc>https://alitaherimotlagh.remixt.app/images/atm.jpg</image:loc></image:image>
+    <image:image><image:loc>https://alitaherimotlagh.remixt.app/images/remixt.jpg</image:loc></image:image>
+    <image:image><image:loc>https://alitaherimotlagh.remixt.app/images/khalabani.jpg</image:loc></image:image>
+    <image:image><image:loc>https://alitaherimotlagh.remixt.app/images/gridways.jpg</image:loc></image:image>
+    <image:image><image:loc>https://alitaherimotlagh.remixt.app/images/vasatyab.jpg</image:loc></image:image>
+    <image:image><image:loc>https://alitaherimotlagh.remixt.app/images/streetquest-map.jpg</image:loc></image:image>
+    <image:image><image:loc>https://alitaherimotlagh.remixt.app/images/khabar-home.jpg</image:loc></image:image>
+    <image:image><image:loc>https://alitaherimotlagh.remixt.app/images/walki-join.jpg</image:loc></image:image>
+    <image:image><image:loc>https://alitaherimotlagh.remixt.app/images/algorithms.jpg</image:loc></image:image>
   </url>
 </urlset>
